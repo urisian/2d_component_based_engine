@@ -1,0 +1,5 @@
+#ifndef MYSTRUCTURES_H
+#define MYSTRUCTURES_H
+
+
+#endif // !MYSTRUCTURES_H
