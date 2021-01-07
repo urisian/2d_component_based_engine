@@ -6,7 +6,7 @@
 #include "MainApp.h"
 #include "DataStore.h"
 #include "Application.h"
-
+#include "FRC.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -27,10 +27,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 	ZeroMemory(&msg, sizeof(MSG));
 
-	CMainApp tMainApp; 
-	tMainApp.Ready_MainApp(); 
+	CMainApp mainApp; 
+	mainApp.Initialize();
 
-	DWORD dwOldTime = GetTickCount(); 
     while (msg.message != WM_QUIT)
     {
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
@@ -41,15 +40,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				DispatchMessage(&msg);
 			}
 		}
-		if(dwOldTime + 10 < GetTickCount())
+		if(CFRC::GetInstance()->FrameLock())
 		{
 			// 실제 게임 구동. 
-			tMainApp.Update_MainApp();
-			tMainApp.Late_Update_MainApp();
-			tMainApp.Render_MainApp();
-			dwOldTime = GetTickCount(); 
+			mainApp.Update();
+			mainApp.LateUpdate();
 		}
-
     }
 
     return (int) msg.wParam;

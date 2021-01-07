@@ -29,7 +29,7 @@ void CApplication::Initialize(HINSTANCE hInstance, int nCmdShow)
 	CreateWndHandle(hInstance, nCmdShow);
 }
 
-const HWND CApplication::GetHandle(void) const
+HWND CApplication::GetHandle(void) const
 {
 	return m_hWnd;
 }

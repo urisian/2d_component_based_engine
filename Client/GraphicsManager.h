@@ -1,6 +1,7 @@
 #ifndef GRAPHICSMANAGER_H
 #define GRAPHICSMANAGER_H
 
+class CGraphicsComponent;
 class CTextureShader;
 class CCamera;
 

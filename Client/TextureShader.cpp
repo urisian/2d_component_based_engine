@@ -38,8 +38,8 @@ void CTextureShader::InitShader(void)
 
 	std::string vsPath, psPath;
 
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "vsPath", vsPath);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "psPath", psPath);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "vsPath", vsPath);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "psPath", psPath);
 	/* VertexShader 만들기 */
 	/* 파일에서 버퍼로 컴파일함 */
 	result = D3DXCompileShaderFromFile(StrToWStr(vsPath).c_str(), 0, 0, "VShader", "vs_2_0", 

@@ -12,7 +12,7 @@ public:
 				void					Initialize				(void);
 				void					Release					(void);
 
-
+				CTexture*				GetTexture				(OBJID::ID OBJID, std::string objectKey);
 private:
 	explicit							CTextureStore			(void);
 	virtual							   ~CTextureStore			(void);
@@ -20,12 +20,12 @@ private:
 				bool					CreateTexture			(const std::string& fullPath);
 				std::string				GetSectionKey			(const std::string& fullPath);
 				std::string				GetObjectKey			(const std::string& fullPath);
-				std::string				GetStateKey				(const std::string& fullPath);
+
 
 
 				std::string				m_resourcePath;
 	static		CTextureStore*			m_s_pInstance;
-	std::map<std::string, CTexture*>	m_mTexture[TEXID::END];
+	std::map<std::string, CTexture*>	m_mTexture[OBJID::END];
 };
 
 #endif

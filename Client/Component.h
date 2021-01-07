@@ -9,9 +9,15 @@ public:
 	explicit					CComponent			(void);
 	virtual					   ~CComponent			(void);
 
-	const		std::string&	GetComponentType	(void) const;
+	virtual		void			Initialize			(void) PURE;
+	virtual		void			Update				(void) PURE;
 
-private:
+	const		std::string&	GetComponentType	(void) const;
+				
+				CObject*		GetOwner			(void);
+				void			SetOwner			(CObject* pObject);
+
+protected:
 				std::string		m_componentType;
 				CObject*		m_pOwner;
 };

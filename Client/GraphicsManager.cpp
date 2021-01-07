@@ -6,6 +6,7 @@
 #include "Object.h"
 #include "Camera.h"
 #include "GraphicsComponent.h"
+#include "Texture.h"
 
 CGraphicsManager* CGraphicsManager::m_s_pInstance = nullptr;
 
@@ -55,6 +56,7 @@ void CGraphicsManager::Render(void)
 			if (object->GetActivated() && pObjectGC != nullptr)
 			{
 				SetWorldMatrix(pObjectGC);
+				m_pDevice->SetTexture(0, pObjectGC->GetTexture());
 				m_pDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
 				m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
 			}
@@ -89,24 +91,33 @@ void CGraphicsManager::InitDevice(void)
 		return;
 	}
 
+	DWORD vp = 0;
+	if (DeviceCap.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT)
+		vp |= D3DCREATE_HARDWARE_VERTEXPROCESSING;
+	else
+		vp |= D3DCREATE_SOFTWARE_VERTEXPROCESSING;
+
 	ZeroMemory(&m_d3dpParm, sizeof(m_d3dpParm));
-	m_d3dpParm.BackBufferWidth			= m_screenWidth;
-	m_d3dpParm.BackBufferHeight			= m_screenHeight;
-	m_d3dpParm.BackBufferFormat			= D3DFMT_A8R8G8B8;
-	m_d3dpParm.BackBufferCount			= 1;
+	m_d3dpParm.BackBufferWidth				= m_screenWidth;
+	m_d3dpParm.BackBufferHeight				= m_screenHeight;
+	m_d3dpParm.BackBufferFormat				= D3DFMT_A8R8G8B8;
+	m_d3dpParm.BackBufferCount				= 1;
 
-	m_d3dpParm.MultiSampleType			= D3DMULTISAMPLE_NONE;
-	m_d3dpParm.MultiSampleQuality		= 0;
+	m_d3dpParm.MultiSampleType				= D3DMULTISAMPLE_NONE;
+	m_d3dpParm.MultiSampleQuality			= 0;
 
-	m_d3dpParm.SwapEffect				= D3DSWAPEFFECT_DISCARD;
-	m_d3dpParm.hDeviceWindow			= CApplication::GetInstance()->GetHandle();
-	m_d3dpParm.Windowed					= !CApplication::GetInstance()->GetFullScreen();
-	m_d3dpParm.EnableAutoDepthStencil	= TRUE;
-	m_d3dpParm.PresentationInterval		= D3DPRESENT_INTERVAL_DEFAULT;
+	m_d3dpParm.SwapEffect					= D3DSWAPEFFECT_DISCARD;
+	m_d3dpParm.hDeviceWindow				= CApplication::GetInstance()->GetHandle();
+	m_d3dpParm.Windowed						= !CApplication::GetInstance()->GetFullScreen();
+	m_d3dpParm.EnableAutoDepthStencil		= TRUE;
+	m_d3dpParm.AutoDepthStencilFormat		= D3DFMT_D24S8;
+
+	m_d3dpParm.FullScreen_RefreshRateInHz	= D3DPRESENT_RATE_DEFAULT;
+	m_d3dpParm.PresentationInterval			= D3DPRESENT_INTERVAL_DEFAULT;
 
 	if(FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, 
 								   CApplication::GetInstance()->GetHandle(), 
-								   D3DCREATE_SOFTWARE_VERTEXPROCESSING, 
+								   vp, 
 								   &m_d3dpParm, &m_pDevice)))
 	{
 		MessageBox(nullptr, L"Device creation failed in InitDevice", L"CGraphicsManager.cpp", MB_OK);
@@ -228,7 +239,7 @@ void CGraphicsManager::SetWorldMatrix(CGraphicsComponent* pGC)
 	D3DXMatrixRotationY(&rotateY, pGC->GetRotation().y);
 	D3DXMatrixRotationX(&rotateX, pGC->GetRotation().x);
 
-	D3DXMatrixScaling(&scale, pGC->GetScale().x, pGC->GetScale().y, pGC->GetScale().z);
+	D3DXMatrixScaling(&scale, pGC->GetSize().x, pGC->GetSize().y, pGC->GetSize().z);
 	D3DXMatrixTranslation(&trans, pGC->GetPosition().x, pGC->GetPosition().y, pGC->GetPosition().z);
 
 	result = scale * rotateX * rotateY * rotateZ * trans;

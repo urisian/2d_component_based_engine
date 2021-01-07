@@ -41,12 +41,12 @@ public:
 #if _DEBUG
 		if (m_mDataMap[dataID].find(objectKey) == m_mDataMap[dataID].end())
 		{
-			MessageBox(nullptr, StrToWStr(objectKey + " missing objectKey in GetValue function").c_str(), L"DataStore", MB_OK);
+			MessageBox(nullptr, StrToWStr(objectKey + " missing objectKey in GetValue function").c_str(), L"DataStore.h", MB_OK);
 			return;
 		}
 		if (m_mDataMap[dataID].find(objectKey)->second.find(varKey) == m_mDataMap[dataID].find(objectKey)->second.end())
 		{
-			MessageBox(nullptr, StrToWStr(varKey + " missing varKey in GetValue function").c_str(), L"DataStore", MB_OK);
+			MessageBox(nullptr, StrToWStr(objectKey + " " + varKey + " missing varKey in GetValue function").c_str(), L"DataStore.h", MB_OK);
 			return;
 		}
 #endif

@@ -73,6 +73,24 @@
     <Filter Include="04.Graphics\03.Camera">
       <UniqueIdentifier>{6a5a79e8-e03a-478b-b1a0-c30fa40d0608}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Object\01.Background">
+      <UniqueIdentifier>{763fbf1b-2842-40bd-a610-5e55248ba870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\00.Manager">
+      <UniqueIdentifier>{b0c911c2-1ec6-4304-b795-c5b7c19fe989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\01.MainMenu">
+      <UniqueIdentifier>{54ba8ed8-397e-45ec-a4a9-13f16e3bba6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\02.MapSelect">
+      <UniqueIdentifier>{cce7a259-81e4-4f9f-9055-6acac6b13bff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\03.Stages">
+      <UniqueIdentifier>{2f157fbc-b83b-4cca-a5ce-2790add903a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\03.Stages\Stage0">
+      <UniqueIdentifier>{d8e1cc2e-22e3-4cf6-9a13-fca145a3bc18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -100,9 +118,6 @@
       <Filter>98.Headers</Filter>
     </ClInclude>
     <ClInclude Include="MyStructures.h">
-      <Filter>98.Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="MyDefines.h">
       <Filter>98.Headers</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
@@ -143,6 +158,27 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>04.Graphics\03.Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>03.Object\01.Background</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>07.Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MyDefines.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>08.GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GSM.h">
+      <Filter>08.GameState\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage0.h">
+      <Filter>08.GameState\03.Stages\Stage0</Filter>
+    </ClInclude>
+    <ClInclude Include="FRC.h">
+      <Filter>06.FrameRateController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +226,24 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>04.Graphics\03.Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>03.Object\01.Background</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>07.Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>08.GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="GSM.cpp">
+      <Filter>08.GameState\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage0.cpp">
+      <Filter>08.GameState\03.Stages\Stage0</Filter>
+    </ClCompile>
+    <ClCompile Include="FRC.cpp">
+      <Filter>06.FrameRateController</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

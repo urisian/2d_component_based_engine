@@ -35,19 +35,19 @@ CCamera::~CCamera()
 
 void CCamera::Initialize(void)
 {
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_position", m_position);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_rotation", m_rotation);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_target", m_target);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_up", m_up);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_right", m_right);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_position", m_position);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_rotation", m_rotation);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_target", m_target);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_up", m_up);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_right", m_right);
 
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_zMaxPos", m_zMaxPos);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_zMinPos", m_zMinPos);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_zDefaultPos", m_zDefaultPos);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_zMaxPos", m_zMaxPos);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_zMinPos", m_zMinPos);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_zDefaultPos", m_zDefaultPos);
 
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_fov", m_fov);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_nearPlane", m_nearPlane);
-	GET_VALUE(DATAID::ENGINE, GetComponentName(this), "m_farPlane", m_farPlane);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_fov", m_fov);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_nearPlane", m_nearPlane);
+	GET_VALUE(DATAID::ENGINE, GetCurClassName(this), "m_farPlane", m_farPlane);
 
 	m_aspect		= static_cast<float>(CApplication::GetInstance()->GetWndWidth()) 
 					/ static_cast<float>(CApplication::GetInstance()->GetWndHeight());

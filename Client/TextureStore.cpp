@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TextureStore.h"
 #include "Texture.h"
+#include "GraphicsManager.h"
 
 CTextureStore* CTextureStore::m_s_pInstance = nullptr;
 
@@ -73,13 +74,27 @@ void CTextureStore::Initialize(void)
 			}
 
 
-			CreateTexture(fullFilePath);
+			if (!CreateTexture(fullFilePath))
+			{
+				MessageBox(nullptr, StrToWStr(fullFilePath).c_str(), L"CDataStore", MB_OK);
+				return;
+			}
 		} while (FindNextFile(findHandle, &fileData));
 	} while (!dirNameVector.empty());
 }
 
 void CTextureStore::Release(void)
 {
+}
+
+CTexture * CTextureStore::GetTexture(OBJID::ID OBJID, std::string objectKey)
+{
+	CTexture* pCTexture = m_mTexture[OBJID][objectKey];
+#if _DEBUG
+	if (pCTexture == nullptr)
+		MessageBox(nullptr, StrToWStr(objectKey + " missing texture in GetTexture function").c_str(), L"TextureStore.cpp", MB_OK);
+#endif
+	return m_mTexture[OBJID][objectKey];
 }
 
 CTextureStore::CTextureStore(void)
@@ -97,33 +112,40 @@ bool CTextureStore::CreateTexture(const std::string& fullPath)
 {
 	std::string sectionKey	= GetSectionKey(fullPath);
 	std::string objectKey	= GetObjectKey(fullPath);
-	std::string stateKey	= GetStateKey(fullPath);
 
 	std::map<std::string, CTexture*>* pCurMap = nullptr;
 
 	if (sectionKey == "BACKGROUND")
-		pCurMap = &m_mTexture[TEXID::BACKGROUND];
+		pCurMap = &m_mTexture[OBJID::BACKGROUND];
 	else if (sectionKey == "BUTTON")
-		pCurMap = &m_mTexture[TEXID::BUTTON];
+		pCurMap = &m_mTexture[OBJID::BUTTON];
 	else if (sectionKey == "DECORATION")
-		pCurMap = &m_mTexture[TEXID::DECORATION];
+		pCurMap = &m_mTexture[OBJID::DECORATION];
 	else if (sectionKey == "MONSTER")
-		pCurMap = &m_mTexture[TEXID::MONSTER];
+		pCurMap = &m_mTexture[OBJID::MONSTER];
 	else if (sectionKey == "PROJECTILE")
-		pCurMap = &m_mTexture[TEXID::PROJECTILE];
+		pCurMap = &m_mTexture[OBJID::PROJECTILE];
 	else if (sectionKey == "TURRET")
-		pCurMap = &m_mTexture[TEXID::TURRET];
+		pCurMap = &m_mTexture[OBJID::TURRET];
 	else if (sectionKey == "UI")
-		pCurMap = &m_mTexture[TEXID::UI];
+		pCurMap = &m_mTexture[OBJID::UI];
 	else if (sectionKey == "UNIT")
-		pCurMap = &m_mTexture[TEXID::UNIT];
+		pCurMap = &m_mTexture[OBJID::UNIT];
 	else
 		MessageBox(nullptr, L"Need to set right map for sectionKey in CreateTexture", L"CTextureStore", MB_OK);
 
-	CTexture* pNewTexture = new CTexture;
-	(*pCurMap)[objectKey] = pNewTexture;
-	pNewTexture;
-	return false;
+	
+	auto& it = pCurMap->find(objectKey);
+	if (it == pCurMap->end())
+	{
+		CTexture* pNewTexture = new CTexture;
+		(*pCurMap)[objectKey] = pNewTexture;
+	}
+	
+	
+
+
+	return (*pCurMap)[objectKey]->InsertTexInfo(fullPath);;
 }
 
 std::string CTextureStore::GetSectionKey(const std::string & fullPath)
@@ -149,19 +171,3 @@ std::string CTextureStore::GetObjectKey(const std::string & fullPath)
 	return fullPath.substr(startPoint, endPoint - startPoint);
 }
 
-std::string CTextureStore::GetStateKey(const std::string & fullPath)
-{
-	size_t startPoint, endPoint;
-	startPoint	= fullPath.find_first_of("\\");
-	startPoint	= fullPath.find("\\", ++startPoint);
-	startPoint	= fullPath.find("\\", ++startPoint);
-	startPoint	= fullPath.find("\\", ++startPoint);
-	endPoint	= fullPath.find_last_of(".");
-	
-	std::string stateKey = fullPath.substr(++startPoint, endPoint - startPoint);
-	
-	while (isdigit(stateKey.back()))
-		stateKey.pop_back();
-
-	return fullPath.substr(++startPoint, endPoint - startPoint);
-}

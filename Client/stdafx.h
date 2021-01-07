@@ -20,6 +20,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <stack>
 #include <codecvt>
 #include <sstream>
 

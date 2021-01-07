@@ -13,6 +13,14 @@ public:
 	virtual			void					LateUpdate			(void) PURE;
 	virtual			void					Release				(void) PURE;
 
+					OBJID::ID				GetObjID			(void);
+					DATAID::ID				GetDataID			(void);
+					std::string&			GetObjectKey		(void);
+
+					std::string&			GetStateKey			(void);
+					void					SetStateKey			(std::string stateKey);
+
+
 					bool					GetActivated		(void) const;
 					void					SetActivated		(bool activated);
 
@@ -22,10 +30,11 @@ public:
 public:
 
 
-private:
-private:
+protected:
 
 					OBJID::ID				m_objID;
+					DATAID::ID				m_dataID;
+
 					std::string				m_objectKey;
 					std::string				m_stateKey;
 
@@ -45,7 +54,24 @@ public:
 		if (it == m_mComponents.end())
 			return nullptr;
 
-		return it->second;
+		return static_cast<ComponentType*>(it->second);
+	}
+
+	template <typename ComponentType>
+	ComponentType* AddComponent(void)
+	{
+		ComponentType* pNewComponent = nullptr;
+		std::string componentName = typeid(ComponentType).name();
+		componentName.erase(0, 6);
+
+		if ((pNewComponent = GetComponent<ComponentType>()) == nullptr)
+		{
+			pNewComponent = new ComponentType;
+			pNewComponent->SetOwner(this);
+			m_mComponents[componentName] = pNewComponent;
+		}
+
+		return pNewComponent;
 	}
 };
 

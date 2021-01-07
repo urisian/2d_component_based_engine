@@ -3,15 +3,12 @@
 class CMainApp final
 {
 public:
-	CMainApp();
-	~CMainApp();
+						CMainApp				(void);
+					   ~CMainApp				(void);
 public:
-	HRESULT Ready_MainApp(); 
-	void Update_MainApp(); 
-	void Late_Update_MainApp(); 
-	void Render_MainApp(); 
-	void Release_MainApp(); 
-
-
+	void				Initialize				(void); 
+	void				Update					(void); 
+	void				LateUpdate				(void); 
+	void				Release					(void);
 };
 

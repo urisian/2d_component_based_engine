@@ -150,11 +150,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DataStore.h" />
+    <ClInclude Include="FRC.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsManager.h" />
+    <ClInclude Include="GSM.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="HelperFunctions.h" />
@@ -166,6 +171,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Stage0.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
@@ -175,16 +181,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DataStore.cpp" />
+    <ClCompile Include="FRC.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
+    <ClCompile Include="GSM.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Stage0.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
