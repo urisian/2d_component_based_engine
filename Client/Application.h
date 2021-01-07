@@ -8,6 +8,9 @@ public:
 				void				Initialize			(HINSTANCE hInstance, int nCmdShow);
 
 	const		HWND				GetHandle			(void) const;
+				int					GetWndWidth			(void) const;
+				int					GetWndHeight		(void) const;
+				bool				GetFullScreen		(void) const;
 
 				void				Release				(void);
 

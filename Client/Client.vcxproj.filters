@@ -10,14 +10,68 @@
     <Filter Include="98.Headers">
       <UniqueIdentifier>{a10edfe9-05b6-4c0d-aa00-ec973cd14c0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.Player">
-      <UniqueIdentifier>{ad2414ac-6a9e-4c32-a503-74a3a464171b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="00.MainApp\Application">
       <UniqueIdentifier>{4d5acbab-ea8a-444d-84c7-3598685dbd43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01.DataStroe">
+    <Filter Include="03.Object">
+      <UniqueIdentifier>{ec7d538a-4b5f-4928-acb0-81122667ea5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\00.Manager">
+      <UniqueIdentifier>{7df32bf7-af56-469b-991c-2876e455cc4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component">
+      <UniqueIdentifier>{00f8a8a4-0224-489b-ac0a-1fb0338b08d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\GraphicComponent">
+      <UniqueIdentifier>{b1412f14-b40c-4275-a735-0095f21a4b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\PhysicsComponent">
+      <UniqueIdentifier>{f7b7c0ea-0f3f-4cae-ad64-8d7faad3b0f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.ResourceStore">
       <UniqueIdentifier>{7cb399be-5a5e-414a-9051-ca18df9597fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.ResourceStore\TextureStore">
+      <UniqueIdentifier>{bdb8f2c7-12bd-4804-a023-a625ab1541ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.ResourceStore\DataStore">
+      <UniqueIdentifier>{3e64e869-0ea9-47aa-b5ba-9e74442c4145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Graphics">
+      <UniqueIdentifier>{74b49bf0-0917-451e-bdd9-741082de4d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Physics">
+      <UniqueIdentifier>{951c160c-c57f-425b-ac36-ab1ac463b913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState">
+      <UniqueIdentifier>{4186a81b-ca7c-4733-9c53-91990ec05031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.FrameRateController">
+      <UniqueIdentifier>{05903a66-2bac-40ad-a3a0-04d56ad9328f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Input">
+      <UniqueIdentifier>{96174c25-2f0a-4af9-9c46-323dfebebb05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.Sound">
+      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\CollisionComponent">
+      <UniqueIdentifier>{ecfda809-df9e-487f-be2f-cd46c90d983f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Graphics\00.Manager">
+      <UniqueIdentifier>{b551db5f-6f5d-44cd-afcf-cb4e643c8bdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Graphics\01.Shader">
+      <UniqueIdentifier>{59525054-1450-47b5-a6bd-0b1ca930cb3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Graphics\01.Shader\TextureShader">
+      <UniqueIdentifier>{467fb06c-980f-472f-8bd1-f9bd0f97edaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Graphics\02.Texture">
+      <UniqueIdentifier>{16f0207f-d7bd-4a7a-9992-cb603352618d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Graphics\03.Camera">
+      <UniqueIdentifier>{6a5a79e8-e03a-478b-b1a0-c30fa40d0608}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,9 +93,6 @@
     <ClInclude Include="Total.h">
       <Filter>98.Headers</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>01.Player</Filter>
-    </ClInclude>
     <ClInclude Include="HelperFunctions.h">
       <Filter>98.Headers</Filter>
     </ClInclude>
@@ -57,11 +108,41 @@
     <ClInclude Include="Application.h">
       <Filter>00.MainApp\Application</Filter>
     </ClInclude>
-    <ClInclude Include="DataStore.h">
-      <Filter>01.DataStroe</Filter>
-    </ClInclude>
     <ClInclude Include="MyMacros.h">
       <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>01.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStore.h">
+      <Filter>02.ResourceStore\DataStore</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>03.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureStore.h">
+      <Filter>02.ResourceStore\TextureStore</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>04.Graphics\02.Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>04.Graphics\01.Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsManager.h">
+      <Filter>04.Graphics\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureShader.h">
+      <Filter>04.Graphics\01.Shader\TextureShader</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>01.Component\GraphicComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>03.Object\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>04.Graphics\03.Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -74,14 +155,41 @@
     <ClCompile Include="MainApp.cpp">
       <Filter>00.MainApp</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>01.Player</Filter>
-    </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>00.MainApp\Application</Filter>
     </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>01.Component</Filter>
+    </ClCompile>
     <ClCompile Include="DataStore.cpp">
-      <Filter>01.DataStroe</Filter>
+      <Filter>02.ResourceStore\DataStore</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>03.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureStore.cpp">
+      <Filter>02.ResourceStore\TextureStore</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>04.Graphics\02.Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>04.Graphics\01.Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsManager.cpp">
+      <Filter>04.Graphics\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureShader.cpp">
+      <Filter>04.Graphics\01.Shader\TextureShader</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>01.Component\GraphicComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>03.Object\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>04.Graphics\03.Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

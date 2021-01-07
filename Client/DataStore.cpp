@@ -70,11 +70,7 @@ void CDataStore::Initialize(void)
 				dirNameVector.push_back(fullFilePath);
 				continue;
 			}
-
-
-
 			ReadFile(fullFilePath);
-
 		} while (FindNextFile(findHandle, &fileData));
 	} while (!dirNameVector.empty());
 }

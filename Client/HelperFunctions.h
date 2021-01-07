@@ -28,6 +28,12 @@ inline std::string WStrToStr(const std::wstring& wstr)
 	return converterX.to_bytes(wstr);
 }
 
+template <typename T>
+std::string GetComponentName(T* pObj)
+{
+	std::string className = typeid(pObj).name();
+	className.erase(0, 6);
 
-
+	return className;
+}
 #endif // !HELPERFUNCTIONS_H

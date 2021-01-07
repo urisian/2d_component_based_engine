@@ -7,29 +7,30 @@
 class CDataStore
 {
 public:
-	static		CDataStore*		GetInstance			(void);
-	static		void			DestroyInstance		(void);
+	static		CDataStore*				GetInstance					(void);
+	static		void					DestroyInstance				(void);
 
-				void			Initialize			(void);
-				void			Release				(void);
-
-private:
-	explicit					CDataStore			(void);
-	virtual					   ~CDataStore			(void);
-
-				void			ReadFile			(const std::string& fullPath);
-				std::string		GetSectionKey		(const std::string& fullPath);
-				std::string		GetObjectKey		(const std::string& fullPath);
-				std::string		GetVariableKey		(const std::string& lineFromFile);
-				std::string		GetKeyValue			(const std::string& lineFromFile);
-
-	friend		std::stringstream& operator	>>	(std::stringstream& in, D3DXVECTOR3& d3dVec3);
-	friend		std::stringstream& operator	>>	(std::stringstream& in, std::wstring& wStr);
+				void					Initialize					(void);
+				void					Release						(void);
 
 private:
-				std::string		m_resourcePath;
-	static		CDataStore*		m_s_pInstance;
+	explicit							CDataStore					(void);
+	virtual							   ~CDataStore					(void);
 
+				void					ReadFile					(const std::string& fullPath);
+				std::string				GetSectionKey				(const std::string& fullPath);
+				std::string				GetObjectKey				(const std::string& fullPath);
+				std::string				GetVariableKey				(const std::string& lineFromFile);
+				std::string				GetKeyValue					(const std::string& lineFromFile);
+
+	friend		std::stringstream&		operator >>					(std::stringstream& in, D3DXVECTOR3& d3dVec3);
+	friend		std::stringstream&		operator >>					(std::stringstream& in, std::wstring& wStr);
+
+private:
+				std::string				m_resourcePath;
+	static		CDataStore*				m_s_pInstance;
+
+	//Map(1)의 First는 ObjectKey, Second는 Map(2), Map(2)의 First는 VariableKey, Second는 Value.
 	std::map<std::string, std::map<std::string, std::string>> m_mDataMap[DATAID::END];
 
 

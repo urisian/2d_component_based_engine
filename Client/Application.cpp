@@ -34,6 +34,21 @@ const HWND CApplication::GetHandle(void) const
 	return m_hWnd;
 }
 
+int CApplication::GetWndWidth(void) const
+{
+	return m_windowWidth;
+}
+
+int CApplication::GetWndHeight(void) const
+{
+	return m_windowHeight;
+}
+
+bool CApplication::GetFullScreen(void) const
+{
+	return m_fullScreen;
+}
+
 ATOM CApplication::RegisterWndClass(HINSTANCE hInstance)
 {
 	WNDCLASSEXW wcex;
