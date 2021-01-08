@@ -5,6 +5,8 @@
 CObject::CObject()
 {
 	m_objID				= {};
+	m_dataID			= {};
+
 	m_objectKey			= {};
 	m_stateKey			= {};
 

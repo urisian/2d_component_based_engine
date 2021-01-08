@@ -155,6 +155,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DataStore.h" />
+    <ClInclude Include="Debugger.h" />
     <ClInclude Include="FRC.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsManager.h" />
@@ -170,12 +171,10 @@
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Shader.h" />
     <ClInclude Include="Stage0.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureShader.h" />
     <ClInclude Include="TextureStore.h" />
     <ClInclude Include="Total.h" />
   </ItemGroup>
@@ -186,6 +185,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DataStore.cpp" />
+    <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="FRC.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
@@ -195,7 +195,6 @@
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Stage0.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -204,7 +203,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureShader.cpp" />
     <ClCompile Include="TextureStore.cpp" />
   </ItemGroup>
   <ItemGroup>

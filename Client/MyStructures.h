@@ -11,26 +11,21 @@ struct CustomVertex
 {
 	CustomVertex()
 		:position(0.0f, 0.0f, 0.0f),
-		texture(0.0f, 0.0f),
-		color(0)
+		texture(0.0f, 0.0f)
 	{}
 
 	CustomVertex(float x, float y, float z, float u, float v)
 		:position(x, y, z),
-		texture(u, v),
-		color()
+		texture(u, v)
 	{}
 
 	CustomVertex(const D3DXVECTOR3& v, const D3DXVECTOR3& uv)
 		:position(v),
-		texture(uv),
-		color()
+		texture(uv)
 	{}
 
 	D3DXVECTOR3 position;   // Position Vector
 	D3DXVECTOR2 texture;    // Texture  Coordinate
-	D3DCOLOR    color;
-
 };
 
 #endif // !MYSTRUCTURES_H

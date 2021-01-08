@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "GraphicsManager.h"
 #include "Application.h"
-#include "TextureShader.h"
 #include "ObjectManager.h"
 #include "Object.h"
 #include "Camera.h"
@@ -33,7 +32,6 @@ void CGraphicsManager::Initialize(void)
 	InitIndexBuffer();
 	InitStates();
 	
-	m_pTextureShader->Initialize();
 	m_pCamera->Initialize();
 }
 
@@ -43,7 +41,7 @@ void CGraphicsManager::Render(void)
 
 	m_pDevice->Clear(0, nullptr, 
 					 D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 
-					 D3DCOLOR_ARGB(255, 0, 0, 0), 
+					 D3DCOLOR_ARGB(255, 120, 120, 0), 
 					 1.f, 0);
 
 	m_pDevice->BeginScene();
@@ -58,6 +56,7 @@ void CGraphicsManager::Render(void)
 				SetWorldMatrix(pObjectGC);
 				m_pDevice->SetTexture(0, pObjectGC->GetTexture());
 				m_pDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
+				m_pDevice->SetTextureStageState(0, D3DTSS_CONSTANT, pObjectGC->GetColor());
 				m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
 			}
 		}
@@ -70,7 +69,6 @@ void CGraphicsManager::Render(void)
 
 void CGraphicsManager::Release(void)
 {
-	SAFE_DELETE(m_pTextureShader);
 	SAFE_DELETE(m_pCamera);
 }
 
@@ -214,10 +212,6 @@ void CGraphicsManager::InitStates(void)
     m_pDevice->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
     m_pDevice->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR );
 
-    //Get the alpha from the texture
-    m_pDevice->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );
-    m_pDevice->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1 );
-
     //Under code is really needed!! for the alpha blending
     m_pDevice->SetRenderState( D3DRS_SRCBLEND, D3DBLEND_SRCALPHA );
     m_pDevice->SetRenderState( D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA );
@@ -226,7 +220,14 @@ void CGraphicsManager::InitStates(void)
     //Set texture state
     m_pDevice->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE );
     m_pDevice->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
-    m_pDevice->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
+    m_pDevice->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_CONSTANT);
+
+	//Get the alpha from the texture
+	m_pDevice->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+	m_pDevice->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+	m_pDevice->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_CONSTANT);
+
+	
 }
 
 void CGraphicsManager::SetWorldMatrix(CGraphicsComponent* pGC)
@@ -249,7 +250,6 @@ void CGraphicsManager::SetWorldMatrix(CGraphicsComponent* pGC)
 
 CGraphicsManager::CGraphicsManager()
 {
-	m_pTextureShader	= new CTextureShader;
 	m_pCamera			= new CCamera;
 }
 

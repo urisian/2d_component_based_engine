@@ -20,6 +20,8 @@ public:
 					D3DXVECTOR3&		GetRotation				(void);
 					D3DXVECTOR3&		GetSize					(void);
 
+					D3DCOLOR&			GetColor				(void);
+
 					CTexture*			GetCTexture				(void);
 					LPDIRECT3DTEXTURE9	GetTexture				(void);
 private:
@@ -29,6 +31,8 @@ private:
 					D3DXVECTOR3			m_position;
 					D3DXVECTOR3			m_rotation;
 					D3DXVECTOR3			m_size;
+
+					D3DCOLOR			m_color;
 
 					CTexture*			m_pCTexture;
 					LPDIRECT3DTEXTURE9	m_pTexture;

@@ -61,18 +61,6 @@
     <Filter Include="04.Graphics\00.Manager">
       <UniqueIdentifier>{b551db5f-6f5d-44cd-afcf-cb4e643c8bdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04.Graphics\01.Shader">
-      <UniqueIdentifier>{59525054-1450-47b5-a6bd-0b1ca930cb3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Graphics\01.Shader\TextureShader">
-      <UniqueIdentifier>{467fb06c-980f-472f-8bd1-f9bd0f97edaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Graphics\02.Texture">
-      <UniqueIdentifier>{16f0207f-d7bd-4a7a-9992-cb603352618d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04.Graphics\03.Camera">
-      <UniqueIdentifier>{6a5a79e8-e03a-478b-b1a0-c30fa40d0608}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Object\01.Background">
       <UniqueIdentifier>{763fbf1b-2842-40bd-a610-5e55248ba870}</UniqueIdentifier>
     </Filter>
@@ -90,6 +78,15 @@
     </Filter>
     <Filter Include="08.GameState\03.Stages\Stage0">
       <UniqueIdentifier>{d8e1cc2e-22e3-4cf6-9a13-fca145a3bc18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Graphics\01.Texture">
+      <UniqueIdentifier>{16f0207f-d7bd-4a7a-9992-cb603352618d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Graphics\02.Camera">
+      <UniqueIdentifier>{6a5a79e8-e03a-478b-b1a0-c30fa40d0608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.Debugger">
+      <UniqueIdentifier>{2569589e-8d07-4ad0-b5be-cafaa58f9087}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -139,16 +136,10 @@
       <Filter>02.ResourceStore\TextureStore</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>04.Graphics\02.Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>04.Graphics\01.Shader</Filter>
+      <Filter>04.Graphics\01.Texture</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsManager.h">
       <Filter>04.Graphics\00.Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureShader.h">
-      <Filter>04.Graphics\01.Shader\TextureShader</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsComponent.h">
       <Filter>01.Component\GraphicComponent</Filter>
@@ -157,7 +148,7 @@
       <Filter>03.Object\00.Manager</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>04.Graphics\03.Camera</Filter>
+      <Filter>04.Graphics\02.Camera</Filter>
     </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>03.Object\01.Background</Filter>
@@ -180,6 +171,7 @@
     <ClInclude Include="FRC.h">
       <Filter>06.FrameRateController</Filter>
     </ClInclude>
+    <ClInclude Include="Debugger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -207,16 +199,10 @@
       <Filter>02.ResourceStore\TextureStore</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>04.Graphics\02.Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>04.Graphics\01.Shader</Filter>
+      <Filter>04.Graphics\01.Texture</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsManager.cpp">
       <Filter>04.Graphics\00.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureShader.cpp">
-      <Filter>04.Graphics\01.Shader\TextureShader</Filter>
     </ClCompile>
     <ClCompile Include="GraphicsComponent.cpp">
       <Filter>01.Component\GraphicComponent</Filter>
@@ -225,7 +211,7 @@
       <Filter>03.Object\00.Manager</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>04.Graphics\03.Camera</Filter>
+      <Filter>04.Graphics\02.Camera</Filter>
     </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>03.Object\01.Background</Filter>
@@ -245,6 +231,7 @@
     <ClCompile Include="FRC.cpp">
       <Filter>06.FrameRateController</Filter>
     </ClCompile>
+    <ClCompile Include="Debugger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">

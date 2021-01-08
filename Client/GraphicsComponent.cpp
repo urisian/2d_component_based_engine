@@ -13,6 +13,9 @@ CGraphicsComponent::CGraphicsComponent()
 	m_rotation		= {};
 	m_size			= {};
 
+	//ARGB
+	m_color			= 0xffffffff;
+
 	m_pCTexture		= nullptr;
 }
 
@@ -59,6 +62,11 @@ D3DXVECTOR3 & CGraphicsComponent::GetRotation(void)
 D3DXVECTOR3 & CGraphicsComponent::GetSize(void)
 {
 	return m_size;
+}
+
+D3DCOLOR & CGraphicsComponent::GetColor(void)
+{
+	return m_color;
 }
 
 CTexture * CGraphicsComponent::GetCTexture(void)

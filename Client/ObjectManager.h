@@ -14,7 +14,7 @@ public:
 					void						LateUpdate			(void);
 					void						Release				(void);
 
-					void						Add_Object			(CObject* pObj, OBJID::ID objID);
+					void						AddObject			(CObject* pObj, OBJID::ID objID);
 					std::vector<CObject*>		(&GetObjectList		(void)) [OBJID::END];
 private:
 	explicit									CObjectManager		(void);

@@ -58,7 +58,7 @@ void CObjectManager::Release(void)
 			SafeDelete(object);
 }
 
-void CObjectManager::Add_Object(CObject * pObj, OBJID::ID objID)
+void CObjectManager::AddObject(CObject * pObj, OBJID::ID objID)
 {
 	m_vObjects[objID].emplace_back(pObj);
 }

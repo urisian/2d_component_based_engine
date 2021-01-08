@@ -2,7 +2,6 @@
 #define GRAPHICSMANAGER_H
 
 class CGraphicsComponent;
-class CTextureShader;
 class CCamera;
 
 class CGraphicsManager
@@ -43,8 +42,6 @@ private:
 					LPDIRECT3DINDEXBUFFER9      m_pIndexBuffer;
 
 					CCamera*					m_pCamera;
-
-					CTextureShader*				m_pTextureShader;
 
 	static			CGraphicsManager*			m_s_pInstance;
 };

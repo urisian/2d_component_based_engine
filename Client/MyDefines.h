@@ -2,7 +2,7 @@
 #define MYDEFINES_H
 
 //그래픽엔진 버텍스 형식 FVF=Flexible Vertex Format
-#define D3DFVF_CUSTOMVERTEX ( D3DFVF_XYZ | D3DFVF_TEX1 | D3DFVF_DIFFUSE )
+#define D3DFVF_CUSTOMVERTEX ( D3DFVF_XYZ | D3DFVF_TEX1)
 
 
 //비트별로 키 할당

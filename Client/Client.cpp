@@ -21,6 +21,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	CDataStore::GetInstance()->Initialize();
 	CApplication::GetInstance()->Initialize(hInstance, nCmdShow);
 
+	AllocConsole();
+	AttachConsole(GetCurrentProcessId());
+
+	COORD coord;
+	coord.X = 100; coord.Y = 100;
+	SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+	SMALL_RECT sr;
+	sr.Left = 0; sr.Right = 99; sr.Top = 0; sr.Bottom = 99;
+
+	SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &sr);
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Background.h"
 #include "GraphicsComponent.h"
+#include "ObjectManager.h"
 
 CBackground::CBackground(std::string objectKey, std::string stateKey/* = "Idle"*/) : CObject()
 {
@@ -9,11 +10,18 @@ CBackground::CBackground(std::string objectKey, std::string stateKey/* = "Idle"*
 
 	CGraphicsComponent* pComponent = AddComponent<CGraphicsComponent>();
 	pComponent->Initialize();
+
+	Initialize();
 }
 
 
 CBackground::~CBackground()
 {
+}
+
+void CBackground::Initialize(void)
+{
+	CObjectManager::GetInstance()->AddObject(this, m_objID);
 }
 
 void CBackground::Update(void)

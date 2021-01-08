@@ -9,6 +9,7 @@ public:
 	explicit								CObject				(void);
 	virtual								   ~CObject				(void);
 
+	virtual			void					Initialize			(void) PURE;
 	virtual			void					Update				(void) PURE;
 	virtual			void					LateUpdate			(void) PURE;
 	virtual			void					Release				(void) PURE;
@@ -27,7 +28,6 @@ public:
 					bool					GetNeedToBeDeleted	(void) const;
 					void					SetNeedToBeDeleted	(bool needToBeDeleted);
 
-public:
 
 
 protected:
