@@ -16,4 +16,7 @@
 #define MOUSE_RIGHT	0x00000080
 
 
+//콘솔 버퍼 갯수
+#define NUM_OF_BUFFER 2
+
 #endif // !MYDEFINES_H

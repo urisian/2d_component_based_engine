@@ -7,6 +7,7 @@
 #include "DataStore.h"
 #include "Application.h"
 #include "FRC.h"
+#include "Debugger.h"
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -21,16 +22,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	CDataStore::GetInstance()->Initialize();
 	CApplication::GetInstance()->Initialize(hInstance, nCmdShow);
 
-	AllocConsole();
-	AttachConsole(GetCurrentProcessId());
-
-	COORD coord;
-	coord.X = 100; coord.Y = 100;
-	SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-	SMALL_RECT sr;
-	sr.Left = 0; sr.Right = 99; sr.Top = 0; sr.Bottom = 99;
-
-	SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &sr);
+	
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
@@ -39,6 +31,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	CMainApp mainApp; 
 	mainApp.Initialize();
+
+	CDebugger::GetInstance()->Initialize();
+
 
     while (msg.message != WM_QUIT)
     {
@@ -50,9 +45,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				DispatchMessage(&msg);
 			}
 		}
+		
 		if(CFRC::GetInstance()->FrameLock())
 		{
 			// 실제 게임 구동. 
+			CDebugger::GetInstance()->Update();
 			mainApp.Update();
 			mainApp.LateUpdate();
 		}

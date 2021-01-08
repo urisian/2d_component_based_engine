@@ -88,6 +88,12 @@
     <Filter Include="10.Debugger">
       <UniqueIdentifier>{2569589e-8d07-4ad0-b5be-cafaa58f9087}</UniqueIdentifier>
     </Filter>
+    <Filter Include="10.Debugger\DebugGraphic">
+      <UniqueIdentifier>{2072c795-18b7-491c-bb96-372d01d64b1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.Debugger\DebugPrinter">
+      <UniqueIdentifier>{f7bf19fd-6209-4e53-9b0b-592b0553492e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -171,7 +177,10 @@
     <ClInclude Include="FRC.h">
       <Filter>06.FrameRateController</Filter>
     </ClInclude>
-    <ClInclude Include="Debugger.h" />
+    <ClInclude Include="Debugger.h">
+      <Filter>10.Debugger</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugPrinter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -231,7 +240,10 @@
     <ClCompile Include="FRC.cpp">
       <Filter>06.FrameRateController</Filter>
     </ClCompile>
-    <ClCompile Include="Debugger.cpp" />
+    <ClCompile Include="Debugger.cpp">
+      <Filter>10.Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugPrinter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
