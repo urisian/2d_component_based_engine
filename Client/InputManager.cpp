@@ -40,7 +40,16 @@ void CInputManager::Update(void)
 		m_key |= MOUSE_LEFT;
 	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
 		m_key |= MOUSE_RIGHT;
-
+	if (GetAsyncKeyState(VK_F1) & 0x8000)
+		m_key |= KEY_F1;
+	if (GetAsyncKeyState(VK_F2) & 0x8000)
+		m_key |= KEY_F2;
+	if (GetAsyncKeyState(VK_F3) & 0x8000)
+		m_key |= KEY_F3;
+	if (GetAsyncKeyState(VK_F4) & 0x8000)
+		m_key |= KEY_F4;
+	if (GetAsyncKeyState(VK_F5) & 0x8000)
+		m_key |= KEY_F5;
 }
 
 bool CInputManager::KeyUp(DWORD key)

@@ -32,7 +32,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	CMainApp mainApp; 
 	mainApp.Initialize();
 
-	CDebugger::GetInstance()->Initialize();
 
 
     while (msg.message != WM_QUIT)
@@ -47,9 +46,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		}
 		
 		if(CFRC::GetInstance()->FrameLock())
-		{
-			// 실제 게임 구동. 
-			CDebugger::GetInstance()->Update();
+		{	
 			mainApp.Update();
 			mainApp.LateUpdate();
 		}

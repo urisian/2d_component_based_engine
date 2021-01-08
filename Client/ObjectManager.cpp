@@ -25,6 +25,7 @@ void CObjectManager::Initialize(void)
 
 void CObjectManager::Update(void)
 {
+
 	for (int i = 0; i < OBJID::END; ++i)
 	{
 		for (auto& iter = m_vObjects[i].begin(); iter != m_vObjects[i].end(); )

@@ -156,7 +156,6 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="DataStore.h" />
     <ClInclude Include="Debugger.h" />
-    <ClInclude Include="DebugPrinter.h" />
     <ClInclude Include="FRC.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsManager.h" />
@@ -187,7 +186,6 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DataStore.cpp" />
     <ClCompile Include="Debugger.cpp" />
-    <ClCompile Include="DebugPrinter.cpp" />
     <ClCompile Include="FRC.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />

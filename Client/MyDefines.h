@@ -6,17 +6,25 @@
 
 
 //비트별로 키 할당
-#define KEY_LEFT	0x00000001
-#define KEY_RIGHT	0x00000002
-#define KEY_UP		0x00000004
-#define KEY_DOWN	0x00000008
-#define KEY_SPACE	0x00000010
-#define KEY_RETURN	0x00000020
-#define MOUSE_LEFT	0x00000040
-#define MOUSE_RIGHT	0x00000080
+#define KEY_LEFT	1
+#define KEY_RIGHT	2
+#define KEY_UP		4
+#define KEY_DOWN	8
+#define KEY_SPACE	16
+#define KEY_RETURN	32
+#define MOUSE_LEFT	64
+#define MOUSE_RIGHT	128
+#define KEY_F1		256
+#define KEY_F2		512
+#define KEY_F3		1024
+#define KEY_F4		2048
+#define KEY_F5		4096
 
 
-//콘솔 버퍼 갯수
-#define NUM_OF_BUFFER 2
+
+
+//디버거 세팅용
+#define GENERAL_DEBUG
+//#define SPECIFIC_DEBUG
 
 #endif // !MYDEFINES_H

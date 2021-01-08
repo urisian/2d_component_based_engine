@@ -12,6 +12,7 @@ public:
 					void					LateUpdate			(void);
 					void					Release				(void);
 
+					void					AddInfo				(DEBUGID::ID debugID, std::string key, std::string info);
 
 private:
 											CDebugger			(void);
@@ -19,17 +20,24 @@ private:
 
 					void					PrintConsole		(void);
 					void					ClearConsole		(void);
+					void					ChangeList			(void);
 
 private:
 					bool					m_activated;
-					int						m_curBufferNum;
-					int						m_backBufferNum;
+
+					//screen reset timer;
+					clock_t					m_curTime;
+					clock_t					m_prevTime;
+
+					DEBUGID::ID				m_curID;
 
 					D3DXVECTOR3				m_size;
 
-					HANDLE					m_hConsole[NUM_OF_BUFFER];
+					HANDLE					m_hConsole;
 					CONSOLE_CURSOR_INFO		m_consoleCursor;
 					SMALL_RECT				m_screenRect;
+
+	std::map<std::string, std::string>		m_mPrintList[DEBUGID::END];
 
 	static			CDebugger*				m_s_pInstance;
 };
