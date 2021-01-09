@@ -2,15 +2,12 @@
 #include "Background.h"
 #include "GraphicsComponent.h"
 #include "ObjectManager.h"
+#include "DataStore.h"
 
-CBackground::CBackground(std::string objectKey, std::string stateKey/* = "Idle"*/) : CObject()
+CBackground::CBackground(std::string objectKey) : CObject()
 {
 	m_objectKey = objectKey;
-	m_stateKey	= stateKey;
-
-	CGraphicsComponent* pComponent = AddComponent<CGraphicsComponent>();
-	pComponent->Initialize();
-
+	
 	Initialize();
 }
 
@@ -21,6 +18,14 @@ CBackground::~CBackground()
 
 void CBackground::Initialize(void)
 {
+	m_objID = OBJID::BACKGROUND;
+	m_dataID = DATAID::BACKGROUND;
+
+	GET_VALUE(m_dataID, m_objectKey, "m_stateKey", m_stateKey);
+
+	CGraphicsComponent* pComponent = AddComponent<CGraphicsComponent>();
+	pComponent->Initialize();
+
 	CObjectManager::GetInstance()->AddObject(this, m_objID);
 }
 

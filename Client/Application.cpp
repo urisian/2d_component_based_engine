@@ -25,7 +25,7 @@ void CApplication::Initialize(HINSTANCE hInstance, int nCmdShow)
 	GET_VALUE(DATAID::ENGINE, "CApplication", "m_windowWidth", m_windowWidth);
 	GET_VALUE(DATAID::ENGINE, "CApplication", "m_windowHeight", m_windowHeight);
 
-	ATOM a = RegisterWndClass(hInstance);
+	RegisterWndClass(hInstance);
 	CreateWndHandle(hInstance, nCmdShow);
 }
 
@@ -77,10 +77,9 @@ bool CApplication::CreateWndHandle(HINSTANCE hInstance, int nCmdShow)
 
 	m_hWnd = CreateWindowW(m_className.c_str(), m_windowName.c_str(),
 						   WS_OVERLAPPEDWINDOW, 
-						   CW_USEDEFAULT, 0, rc.right + rc.left, rc.bottom + rc.top,
+						   CW_USEDEFAULT, 0, rc.right - rc.left, rc.bottom - rc.top,
 						   nullptr, nullptr, hInstance, nullptr);
 
-	DWORD a = GetLastError();
 
 	if (!m_hWnd)
 		return false;

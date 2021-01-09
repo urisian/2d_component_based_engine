@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "InputManager.h"
+#include "Debugger.h"
+#include "Application.h"
 
 CInputManager* CInputManager::m_s_pInstance = nullptr;
 CInputManager * CInputManager::GetInstance(void)
@@ -17,9 +19,45 @@ void CInputManager::DestroyInstance(void)
 
 void CInputManager::Initialize(void)
 {
+	
 }
 
 void CInputManager::Update(void)
+{
+	KeyUpdate();
+	MouseUpdate();
+}
+
+D3DXVECTOR3 CInputManager::GetMousePos(void)
+{
+	return D3DXVECTOR3();
+}
+
+bool CInputManager::KeyUp(DWORD key)
+{
+	if ((m_lastFrameKey & key) && !(m_key & key))
+		return true;
+
+	return false;
+}
+
+bool CInputManager::KeyDown(DWORD key)
+{
+	if (!(m_lastFrameKey & key) && (m_key & key))
+		return true;
+
+	return false;
+}
+
+bool CInputManager::KeyPress(DWORD key)
+{
+	if (m_key & key)
+		return true;
+
+	return false;
+}
+
+void CInputManager::KeyUpdate(void)
 {
 	m_lastFrameKey = m_key;
 	m_key = 0;
@@ -52,33 +90,28 @@ void CInputManager::Update(void)
 		m_key |= KEY_F5;
 }
 
-bool CInputManager::KeyUp(DWORD key)
+void CInputManager::MouseUpdate(void)
 {
-	if ((m_lastFrameKey & key) && !(m_key & key))
-		return true;
+	POINT p;
+	GetCursorPos(&p);
+	ScreenToClient(GET_WND_HANDLE(), &p);
 
-	return false;
-}
+	ADD_DEBUG_INFO(DEBUGID::UI_INFO, "Mouse_CLI_POS", "X : " + std::to_string(p.x) 
+													+ " Y : " + std::to_string(p.y) + "\n");
+	
+	p.x -= CApplication::GetInstance()->GetWndWidth() / 2.f;
+	p.y = (p.y * -1) + CApplication::GetInstance()->GetWndHeight() / 2.f;
 
-bool CInputManager::KeyDown(DWORD key)
-{
-	if (!(m_lastFrameKey & key) && (m_key & key))
-		return true;
-
-	return false;
-}
-
-bool CInputManager::KeyPress(DWORD key)
-{
-	if (m_key & key)
-		return true;
-
-	return false;
+	ADD_DEBUG_INFO(DEBUGID::UI_INFO, "Mouse_GAME_POS", "X : " + std::to_string(p.x) 
+													+ " Y : " + std::to_string(p.y) + "\n");
 }
 
 
 CInputManager::CInputManager()
 {
+	m_mousePos = {};
+	m_key = {};
+	m_lastFrameKey = {};
 }
 
 

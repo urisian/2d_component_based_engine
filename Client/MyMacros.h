@@ -5,6 +5,7 @@
 
 #define GET_VALUE(dataID, objectKey, varKey, result) CDataStore::GetInstance()->GetValue(dataID, objectKey, varKey, result)
 #define GET_TEXTURE(OBJID, objectKey) CTextureStore::GetInstance()->GetTexture(OBJID, objectKey)
+#define GET_WND_HANDLE() CApplication::GetInstance()->GetHandle()
 
 #define GET_DT() CFRC::GetInstance()->GetDelta()
 

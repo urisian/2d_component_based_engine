@@ -88,6 +88,27 @@
     <Filter Include="10.Debugger">
       <UniqueIdentifier>{2569589e-8d07-4ad0-b5be-cafaa58f9087}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Object\02.Button">
+      <UniqueIdentifier>{ad1e470e-c763-457f-baa0-ef4a2f0b024c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\03.Turret">
+      <UniqueIdentifier>{80fb69ba-340c-42f0-a99a-6322cf45e608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\04.Unit">
+      <UniqueIdentifier>{5c6b3388-49ec-4279-ac5b-52a58d97fb79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\06.Decoration">
+      <UniqueIdentifier>{672232ef-5cd3-4634-bbc8-d968f2cb179b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\07.Monster">
+      <UniqueIdentifier>{ecf0069f-fb93-4879-8129-8d738bb8e87a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\08.Projectile">
+      <UniqueIdentifier>{03a309d7-41db-4b78-98fa-017e7e3c6cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\05.UserInterface">
+      <UniqueIdentifier>{0a43d64b-92c0-4edd-88fe-0231efb308bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -174,6 +195,9 @@
     <ClInclude Include="Debugger.h">
       <Filter>10.Debugger</Filter>
     </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>03.Object\05.UserInterface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -235,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="Debugger.cpp">
       <Filter>10.Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>03.Object\05.UserInterface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

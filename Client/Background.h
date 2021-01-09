@@ -5,7 +5,7 @@
 class CBackground : public CObject
 {
 public:
-	explicit					CBackground			(std::string objectKey, std::string stateKey = "Idle");
+	explicit					CBackground			(std::string objectKey);
 							   ~CBackground			(void);
 		
 					void		Initialize			(void);

@@ -3,7 +3,7 @@
 
 class CComponent;
 
-class CObject abstract
+class CObject
 {
 public:
 	explicit								CObject				(void);

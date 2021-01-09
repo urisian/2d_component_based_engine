@@ -134,6 +134,8 @@ void CDebugger::ChangeList(void)
 		m_curID = DEBUGID::FRAMETIME;
 	else if (IMKEY_DOWN(KEY_F2))
 		m_curID = DEBUGID::OBJECT_INFO;
+	else if (IMKEY_DOWN(KEY_F3))
+		m_curID = DEBUGID::UI_INFO;
 
 
 	if (checkIfChanged != m_curID)
