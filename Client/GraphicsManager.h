@@ -3,6 +3,7 @@
 
 class CGraphicsComponent;
 class CCamera;
+class CObject;
 
 class CGraphicsManager
 {
@@ -28,8 +29,8 @@ private:
 					void						InitStates			(void);
 
 					void						SetWorldMatrix		(CGraphicsComponent* pGC);
-
 private:
+	
 					int							m_screenWidth;
 					int							m_screenHeight;
 

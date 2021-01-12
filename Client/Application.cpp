@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include "DataStore.h"
 
+
 CApplication* CApplication::m_s_pInstance = nullptr;
 
 CApplication * CApplication::GetInstance(void)
@@ -20,13 +21,17 @@ void CApplication::DestroyInstance(void)
 
 void CApplication::Initialize(HINSTANCE hInstance, int nCmdShow)
 {
-	GET_VALUE(DATAID::ENGINE, "CApplication", "m_className", m_className);
-	GET_VALUE(DATAID::ENGINE, "CApplication", "m_windowName", m_windowName);
-	GET_VALUE(DATAID::ENGINE, "CApplication", "m_windowWidth", m_windowWidth);
-	GET_VALUE(DATAID::ENGINE, "CApplication", "m_windowHeight", m_windowHeight);
+	std::string curClassName = GetCurClassName(this);
+	GET_VALUE(DATAID::ENGINE, curClassName, "m_className", m_className);
+	GET_VALUE(DATAID::ENGINE, curClassName, "m_windowName", m_windowName);
+	GET_VALUE(DATAID::ENGINE, curClassName, "m_windowWidth", m_windowWidth);
+	GET_VALUE(DATAID::ENGINE, curClassName, "m_windowHeight", m_windowHeight);
+
 
 	RegisterWndClass(hInstance);
 	CreateWndHandle(hInstance, nCmdShow);
+
+	
 }
 
 HWND CApplication::GetHandle(void) const
@@ -80,10 +85,12 @@ bool CApplication::CreateWndHandle(HINSTANCE hInstance, int nCmdShow)
 						   CW_USEDEFAULT, 0, rc.right - rc.left, rc.bottom - rc.top,
 						   nullptr, nullptr, hInstance, nullptr);
 
-
+	SetWindowPos(m_hWnd, 0, 100, 150, rc.right - rc.left, rc.bottom - rc.top, 0);
 	if (!m_hWnd)
 		return false;
 
+
+	ShowCursor(false);
 	ShowWindow(m_hWnd, nCmdShow);
 	UpdateWindow(m_hWnd);
 

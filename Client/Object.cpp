@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Object.h"
-
+#include "ObjectManager.h"
+#include "DataStore.h"
 
 CObject::CObject()
 {
@@ -12,6 +13,13 @@ CObject::CObject()
 
 	m_activated			= true;
 	m_needToBeDeleted	= false;
+
+	m_position			= D3DXVECTOR3(0, 0, 0);
+	m_rotation			= D3DXVECTOR3(0, 0, 0);
+	m_size				= D3DXVECTOR3(1, 1, 0);
+
+	m_pParent			= nullptr;
+
 }
 
 
@@ -19,48 +27,22 @@ CObject::~CObject()
 {
 }
 
-OBJID::ID CObject::GetObjID(void)
+void CObject::Initialize(void)
 {
-	return m_objID;
+	CObjectManager::GetInstance()->AddObject(this, m_objID);
+
+	m_objectKey = GetCurClassName(this);
+
+	GET_VALUE(m_dataID, m_objectKey, "m_stateKey", m_stateKey);
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_position", m_position);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rotation", m_rotation);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_size", m_size);
 }
 
-DATAID::ID CObject::GetDataID(void)
+void CObject::Update(void)
 {
-	return m_dataID;
-}
-
-std::string & CObject::GetObjectKey(void)
-{
-	return m_objectKey;
-}
-
-std::string & CObject::GetStateKey(void)
-{
-	return m_stateKey;
-}
-
-void CObject::SetStateKey(std::string stateKey)
-{
-	m_stateKey = stateKey;
-}
-
-bool CObject::GetActivated(void) const
-{
-	return m_activated;
-}
-
-void CObject::SetActivated(bool activated)
-{
-	m_activated = activated;
-}
-
-bool CObject::GetNeedToBeDeleted(void) const
-{
-	return m_needToBeDeleted;
-}
-
-void CObject::SetNeedToBeDeleted(bool needToBeDeleted)
-{
-	m_needToBeDeleted = needToBeDeleted;
+	if (m_pParent)
+		m_parentPosition = m_pParent->GetParentPosition() + m_pParent->GetPosition();
 }
 

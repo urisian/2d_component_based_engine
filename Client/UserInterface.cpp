@@ -4,11 +4,8 @@
 #include "ObjectManager.h"
 #include "GraphicsComponent.h"
 
-CUserInterface::CUserInterface(std::string objectKey)
+CUserInterface::CUserInterface(void)
 {
-	m_objectKey = objectKey;
-
-	Initialize();
 }
 
 
@@ -21,16 +18,16 @@ void CUserInterface::Initialize(void)
 	m_objID = OBJID::UI;
 	m_dataID = DATAID::UI;
 
-	GET_VALUE(m_dataID, m_objectKey, "m_stateKey", m_stateKey);
+	__super::Initialize();
 
-	CGraphicsComponent* pComponent = AddComponent<CGraphicsComponent>();
-	pComponent->Initialize();
 
-	CObjectManager::GetInstance()->AddObject(this, m_objID);
+	AddComponent<CGraphicsComponent>();
 }
 
 void CUserInterface::Update(void)
 {
+	__super::Update();
+	GetComponent<CGraphicsComponent>()->Update();
 }
 
 void CUserInterface::LateUpdate(void)

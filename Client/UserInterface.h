@@ -6,7 +6,7 @@
 class CUserInterface : public CObject
 {
 public:
-	explicit							CUserInterface		(std::string objectKey);
+	explicit							CUserInterface		(void);
 	virtual							   ~CUserInterface		(void);
 
 	virtual			void				Initialize			(void);

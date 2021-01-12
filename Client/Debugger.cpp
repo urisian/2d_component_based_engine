@@ -2,6 +2,8 @@
 #include "Debugger.h"
 #include "FRC.h"
 #include "InputManager.h"
+#include "Application.h"
+#include "Object.h"
 
 CDebugger* CDebugger::m_s_pInstance = nullptr;
 CDebugger * CDebugger::GetInstance(void)
@@ -45,13 +47,13 @@ void CDebugger::Initialize(void)
 		MessageBox(nullptr, L"Create console handle Failed", L"Debugger.cpp", MB_OK);
 		return;
 	}
+	
+
+	MoveWindow(GetConsoleWindow(), 850, 150, 55, 55, 1);
 
 	SetConsoleCursorInfo(m_hConsole, &info);
 	SetConsoleScreenBufferSize(m_hConsole, coord);
 	SetConsoleWindowInfo(m_hConsole, TRUE, &m_screenRect);
-
-
-
 	SetConsoleActiveScreenBuffer(m_hConsole);
 }
 
@@ -73,6 +75,21 @@ void CDebugger::Release(void)
 void CDebugger::AddInfo(DEBUGID::ID debugID, std::string key, std::string info)
 {
 	m_mPrintList[debugID][key] = info;
+}
+
+void CDebugger::AddObjectInfo(CObject * pObj)
+{
+	AddInfo(DEBUGID::OBJECT_INFO, "m_positionX", "PositionX : " + std::to_string(pObj->GetPosition().x) + "\n");
+	AddInfo(DEBUGID::OBJECT_INFO, "m_positionY", "PositionY : " + std::to_string(pObj->GetPosition().y) + "\n");
+
+	AddInfo(DEBUGID::OBJECT_INFO, "m_sizeX", "SizeX : " + std::to_string(pObj->GetSize().x) + "\n");
+	AddInfo(DEBUGID::OBJECT_INFO, "m_sizeY", "SizeY : " + std::to_string(pObj->GetSize().y) + "\n");
+
+	AddInfo(DEBUGID::OBJECT_INFO, "m_minX", "MinPosX : " + std::to_string(pObj->GetPosition().x - pObj->GetSize().x/2) + "\n");
+	AddInfo(DEBUGID::OBJECT_INFO, "m_minY", "MinPosY : " + std::to_string(pObj->GetPosition().y - pObj->GetSize().y/2) + "\n");
+
+	AddInfo(DEBUGID::OBJECT_INFO, "m_MaxX", "MaxPosX : " + std::to_string(pObj->GetPosition().x + pObj->GetSize().x / 2) + "\n");
+	AddInfo(DEBUGID::OBJECT_INFO, "m_MaxY", "MaxPosY : " + std::to_string(pObj->GetPosition().y + pObj->GetSize().y / 2) + "\n");
 }
 
 void CDebugger::PrintConsole(void)

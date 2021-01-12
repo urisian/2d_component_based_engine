@@ -31,6 +31,11 @@ struct CustomVertex
 	D3DXVECTOR2 texture;    // Texture  Coordinate
 };
 
-
+struct RingBoxInfo
+{
+	std::string		name;
+	int				price;
+	float			angle;
+};
 
 #endif // !MYSTRUCTURES_H

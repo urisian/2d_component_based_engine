@@ -10,7 +10,7 @@ public:
 					void					Initialize			(void);
 					void					Update				(void);
 
-					D3DXVECTOR3				GetMousePos			(void);
+	GETTOR			(D3DXVECTOR3,			m_mousePos,			MousePos);
 
 
 					bool					KeyUp				(DWORD key);
@@ -25,7 +25,6 @@ private:
 										   ~CInputManager		(void);
 
 private:
-					D3DXVECTOR3				m_mousePos;
 
 					DWORD					m_key;
 					DWORD					m_lastFrameKey;

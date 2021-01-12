@@ -30,7 +30,10 @@ void CObjectManager::Update(void)
 	{
 		for (auto& iter = m_vObjects[i].begin(); iter != m_vObjects[i].end(); )
 		{
-			(*iter)->Update();
+			if ((*iter)->GetActivated())
+			{
+				(*iter)->Update();
+			}
 
 			if ((*iter)->GetNeedToBeDeleted())
 			{

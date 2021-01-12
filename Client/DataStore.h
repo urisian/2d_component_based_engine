@@ -36,25 +36,31 @@ private:
 
 public:
 	template <typename T>
-	void GetValue(DATAID::ID dataID, std::string objectKey, std::string varKey, T& result)
+	bool GetValue(DATAID::ID dataID, std::string objectKey, std::string varKey, T& result)
 	{
-#if _DEBUG
+
 		if (m_mDataMap[dataID].find(objectKey) == m_mDataMap[dataID].end())
 		{
+#if _DEBUG
 			MessageBox(nullptr, StrToWStr(objectKey + " missing objectKey in GetValue function").c_str(), L"DataStore.h", MB_OK);
-			return;
+#endif
+			return false;
 		}
 		if (m_mDataMap[dataID].find(objectKey)->second.find(varKey) == m_mDataMap[dataID].find(objectKey)->second.end())
 		{
+#if _DEBUG
 			MessageBox(nullptr, StrToWStr(objectKey + " " + varKey + " missing varKey in GetValue function").c_str(), L"DataStore.h", MB_OK);
-			return;
-		}
 #endif
+			return false;
+		}
+
 
 		std::stringstream ss(m_mDataMap[dataID].find(objectKey)->second.find(varKey)->second);
 
 		ss << std::boolalpha;
 		ss >> result;
+
+		return true;
 	}
 };
 

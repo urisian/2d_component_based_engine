@@ -1,6 +1,8 @@
 #ifndef DEBUGGER_H
 #define DEBUGGER_H
 
+class CObject;
+
 class CDebugger
 {
 public:
@@ -13,7 +15,7 @@ public:
 					void					Release				(void);
 
 					void					AddInfo				(DEBUGID::ID debugID, std::string key, std::string info);
-
+					void					AddObjectInfo		(CObject* pObj);
 private:
 											CDebugger			(void);
 										   ~CDebugger			(void);

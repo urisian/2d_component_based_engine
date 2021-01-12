@@ -11,6 +11,8 @@ public:
 
 	virtual		void			Initialize			(void) PURE;
 	virtual		void			Update				(void) PURE;
+	virtual		void			LateUpdate			(void) PURE;
+	virtual		void			Release				(void) PURE;
 
 	const		std::string&	GetComponentType	(void) const;
 				

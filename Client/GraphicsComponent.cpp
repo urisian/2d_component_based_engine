@@ -3,11 +3,14 @@
 #include "Texture.h"
 #include "DataStore.h"
 #include "TextureStore.h"
+#include "PhysicsComponent.h"
 
 CGraphicsComponent::CGraphicsComponent()
 {
 	m_curAniIndex	= 0;
 	m_maxAniIndex	= 0;
+
+	m_zOrder		= 0;
 
 	m_position		= {};
 	m_rotation		= {};
@@ -22,13 +25,19 @@ CGraphicsComponent::CGraphicsComponent()
 
 CGraphicsComponent::~CGraphicsComponent()
 {
+	Release();
 }
 
 void CGraphicsComponent::Initialize(void)
 {
-	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_position", m_position);
-	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_rotation", m_rotation);
-	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_size", m_size);
+	m_position	= m_pOwner->GetPosition();
+	if (m_pOwner->GetParent() != nullptr)
+		m_position += m_pOwner->GetParentPosition();
+
+	m_rotation	= m_pOwner->GetRotation();
+	m_size		= m_pOwner->GetSize();
+
+	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetStateKey() + "_m_zOrder", m_zOrder);
 
 	m_pCTexture		= GET_TEXTURE(m_pOwner->GetObjID(), m_pOwner->GetObjectKey());
 	m_pTexture		= m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[m_curAniIndex]->pTexture;
@@ -37,44 +46,21 @@ void CGraphicsComponent::Initialize(void)
 
 void CGraphicsComponent::Update(void)
 {
+	m_position	= m_pOwner->GetPosition();
+	if (m_pOwner->GetParent() != nullptr)
+		m_position += m_pOwner->GetParentPosition();
+
+	m_rotation	= m_pOwner->GetRotation();
+	m_size		= m_pOwner->GetSize();
+
+	m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[m_curAniIndex]->pTexture;
+
 }
 
-int & CGraphicsComponent::GetCurAniIndex(void)
+void CGraphicsComponent::LateUpdate(void)
 {
-	return m_curAniIndex;
 }
 
-int & CGraphicsComponent::GetMaxAniIndex(void)
+void CGraphicsComponent::Release(void)
 {
-	return m_maxAniIndex;
-}
-
-D3DXVECTOR3 & CGraphicsComponent::GetPosition(void)
-{
-	return m_position;
-}
-
-D3DXVECTOR3 & CGraphicsComponent::GetRotation(void)
-{
-	return m_rotation;
-}
-
-D3DXVECTOR3 & CGraphicsComponent::GetSize(void)
-{
-	return m_size;
-}
-
-D3DCOLOR & CGraphicsComponent::GetColor(void)
-{
-	return m_color;
-}
-
-CTexture * CGraphicsComponent::GetCTexture(void)
-{
-	return m_pCTexture;
-}
-
-LPDIRECT3DTEXTURE9 CGraphicsComponent::GetTexture(void)
-{
-	return m_pTexture;
 }

@@ -43,9 +43,6 @@
     <Filter Include="05.Physics">
       <UniqueIdentifier>{951c160c-c57f-425b-ac36-ab1ac463b913}</UniqueIdentifier>
     </Filter>
-    <Filter Include="08.GameState">
-      <UniqueIdentifier>{4186a81b-ca7c-4733-9c53-91990ec05031}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06.FrameRateController">
       <UniqueIdentifier>{05903a66-2bac-40ad-a3a0-04d56ad9328f}</UniqueIdentifier>
     </Filter>
@@ -63,21 +60,6 @@
     </Filter>
     <Filter Include="03.Object\01.Background">
       <UniqueIdentifier>{763fbf1b-2842-40bd-a610-5e55248ba870}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="08.GameState\00.Manager">
-      <UniqueIdentifier>{b0c911c2-1ec6-4304-b795-c5b7c19fe989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="08.GameState\01.MainMenu">
-      <UniqueIdentifier>{54ba8ed8-397e-45ec-a4a9-13f16e3bba6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="08.GameState\02.MapSelect">
-      <UniqueIdentifier>{cce7a259-81e4-4f9f-9055-6acac6b13bff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="08.GameState\03.Stages">
-      <UniqueIdentifier>{2f157fbc-b83b-4cca-a5ce-2790add903a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="08.GameState\03.Stages\Stage0">
-      <UniqueIdentifier>{d8e1cc2e-22e3-4cf6-9a13-fca145a3bc18}</UniqueIdentifier>
     </Filter>
     <Filter Include="04.Graphics\01.Texture">
       <UniqueIdentifier>{16f0207f-d7bd-4a7a-9992-cb603352618d}</UniqueIdentifier>
@@ -108,6 +90,66 @@
     </Filter>
     <Filter Include="03.Object\05.UserInterface">
       <UniqueIdentifier>{0a43d64b-92c0-4edd-88fe-0231efb308bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState">
+      <UniqueIdentifier>{4186a81b-ca7c-4733-9c53-91990ec05031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\00.Manager">
+      <UniqueIdentifier>{b0c911c2-1ec6-4304-b795-c5b7c19fe989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\01.MainMenu">
+      <UniqueIdentifier>{54ba8ed8-397e-45ec-a4a9-13f16e3bba6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\02.MapSelect">
+      <UniqueIdentifier>{cce7a259-81e4-4f9f-9055-6acac6b13bff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\03.Stages">
+      <UniqueIdentifier>{2f157fbc-b83b-4cca-a5ce-2790add903a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.GameState\03.Stages\Stage0">
+      <UniqueIdentifier>{d8e1cc2e-22e3-4cf6-9a13-fca145a3bc18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\03.Turret\00.BaseTurret">
+      <UniqueIdentifier>{4b132f84-3930-4bbe-992c-2ecbd3af93f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\05.UserInterface\TurretRing">
+      <UniqueIdentifier>{507fb74f-4258-4901-91ba-a66e17d3080c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\05.UserInterface\RingBox">
+      <UniqueIdentifier>{025c2a91-7579-4a3a-b14c-ae5a1c6d27a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\03.Turret\01.ArcherTurret">
+      <UniqueIdentifier>{76e1ec39-da4e-4c18-85ae-2cc5cb59a58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\03.Turret\02.BarrackTurret">
+      <UniqueIdentifier>{b07870e9-f72b-4f7c-b777-25098300d226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\03.Turret\03.MagicTurret">
+      <UniqueIdentifier>{3d398431-a619-4045-96a5-033f322d793c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\03.Turret\04.BombTurret">
+      <UniqueIdentifier>{0e31e344-e39f-46a8-98b6-5c93be3ef296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\ClickableComponent">
+      <UniqueIdentifier>{8c2e90d7-9bf4-4b10-8ab8-683c99319387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\05.UserInterface\Mouse">
+      <UniqueIdentifier>{96f0c5ab-d3ab-433d-9198-0ab85bc5a021}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\01.Background\00.MainMenu">
+      <UniqueIdentifier>{c6fcc603-df84-4f14-8290-d441d52952f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\01.Background\01.MapSelect">
+      <UniqueIdentifier>{b0fd8ef9-8a9e-4ff4-b01a-fbc023d26c67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\01.Background\02.Stage0">
+      <UniqueIdentifier>{e7c6ed77-33d0-4216-bbfa-1126689699c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Physics\CollisionHelper">
+      <UniqueIdentifier>{6b9fac36-5c9e-446a-abda-da0c8253c696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.GameInfo">
+      <UniqueIdentifier>{cbf2d5e0-48c3-47f1-8c3e-1041e58a3dee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +240,37 @@
     <ClInclude Include="UserInterface.h">
       <Filter>03.Object\05.UserInterface</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>01.Component\PhysicsComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Turret.h">
+      <Filter>03.Object\03.Turret</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseTurret.h">
+      <Filter>03.Object\03.Turret\00.BaseTurret</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu_Background.h">
+      <Filter>03.Object\01.Background\00.MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>03.Object\05.UserInterface\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="ClickableComponent.h">
+      <Filter>01.Component\ClickableComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage0_Background.h">
+      <Filter>03.Object\01.Background\02.Stage0</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionHelper.h">
+      <Filter>05.Physics\CollisionHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="TurretRing.h">
+      <Filter>03.Object\05.UserInterface\TurretRing</Filter>
+    </ClInclude>
+    <ClInclude Include="RingBox.h">
+      <Filter>03.Object\05.UserInterface\RingBox</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -263,6 +336,37 @@
     <ClCompile Include="UserInterface.cpp">
       <Filter>03.Object\05.UserInterface</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>01.Component\PhysicsComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Turret.cpp">
+      <Filter>03.Object\03.Turret</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseTurret.cpp">
+      <Filter>03.Object\03.Turret\00.BaseTurret</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu_Background.cpp">
+      <Filter>03.Object\01.Background\00.MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>03.Object\05.UserInterface\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="ClickableComponent.cpp">
+      <Filter>01.Component\ClickableComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage0_Background.cpp">
+      <Filter>03.Object\01.Background\02.Stage0</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionHelper.cpp">
+      <Filter>05.Physics\CollisionHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="TurretRing.cpp">
+      <Filter>03.Object\05.UserInterface\TurretRing</Filter>
+    </ClCompile>
+    <ClCompile Include="RingBox.cpp">
+      <Filter>03.Object\05.UserInterface\RingBox</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">

@@ -28,12 +28,42 @@ inline std::string WStrToStr(const std::wstring& wstr)
 	return converterX.to_bytes(wstr);
 }
 
+
+//Math helpers
+inline float GetAngleFromDir2D(D3DXVECTOR2& dir)
+{
+
+	float hypotenuseSize = D3DXVec2Length(&dir);
+
+	return D3DXToDegree(acosf(dir.x / hypotenuseSize));
+}
+
+inline float GetAngleFromDir2D(D3DXVECTOR3& dir)
+{
+	D3DXVECTOR2 temp = dir;
+	float hypotenuseSize = D3DXVec2Length(&temp);
+
+	return D3DXToDegree(acosf(dir.x / hypotenuseSize));
+}
+
+inline D3DXVECTOR3 GetDirFromAngle(float degree)
+{
+	return D3DXVECTOR3(cosf(D3DXToRadian(degree)), sinf(D3DXToRadian(degree)), 0);
+}
+
+
+
+//Get cur class Name
 template <typename T>
 std::string GetCurClassName(T* pObj)
 {
 	std::string className = typeid(*pObj).name();
-	className.erase(0, 6);
+	className.erase(0, 7);
 
 	return className;
 }
+
+
+
+
 #endif // !HELPERFUNCTIONS_H

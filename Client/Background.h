@@ -2,16 +2,16 @@
 #define BACKGROUND_H
 
 #include "Object.h"
-class CBackground : public CObject
+class CBackground abstract : public CObject
 {
 public:
-	explicit					CBackground			(std::string objectKey);
+	explicit					CBackground			(void);
 							   ~CBackground			(void);
 		
-					void		Initialize			(void);
-					void		Update				(void);
-					void		LateUpdate			(void);
-					void		Release				(void);
+	virtual			void		Initialize			(void);
+	virtual			void		Update				(void);
+	virtual			void		LateUpdate			(void);
+	virtual			void		Release				(void);
 
 };
 

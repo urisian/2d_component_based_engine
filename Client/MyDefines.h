@@ -22,9 +22,15 @@
 
 
 
-
+#if _DEBUG
 //디버거 세팅용
 #define GENERAL_DEBUG
 //#define SPECIFIC_DEBUG
+#endif
+
+
+//Math
+#define PI 3.141592f
+
 
 #endif // !MYDEFINES_H

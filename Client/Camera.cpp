@@ -26,6 +26,8 @@ CCamera::CCamera()
 
 	m_cameraHeight	= 0.f;
 	m_cameraWidth	= 0.f;
+
+	Initialize();
 }
 
 

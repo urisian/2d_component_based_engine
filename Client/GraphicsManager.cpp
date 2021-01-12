@@ -7,6 +7,23 @@
 #include "GraphicsComponent.h"
 #include "Texture.h"
 
+#include <algorithm>
+#include <functional>
+
+
+
+bool CompareZOrder(CObject* pObj1, CObject* pObj2)
+{
+	//Obj ZOrder Sorting
+	CGraphicsComponent* pGC1 = pObj1->GetComponent<CGraphicsComponent>();
+	CGraphicsComponent* pGC2 = pObj2->GetComponent<CGraphicsComponent>();
+	if (pGC1 == nullptr || pGC2 == nullptr)
+		return true;
+	else
+		return pGC1->GetZOrder() < pGC2->GetZOrder();
+}
+
+
 CGraphicsManager* CGraphicsManager::m_s_pInstance = nullptr;
 
 CGraphicsManager * CGraphicsManager::GetInstance(void)
@@ -32,7 +49,7 @@ void CGraphicsManager::Initialize(void)
 	InitIndexBuffer();
 	InitStates();
 	
-	m_pCamera->Initialize();
+	m_pCamera = new CCamera;
 }
 
 void CGraphicsManager::Render(void)
@@ -48,6 +65,12 @@ void CGraphicsManager::Render(void)
 
 	for (int i = 0; i < OBJID::END; ++i)
 	{
+
+		std::sort(CObjectManager::GetInstance()->GetObjectList()[i].begin(),
+				  CObjectManager::GetInstance()->GetObjectList()[i].end(), 
+				  CompareZOrder);
+
+
 		for (auto& object : CObjectManager::GetInstance()->GetObjectList()[i])
 		{
 			CGraphicsComponent* pObjectGC = object->GetComponent<CGraphicsComponent>();
@@ -234,7 +257,7 @@ void CGraphicsManager::SetWorldMatrix(CGraphicsComponent* pGC)
 {
 	D3DXMATRIX rotateX, rotateY, rotateZ, scale, trans, result;
 	D3DXMatrixIdentity(&rotateX); D3DXMatrixIdentity(&rotateY); D3DXMatrixIdentity(&rotateZ);
-	D3DXMatrixIdentity(&scale); D3DXMatrixIdentity(&trans); D3DXMatrixIdentity(&result);
+	D3DXMatrixIdentity(&scale); D3DXMatrixIdentity(&trans);D3DXMatrixIdentity(&result);
 
 	D3DXMatrixRotationZ(&rotateZ, pGC->GetRotation().z);
 	D3DXMatrixRotationY(&rotateY, pGC->GetRotation().y);
@@ -250,7 +273,6 @@ void CGraphicsManager::SetWorldMatrix(CGraphicsComponent* pGC)
 
 CGraphicsManager::CGraphicsManager()
 {
-	m_pCamera			= new CCamera;
 }
 
 

@@ -7,35 +7,31 @@ class CTexture;
 class CGraphicsComponent : public CComponent
 {
 public:
-	explicit							CGraphicsComponent		(void);
-									   ~CGraphicsComponent		(void);
+	explicit								CGraphicsComponent		(void);
+										   ~CGraphicsComponent		(void);
 
-					void				Initialize				(void);
-					void				Update					(void); 
+					void					Initialize				(void);
+					void					Update					(void); 
+					void					LateUpdate				(void);
+					void					Release					(void);
 
-					int&				GetCurAniIndex			(void);
-					int&				GetMaxAniIndex			(void);
 
-					D3DXVECTOR3&		GetPosition				(void);
-					D3DXVECTOR3&		GetRotation				(void);
-					D3DXVECTOR3&		GetSize					(void);
+	GETTOR_SETTOR	(int,					m_curAniIndex,	CurAniIndex);
+	GETTOR_SETTOR	(int,					m_maxAniIndex,	GetMaxAniIndex);
 
-					D3DCOLOR&			GetColor				(void);
+	GETTOR_SETTOR	(int,					m_zOrder,		ZOrder);
 
-					CTexture*			GetCTexture				(void);
-					LPDIRECT3DTEXTURE9	GetTexture				(void);
+	GETTOR_SETTOR	(D3DXVECTOR3,			m_position,		Position);
+	GETTOR_SETTOR	(D3DXVECTOR3,			m_rotation,		Rotation);
+	GETTOR_SETTOR	(D3DXVECTOR3,			m_size,			Size);
+
+	GETTOR_SETTOR	(D3DCOLOR,				m_color,		Color);
+
+	GETTOR_SETTOR	(CTexture*,				m_pCTexture,	CTexture);
+	GETTOR_SETTOR	(LPDIRECT3DTEXTURE9,	m_pTexture,		Texture);
+
+
 private:
-					int					m_curAniIndex;
-					int					m_maxAniIndex;
-				
-					D3DXVECTOR3			m_position;
-					D3DXVECTOR3			m_rotation;
-					D3DXVECTOR3			m_size;
-
-					D3DCOLOR			m_color;
-
-					CTexture*			m_pCTexture;
-					LPDIRECT3DTEXTURE9	m_pTexture;
 };
 
 #endif

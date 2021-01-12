@@ -28,11 +28,6 @@ void CInputManager::Update(void)
 	MouseUpdate();
 }
 
-D3DXVECTOR3 CInputManager::GetMousePos(void)
-{
-	return D3DXVECTOR3();
-}
-
 bool CInputManager::KeyUp(DWORD key)
 {
 	if ((m_lastFrameKey & key) && !(m_key & key))
@@ -96,14 +91,15 @@ void CInputManager::MouseUpdate(void)
 	GetCursorPos(&p);
 	ScreenToClient(GET_WND_HANDLE(), &p);
 
-	ADD_DEBUG_INFO(DEBUGID::UI_INFO, "Mouse_CLI_POS", "X : " + std::to_string(p.x) 
-													+ " Y : " + std::to_string(p.y) + "\n");
+	m_mousePos = D3DXVECTOR3((float)p.x, (float)p.y, 0);
 	
-	p.x -= CApplication::GetInstance()->GetWndWidth() / 2.f;
-	p.y = (p.y * -1) + CApplication::GetInstance()->GetWndHeight() / 2.f;
+	m_mousePos.x -= CApplication::GetInstance()->GetWndWidth() / 2.f;
+	m_mousePos.y = (m_mousePos.y * -1) + CApplication::GetInstance()->GetWndHeight() / 2.f;
 
-	ADD_DEBUG_INFO(DEBUGID::UI_INFO, "Mouse_GAME_POS", "X : " + std::to_string(p.x) 
-													+ " Y : " + std::to_string(p.y) + "\n");
+#ifdef GENERAL_DEBUG
+	ADD_DEBUG_INFO(DEBUGID::UI_INFO, "Mouse_GAME_POS", "X : " + std::to_string(m_mousePos.x) 
+													+ " Y : " + std::to_string(m_mousePos.y) + "\n");
+#endif
 }
 
 

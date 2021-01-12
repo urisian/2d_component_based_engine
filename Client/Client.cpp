@@ -22,7 +22,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	CDataStore::GetInstance()->Initialize();
 	CApplication::GetInstance()->Initialize(hInstance, nCmdShow);
 
-	
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
