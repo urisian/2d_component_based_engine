@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "ObjectManager.h"
 #include "DataStore.h"
+#include "Component.h"
 
 CObject::CObject()
 {
@@ -25,6 +26,7 @@ CObject::CObject()
 
 CObject::~CObject()
 {
+	Release();
 }
 
 void CObject::Initialize(void)
@@ -44,5 +46,11 @@ void CObject::Update(void)
 {
 	if (m_pParent)
 		m_parentPosition = m_pParent->GetParentPosition() + m_pParent->GetPosition();
+}
+
+void CObject::Release(void)
+{
+	for (auto& component : m_mComponents)
+		component.second->SetNeedToBeDeleted(true);
 }
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameInfo.h"
 #include "DataStore.h"
+#include "InputManager.h"
 
 CGameInfo* CGameInfo::m_s_pInstance = nullptr;
 
@@ -26,6 +27,10 @@ void CGameInfo::Initialize(void)
 
 void CGameInfo::Update(void)
 {
+	if (IMKEY_UP(MOUSE_RIGHT) && m_pFocusedObject != nullptr)
+	{
+		m_pFocusedObject = nullptr;
+	}
 }
 
 void CGameInfo::LateUpdate(void)
@@ -38,6 +43,9 @@ void CGameInfo::Release(void)
 
 CGameInfo::CGameInfo()
 {
+	m_pFocusedObject = nullptr;
+	m_crystal = 0;
+	m_gameProgress = 0;
 }
 
 

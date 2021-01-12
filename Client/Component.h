@@ -6,22 +6,16 @@
 class CComponent
 {
 public:
-	explicit					CComponent			(void);
-	virtual					   ~CComponent			(void);
+	explicit						CComponent			(CObject* pOwner);
+	virtual						   ~CComponent			(void);
 
-	virtual		void			Initialize			(void) PURE;
-	virtual		void			Update				(void) PURE;
-	virtual		void			LateUpdate			(void) PURE;
-	virtual		void			Release				(void) PURE;
+	virtual			void			Initialize			(void) PURE;
+	virtual			void			Update				(void) PURE;
+	virtual			void			LateUpdate			(void) PURE;
+	virtual			void			Release				(void) PURE;
 
-	const		std::string&	GetComponentType	(void) const;
-				
-				CObject*		GetOwner			(void);
-				void			SetOwner			(CObject* pObject);
-
-protected:
-				std::string		m_componentType;
-				CObject*		m_pOwner;
+	GETTOR_SETTOR	(bool,			m_needToBeDeleted,	NeedToBeDeleted);
+	GETTOR_SETTOR	(CObject*,		m_pOwner,			Owner);
 };
 
 

@@ -10,6 +10,7 @@
 #include "FRC.h"
 #include "GSM.h"
 #include "Debugger.h"
+#include "CollisionManager.h"
 
 CMainApp::CMainApp()
 {
@@ -30,6 +31,7 @@ void CMainApp::Initialize(void)
 	CFRC::GetInstance()->Initialize();
 	CGSM::GetInstance()->Initialize();
 	CDebugger::GetInstance()->Initialize();
+	CCollisionManager::GetInstance()->Initialize();
 }
 
 void CMainApp::Update(void)
@@ -50,7 +52,7 @@ void CMainApp::Update(void)
 #endif
 
 
-	CGraphicsManager::GetInstance()->Render();
+	CGraphicsManager::GetInstance()->Update();
 #ifdef GENERAL_DEBUG
 	prevTime = curTime;
 	curTime = clock();
@@ -79,6 +81,14 @@ void CMainApp::Update(void)
 		+ std::to_string(curTime - prevTime) + "\n");
 #endif
 
+	CCollisionManager::GetInstance()->Update();
+#ifdef GENERAL_DEBUG
+	prevTime = curTime;
+	curTime = clock();
+
+	ADD_DEBUG_INFO(DEBUGID::FRAMETIME, "CollisionManager_Update", "Time spent on CollisionManager_Update is "
+		+ std::to_string(curTime - prevTime) + "\n");
+#endif
 
 	CDebugger::GetInstance()->Update();
 }

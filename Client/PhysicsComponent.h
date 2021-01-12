@@ -7,7 +7,7 @@ class CObject;
 class CPhysicsComponent : public CComponent
 {
 public:
-	explicit							CPhysicsComponent		(void);
+	explicit							CPhysicsComponent		(CObject* pOwner);
 									   ~CPhysicsComponent		(void);
 
 					void				Initialize				(void);

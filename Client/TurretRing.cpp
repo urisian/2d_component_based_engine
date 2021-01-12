@@ -9,6 +9,8 @@
 CTurretRing::CTurretRing(CTurret* pTurret)
 {
 	m_pOwner = pTurret;
+
+	
 	Initialize();
 }
 
@@ -21,8 +23,9 @@ void CTurretRing::Initialize(void)
 {
 	__super::Initialize();
 	
+	m_lastFrameActivated = false;
 	m_activated = false;
-
+	m_pFocusedRingBox = nullptr;
 
 	
 	m_defaultSize = m_size;
@@ -50,28 +53,14 @@ void CTurretRing::Update(void)
 	else
 		m_size = m_defaultSize;
 
+	if (!m_lastFrameActivated && m_activated)
+	{
+		for (auto& ringBox : m_vRingBoxes)
+			ringBox->SetActivated(true);
+	}
 
 
-	//bool clickedRingBox = false;
-	//if (IMKEY_UP(MOUSE_LEFT) && !CollisionHelper::PointRectCollision(GET_MOUSE_POS(), this))
-	//{
-	//	for (int i = 0; i < m_pOwner->GetNumOfRingBox(); ++i)
-	//	{
-	//		if (CollisionHelper::PointRectCollision(GET_MOUSE_POS(), m_vRingBoxes[i]))
-	//		{
-	//			clickedRingBox = true;
-	//		}
-	//	}
-	//}
-	//
-	//if (clickedRingBox == false)
-	//{
-	//	m_activated = false;
-	//	for (int i = 0; i < m_pOwner->GetNumOfRingBox(); ++i)
-	//	{
-	//		m_vRingBoxes[i]->SetActivated(false);
-	//	}
-	//}
+	m_lastFrameActivated = m_activated;
 }
 
 void CTurretRing::LateUpdate(void)

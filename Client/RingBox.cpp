@@ -6,6 +6,7 @@
 #include "GraphicsComponent.h"
 #include "ClickableComponent.h"
 #include "PhysicsComponent.h"
+#include "GameInfo.h"
 
 CRingBox::CRingBox(std::string objectKey)
 {
@@ -24,15 +25,19 @@ void CRingBox::Initialize(void)
 	//링박스는 예외적으로 따로 이니셜라이즈 함. 상속받는 대신.
 	PreInitialize();
 
-	AddComponent<CClickableComponent>();
+	GET_VALUE(m_dataID, m_objectKey, "m_type", m_type);
+
+	AddComponent<CClickableComponent>()->SetPlayFunc(std::bind(&CRingBox::Selected, this));
 }
 
 void CRingBox::Update(void)
 {
 	__super::Update();
-	D3DXVECTOR3 a = D3DXVECTOR3(cosf(D3DXToRadian(m_anglePosition)), sinf(D3DXToRadian(m_anglePosition)), 0);
-	float b = m_pTurretRing->GetSize().x;
+
 	SetPosition(D3DXVECTOR3(cosf(D3DXToRadian(m_anglePosition)), sinf(D3DXToRadian(m_anglePosition)), 0) * m_pTurretRing->GetSize().x / 2.f);
+
+	if (m_pTurretRing->GetFocusedRingBox() != this)
+		m_stateKey = "Idle";
 }
 
 void CRingBox::LateUpdate(void)
@@ -41,6 +46,38 @@ void CRingBox::LateUpdate(void)
 
 void CRingBox::Release(void)
 {
+}
+
+void CRingBox::Selected(void)
+{
+	m_pTurretRing->SetFocusedRingBox(this);
+
+	if (m_stateKey == "Idle")
+		m_stateKey = "Selected";
+	else if (m_stateKey == "Selected")
+	{
+		if (CGameInfo::GetInstance()->GetFocusedObject()->GetObjectKey() == "BaseTurret")
+		{
+			if (m_objectKey == "Archer_RingBox")
+				;
+			else if (m_objectKey == "Barrack_RingBox")
+				;
+			else if (m_objectKey == "Magic_RingBox")
+				;
+			else if (m_objectKey == "Bomb_RingBox")
+				;
+		}
+		else if (m_objectKey == "Upgrade_RingBox")
+			;
+		else if (m_objectKey == "Sell_RingBox")
+			;
+		else if (m_objectKey == "Rally_RingBox")
+			;
+		else if (m_objectKey == "Repair_RingBox")
+			;
+
+
+	}
 }
 
 void CRingBox::PreInitialize(void)
@@ -58,3 +95,4 @@ void CRingBox::PreInitialize(void)
 
 	AddComponent<CGraphicsComponent>();
 }
+

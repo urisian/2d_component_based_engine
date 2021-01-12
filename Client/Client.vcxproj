@@ -150,15 +150,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="ArcherTurret.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="BaseTurret.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionHelper.h" />
     <ClInclude Include="ClickableComponent.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DataStore.h" />
     <ClInclude Include="Debugger.h" />
+    <ClInclude Include="Decoration.h" />
     <ClInclude Include="FRC.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameState.h" />
@@ -192,15 +196,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="ArcherTurret.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BaseTurret.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClickableComponent.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="CollisionHelper.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DataStore.cpp" />
     <ClCompile Include="Debugger.cpp" />
+    <ClCompile Include="Decoration.cpp" />
     <ClCompile Include="FRC.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameState.cpp" />

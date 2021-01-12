@@ -44,6 +44,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			}
 		}
 		
+
 		if(CFRC::GetInstance()->FrameLock())
 		{	
 			mainApp.Update();

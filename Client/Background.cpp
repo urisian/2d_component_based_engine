@@ -26,7 +26,7 @@ void CBackground::Initialize(void)
 
 void CBackground::Update(void)
 {
-	GetComponent<CGraphicsComponent>()->Update();
+	//GetComponent<CGraphicsComponent>()->Update();
 }
 
 void CBackground::LateUpdate(void)

@@ -4,8 +4,9 @@
 #include "DataStore.h"
 #include "TextureStore.h"
 #include "PhysicsComponent.h"
+#include "GraphicsManager.h"
 
-CGraphicsComponent::CGraphicsComponent()
+CGraphicsComponent::CGraphicsComponent(CObject* pOwner) : CComponent(pOwner)
 {
 	m_curAniIndex	= 0;
 	m_maxAniIndex	= 0;
@@ -37,11 +38,13 @@ void CGraphicsComponent::Initialize(void)
 	m_rotation	= m_pOwner->GetRotation();
 	m_size		= m_pOwner->GetSize();
 
-	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetStateKey() + "_m_zOrder", m_zOrder);
+	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_zOrder", m_zOrder);
 
 	m_pCTexture		= GET_TEXTURE(m_pOwner->GetObjID(), m_pOwner->GetObjectKey());
 	m_pTexture		= m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[m_curAniIndex]->pTexture;
 	m_maxAniIndex	= m_pCTexture->GetTexInfos(m_pOwner->GetStateKey()).size();
+
+	CGraphicsManager::GetInstance()->AddGraphicsComponent(this);
 }
 
 void CGraphicsComponent::Update(void)

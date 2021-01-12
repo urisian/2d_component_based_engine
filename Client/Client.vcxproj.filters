@@ -40,9 +40,6 @@
     <Filter Include="04.Graphics">
       <UniqueIdentifier>{74b49bf0-0917-451e-bdd9-741082de4d4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.Physics">
-      <UniqueIdentifier>{951c160c-c57f-425b-ac36-ab1ac463b913}</UniqueIdentifier>
-    </Filter>
     <Filter Include="06.FrameRateController">
       <UniqueIdentifier>{05903a66-2bac-40ad-a3a0-04d56ad9328f}</UniqueIdentifier>
     </Filter>
@@ -145,11 +142,17 @@
     <Filter Include="03.Object\01.Background\02.Stage0">
       <UniqueIdentifier>{e7c6ed77-33d0-4216-bbfa-1126689699c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.Physics\CollisionHelper">
-      <UniqueIdentifier>{6b9fac36-5c9e-446a-abda-da0c8253c696}</UniqueIdentifier>
-    </Filter>
     <Filter Include="11.GameInfo">
       <UniqueIdentifier>{cbf2d5e0-48c3-47f1-8c3e-1041e58a3dee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Collision">
+      <UniqueIdentifier>{951c160c-c57f-425b-ac36-ab1ac463b913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Collision\00.Manager">
+      <UniqueIdentifier>{2b1f1b65-a6f6-4575-9509-97e1b16ae304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Collision\01.CollisionHelper">
+      <UniqueIdentifier>{6b9fac36-5c9e-446a-abda-da0c8253c696}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -262,7 +265,7 @@
       <Filter>03.Object\01.Background\02.Stage0</Filter>
     </ClInclude>
     <ClInclude Include="CollisionHelper.h">
-      <Filter>05.Physics\CollisionHelper</Filter>
+      <Filter>05.Collision\01.CollisionHelper</Filter>
     </ClInclude>
     <ClInclude Include="TurretRing.h">
       <Filter>03.Object\05.UserInterface\TurretRing</Filter>
@@ -270,7 +273,17 @@
     <ClInclude Include="RingBox.h">
       <Filter>03.Object\05.UserInterface\RingBox</Filter>
     </ClInclude>
-    <ClInclude Include="GameInfo.h" />
+    <ClInclude Include="ArcherTurret.h" />
+    <ClInclude Include="GameInfo.h">
+      <Filter>11.GameInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>05.Collision\00.Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>01.Component\CollisionComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Decoration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -358,7 +371,7 @@
       <Filter>03.Object\01.Background\02.Stage0</Filter>
     </ClCompile>
     <ClCompile Include="CollisionHelper.cpp">
-      <Filter>05.Physics\CollisionHelper</Filter>
+      <Filter>05.Collision\01.CollisionHelper</Filter>
     </ClCompile>
     <ClCompile Include="TurretRing.cpp">
       <Filter>03.Object\05.UserInterface\TurretRing</Filter>
@@ -366,7 +379,17 @@
     <ClCompile Include="RingBox.cpp">
       <Filter>03.Object\05.UserInterface\RingBox</Filter>
     </ClCompile>
-    <ClCompile Include="GameInfo.cpp" />
+    <ClCompile Include="ArcherTurret.cpp" />
+    <ClCompile Include="GameInfo.cpp">
+      <Filter>11.GameInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>05.Collision\00.Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionComponent.cpp">
+      <Filter>01.Component\CollisionComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Decoration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">

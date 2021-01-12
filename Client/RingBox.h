@@ -6,7 +6,7 @@
 
 class CTurretRing;
 
-class CRingBox : public CUserInterface
+class CRingBox final : public CUserInterface
 {
 public:
 	explicit							CRingBox				(std::string objectKey);
@@ -17,9 +17,11 @@ public:
 					void				LateUpdate				(void);
 					void				Release					(void);
 
+					void				Selected				(void);
 private:
 					void				PreInitialize			(void);
 
+	GETTOR_SETTOR	(RBTYPE::TYPE,		m_type,					Type);
 	GETTOR_SETTOR	(CTurretRing*,		m_pTurretRing,			TurretRing);
 	GETTOR_SETTOR	(int,				m_price,				Price);
 	GETTOR_SETTOR	(float,				m_anglePosition,		AnglePosition);

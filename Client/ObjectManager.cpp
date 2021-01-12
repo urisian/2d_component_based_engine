@@ -28,20 +28,10 @@ void CObjectManager::Update(void)
 
 	for (int i = 0; i < OBJID::END; ++i)
 	{
-		for (auto& iter = m_vObjects[i].begin(); iter != m_vObjects[i].end(); )
+		for (auto& element : m_vObjects[i])
 		{
-			if ((*iter)->GetActivated())
-			{
-				(*iter)->Update();
-			}
-
-			if ((*iter)->GetNeedToBeDeleted())
-			{
-				SAFE_DELETE(*iter);
-				iter = m_vObjects[i].erase(iter);
-			}
-			else
-				++iter;
+			if (element->GetActivated())
+				element->Update();
 		}
 	}
 }
@@ -50,8 +40,19 @@ void CObjectManager::LateUpdate(void)
 {
 	for (int i = 0; i < OBJID::END; ++i)
 	{
-		for (auto& pObj : m_vObjects[i])
-			pObj->LateUpdate();
+		for (auto& it = m_vObjects[i].begin(); it != m_vObjects[i].end(); )
+		{
+			if ((*it)->GetActivated())
+				(*it)->LateUpdate();
+
+			if ((*it)->GetNeedToBeDeleted())
+			{
+				SAFE_DELETE(*it);
+				it = m_vObjects[i].erase(it);
+			}
+			else
+				++it;
+		}
 	}
 }
 

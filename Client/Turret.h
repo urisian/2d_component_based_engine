@@ -16,7 +16,7 @@ public:
 	virtual			void				LateUpdate			(void);
 	virtual			void				Release				(void);
 
-private:	
+protected:	
 					void				Selected			(void);
 
 	

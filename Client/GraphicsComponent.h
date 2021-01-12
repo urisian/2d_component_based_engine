@@ -7,7 +7,7 @@ class CTexture;
 class CGraphicsComponent : public CComponent
 {
 public:
-	explicit								CGraphicsComponent		(void);
+	explicit								CGraphicsComponent		(CObject* pOwner);
 										   ~CGraphicsComponent		(void);
 
 					void					Initialize				(void);

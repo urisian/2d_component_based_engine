@@ -12,16 +12,19 @@ public:
 	explicit						CTurretRing				(CTurret* pTurret);
 	virtual						   ~CTurretRing				(void);
 
-	virtual			void			Initialize				(void);
-	virtual			void			Update					(void);
-	virtual			void			LateUpdate				(void);
-	virtual			void			Release					(void);
+					void			Initialize				(void);
+					void			Update					(void);
+					void			LateUpdate				(void);
+					void			Release					(void);
 
+
+	GETTOR_SETTOR	(D3DXVECTOR3,	m_defaultSize,			DefaultSize);
+	GETTOR_SETTOR	(CRingBox*,		m_pFocusedRingBox,		FocusedRingBox);
+	GETTOR_SETTOR	(bool,			m_lastFrameActivated,	LastFrameActivated);
+
+	GETTOR			(CTurret*,		m_pOwner,				Owner);
 	GETTOR(std::vector<CRingBox*>,	m_vRingBoxes,			RingBoxes);
 
-private:
-					CTurret*		m_pOwner;
-					D3DXVECTOR3		m_defaultSize;
 };
 
 #endif

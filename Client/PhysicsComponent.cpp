@@ -3,7 +3,7 @@
 #include "DataStore.h"
 #include "FRC.h"
 
-CPhysicsComponent::CPhysicsComponent(void)
+CPhysicsComponent::CPhysicsComponent(CObject* pOwner) :CComponent(pOwner)
 {
 	m_position			= D3DXVECTOR3(0, 0, 0);
 	m_parentPosition	= D3DXVECTOR3(0, 0, 0);

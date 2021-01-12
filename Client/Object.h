@@ -12,7 +12,7 @@ public:
 	virtual			void					Initialize			(void);
 	virtual			void					Update				(void);
 	virtual			void					LateUpdate			(void) PURE;
-	virtual			void					Release				(void) PURE;
+	virtual			void					Release				(void);
 
 	GETTOR_SETTOR	(OBJID::ID,				m_objID,			ObjID);
 	GETTOR_SETTOR	(DATAID::ID,			m_dataID,			DataID);
@@ -62,8 +62,7 @@ public:
 
 		if ((pNewComponent = GetComponent<ComponentType>()) == nullptr)
 		{
-			pNewComponent = new ComponentType;
-			pNewComponent->SetOwner(this);
+			pNewComponent = new ComponentType(this);
 			m_mComponents[componentName] = pNewComponent;
 
 			pNewComponent->Initialize();

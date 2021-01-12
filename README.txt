@@ -4,7 +4,7 @@ Initialize는 finalClass의 constructor에서 부른다.
 부모클래스의 Initialize는 __super::Initialize()로 호출한다.
 
 Component Initialize는 AddComponent안에서 자동으로 한다.
-Component Update는 Add해준 클래스에서 한다.
+Component Update는 각각의 매니저에서 한다.
 
 
 Data file의 포맷은
@@ -25,3 +25,9 @@ ClickableComponent에 Play관련 (함수포인터)
 
 
 링박스는 예외적으로 따로 이니셜라이즈 함. 상속받는 대신.
+
+
+ClickableComponent랑 CollisionComponent는 CollisionManager에서 업데이트 및 관리
+Object는 ObjecTmanager에서
+GraphicsComponent는 GraphicManager에서 관리하자. 리스트 따로 파고.
+

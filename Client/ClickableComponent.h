@@ -9,7 +9,7 @@ class CObject;
 class CClickableComponent : public CComponent
 {
 public:
-	explicit						CClickableComponent			(void);
+	explicit						CClickableComponent			(CObject* pOwner);
 	virtual						   ~CClickableComponent			(void);
 
 					void			Initialize					(void);
@@ -20,6 +20,7 @@ public:
 	GETTOR_SETTOR	(bool,			m_mouseOver,				MouseOver);
 	GETTOR_SETTOR	(bool,			m_clickDown,				ClickDown);
 	GETTOR_SETTOR	(bool,			m_clickUp,					ClickUp);
+	GETTOR_SETTOR	(int,			m_cOrder,					COrder);
 
 					void			SetPlayFunc					(std::function<void(void)> funcPointer);
 

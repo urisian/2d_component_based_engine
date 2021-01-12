@@ -216,3 +216,14 @@ std::stringstream & operator >> (std::stringstream & in, std::wstring & wStr)
 
 	return in;
 }
+
+std::stringstream & operator >> (std::stringstream & in, RBTYPE::TYPE & type)
+{
+	int curTypeNum;
+
+	in >> curTypeNum;
+	type = RBTYPE::TYPE(curTypeNum);
+
+	return in;
+
+}

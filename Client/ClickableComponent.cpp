@@ -4,12 +4,16 @@
 #include "CollisionHelper.h"
 #include "Debugger.h"
 #include "Object.h"
+#include "CollisionManager.h"
+#include "DataStore.h"
 
-CClickableComponent::CClickableComponent(void)
+CClickableComponent::CClickableComponent(CObject* pOwner) : CComponent(pOwner)
 {
 	m_mouseOver = false;
 	m_clickDown = false;
 	m_clickUp	= false;
+
+	m_cOrder	= 0;
 }
 
 
@@ -19,6 +23,8 @@ CClickableComponent::~CClickableComponent()
 
 void CClickableComponent::Initialize(void)
 {
+	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_cOrder", m_cOrder);
+	CCollisionManager::GetInstance()->AddClickableComponent(this);
 }
 
 void CClickableComponent::Update(void)

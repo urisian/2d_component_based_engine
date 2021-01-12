@@ -7,22 +7,6 @@
 #include "GraphicsComponent.h"
 #include "Texture.h"
 
-#include <algorithm>
-#include <functional>
-
-
-
-bool CompareZOrder(CObject* pObj1, CObject* pObj2)
-{
-	//Obj ZOrder Sorting
-	CGraphicsComponent* pGC1 = pObj1->GetComponent<CGraphicsComponent>();
-	CGraphicsComponent* pGC2 = pObj2->GetComponent<CGraphicsComponent>();
-	if (pGC1 == nullptr || pGC2 == nullptr)
-		return true;
-	else
-		return pGC1->GetZOrder() < pGC2->GetZOrder();
-}
-
 
 CGraphicsManager* CGraphicsManager::m_s_pInstance = nullptr;
 
@@ -52,7 +36,7 @@ void CGraphicsManager::Initialize(void)
 	m_pCamera = new CCamera;
 }
 
-void CGraphicsManager::Render(void)
+void CGraphicsManager::Update(void)
 {
 	m_pCamera->Update();
 
@@ -63,31 +47,50 @@ void CGraphicsManager::Render(void)
 
 	m_pDevice->BeginScene();
 
-	for (int i = 0; i < OBJID::END; ++i)
+
+	std::sort(m_vGraphicsComponents.begin(),
+			  m_vGraphicsComponents.end(),
+			  [](CGraphicsComponent* pGC1, CGraphicsComponent* pGC2)
+				{
+					return pGC1->GetZOrder() < pGC2->GetZOrder();
+				});
+
+
+	for (auto& element : m_vGraphicsComponents)
 	{
-
-		std::sort(CObjectManager::GetInstance()->GetObjectList()[i].begin(),
-				  CObjectManager::GetInstance()->GetObjectList()[i].end(), 
-				  CompareZOrder);
-
-
-		for (auto& object : CObjectManager::GetInstance()->GetObjectList()[i])
+		if (element->GetOwner()->GetActivated())
 		{
-			CGraphicsComponent* pObjectGC = object->GetComponent<CGraphicsComponent>();
-			if (object->GetActivated() && pObjectGC != nullptr)
-			{
-				SetWorldMatrix(pObjectGC);
-				m_pDevice->SetTexture(0, pObjectGC->GetTexture());
-				m_pDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
-				m_pDevice->SetTextureStageState(0, D3DTSS_CONSTANT, pObjectGC->GetColor());
-				m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
-			}
+			element->Update();
+
+			SetWorldMatrix(element);
+			m_pDevice->SetTexture(0, element->GetTexture());
+			m_pDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
+			m_pDevice->SetTextureStageState(0, D3DTSS_CONSTANT, element->GetColor());
+			m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
 		}
 	}
-	
+
+
 
 	m_pDevice->EndScene();
 	m_pDevice->Present(NULL, NULL, NULL, NULL);
+}
+
+void CGraphicsManager::LateUpdate(void)
+{
+	for (auto& it = m_vGraphicsComponents.begin(); it != m_vGraphicsComponents.end();)
+	{
+		if ((*it)->GetOwner()->GetActivated())
+			(*it)->LateUpdate();
+
+		if ((*it)->GetNeedToBeDeleted())
+		{
+			SAFE_DELETE(*it);
+			it = m_vGraphicsComponents.erase(it);
+		}
+		else
+			++it;
+	}
 }
 
 void CGraphicsManager::Release(void)
@@ -95,9 +98,9 @@ void CGraphicsManager::Release(void)
 	SAFE_DELETE(m_pCamera);
 }
 
-LPDIRECT3DDEVICE9 CGraphicsManager::GetDevice(void) const
+void CGraphicsManager::AddGraphicsComponent(CGraphicsComponent * pGC)
 {
-	return m_pDevice;
+	m_vGraphicsComponents.push_back(pGC);
 }
 
 void CGraphicsManager::InitDevice(void)
