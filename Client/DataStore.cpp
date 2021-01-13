@@ -102,9 +102,7 @@ void CDataStore::ReadFile(const std::string & fullPath)
 
 		std::map<std::string, std::map<std::string, std::string>>* pCurMap = nullptr;
 
-		if (sectionKey == "BACKGROUND")
-			pCurMap = &m_mDataMap[DATAID::BACKGROUND];
-		else if (sectionKey == "ANIMATION")
+		if (sectionKey == "ANIMATION")
 			pCurMap = &m_mDataMap[DATAID::ANIMATION];
 		else if (sectionKey == "BUTTON")
 			pCurMap = &m_mDataMap[DATAID::BUTTON];

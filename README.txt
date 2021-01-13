@@ -31,3 +31,17 @@ ClickableComponent랑 CollisionComponent는 CollisionManager에서 업데이트 
 Object는 ObjecTmanager에서
 GraphicsComponent는 GraphicManager에서 관리하자. 리스트 따로 파고.
 
+
+
+스테이지에 데코레이션 넣는 법.
+Stage iniFile에 NumOfDecoration 숫자를 1추가.
+decoration#_objKey=넣을데코레이션의_텍스쳐_오브젝트_키
+decoration#_m_pos=넣을데코레이션의_인게임_포지션
+
+스테이지 ini파일의 decoration0(첫데코레이션)은 배경화면이어야 한다.
+
+
+Mouse의 ZOrder는 10000
+UI는 9000++
+Turret이 6000
+Decoration은 5000

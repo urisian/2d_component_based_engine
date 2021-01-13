@@ -27,14 +27,14 @@ void CGSM::Update(void)
 {
 	if (m_pNextState != nullptr)
 	{
-		if (m_needToBeCleaned)
+		if (m_needToBeClean)
 		{
 			while (m_sStateStack.size() != 0)
 			{
 				SAFE_DELETE(m_sStateStack.top());
 				m_sStateStack.pop();
 			}
-			m_needToBeCleaned = false;	
+			m_needToBeClean = false;	
 		}
 		else if(m_pCurState)
 		{
@@ -59,7 +59,7 @@ void CGSM::Release(void)
 
 CGSM::CGSM(void)
 {
-	m_needToBeCleaned	= false;
+	m_needToBeClean		= false;
 
 	m_pCurState			= nullptr;
 	m_pNextState		= nullptr;

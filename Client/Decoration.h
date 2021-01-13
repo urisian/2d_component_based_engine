@@ -5,7 +5,7 @@
 class CDecoration final : public CObject
 {
 public:
-	explicit								CDecoration			(void);
+	explicit								CDecoration			(std::string objectKey);
 										   ~CDecoration			(void);
 
 					void					Initialize			(void);

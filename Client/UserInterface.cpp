@@ -27,7 +27,7 @@ void CUserInterface::Initialize(void)
 void CUserInterface::Update(void)
 {
 	__super::Update();
-	//GetComponent<CGraphicsComponent>()->Update();
+	 
 }
 
 void CUserInterface::LateUpdate(void)

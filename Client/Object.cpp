@@ -9,7 +9,7 @@ CObject::CObject()
 	m_objID				= {};
 	m_dataID			= {};
 
-	m_objectKey			= {};
+	m_objectKey			= "";
 	m_stateKey			= {};
 
 	m_activated			= true;
@@ -33,7 +33,8 @@ void CObject::Initialize(void)
 {
 	CObjectManager::GetInstance()->AddObject(this, m_objID);
 
-	m_objectKey = GetCurClassName(this);
+	if(m_objectKey == "")
+		m_objectKey = GetCurClassName(this);
 
 	GET_VALUE(m_dataID, m_objectKey, "m_stateKey", m_stateKey);
 

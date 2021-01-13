@@ -18,8 +18,6 @@ public:
 					void				Release					(void);
 
 					void				Selected				(void);
-private:
-					void				PreInitialize			(void);
 
 	GETTOR_SETTOR	(RBTYPE::TYPE,		m_type,					Type);
 	GETTOR_SETTOR	(CTurretRing*,		m_pTurretRing,			TurretRing);

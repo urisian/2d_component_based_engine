@@ -25,7 +25,7 @@ protected:
 					std::string		m_name;
 					bool			m_activated;
 
-					CBackground*	m_pBackground;
+					CObject*		m_pBackground;
 
 	static			CMouse*			m_s_pMouse;
 	std::vector<CObject*>			m_vStateObjects;

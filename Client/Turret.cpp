@@ -78,7 +78,7 @@ void CTurret::Update(void)
 		}
 	}
 
-	//GetComponent<CGraphicsComponent>()->Update();
+	 
 }
 
 void CTurret::LateUpdate(void)

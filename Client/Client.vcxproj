@@ -151,7 +151,6 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="ArcherTurret.h" />
-    <ClInclude Include="Background.h" />
     <ClInclude Include="BaseTurret.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionComponent.h" />
@@ -169,7 +168,6 @@
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="GSM.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="MainMenu_Background.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="GraphicsComponent.h" />
@@ -184,7 +182,6 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RingBox.h" />
     <ClInclude Include="Stage0.h" />
-    <ClInclude Include="Stage0_Background.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
@@ -197,7 +194,6 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ArcherTurret.cpp" />
-    <ClCompile Include="Background.cpp" />
     <ClCompile Include="BaseTurret.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClickableComponent.cpp" />
@@ -215,7 +211,6 @@
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="GSM.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="MainMenu_Background.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
@@ -224,7 +219,6 @@
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="RingBox.cpp" />
     <ClCompile Include="Stage0.cpp" />
-    <ClCompile Include="Stage0_Background.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

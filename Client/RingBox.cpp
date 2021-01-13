@@ -22,8 +22,7 @@ CRingBox::~CRingBox()
 
 void CRingBox::Initialize(void)
 {
-	//링박스는 예외적으로 따로 이니셜라이즈 함. 상속받는 대신.
-	PreInitialize();
+	__super::Initialize();
 
 	GET_VALUE(m_dataID, m_objectKey, "m_type", m_type);
 
@@ -78,21 +77,5 @@ void CRingBox::Selected(void)
 
 
 	}
-}
-
-void CRingBox::PreInitialize(void)
-{
-	m_objID = OBJID::UI;
-	m_dataID = DATAID::UI;
-
-	CObjectManager::GetInstance()->AddObject(this, m_objID);
-
-	GET_VALUE(m_dataID, m_objectKey, "m_stateKey", m_stateKey);
-
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_position", m_position);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rotation", m_rotation);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_size", m_size);
-
-	AddComponent<CGraphicsComponent>();
 }
 

@@ -115,9 +115,7 @@ bool CTextureStore::CreateTexture(const std::string& fullPath)
 
 	std::map<std::string, CTexture*>* pCurMap = nullptr;
 
-	if (sectionKey == "BACKGROUND")
-		pCurMap = &m_mTexture[OBJID::BACKGROUND];
-	else if (sectionKey == "BUTTON")
+	if (sectionKey == "BUTTON")
 		pCurMap = &m_mTexture[OBJID::BUTTON];
 	else if (sectionKey == "DECORATION")
 		pCurMap = &m_mTexture[OBJID::DECORATION];

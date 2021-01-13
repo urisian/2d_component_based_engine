@@ -55,9 +55,6 @@
     <Filter Include="04.Graphics\00.Manager">
       <UniqueIdentifier>{b551db5f-6f5d-44cd-afcf-cb4e643c8bdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Object\01.Background">
-      <UniqueIdentifier>{763fbf1b-2842-40bd-a610-5e55248ba870}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04.Graphics\01.Texture">
       <UniqueIdentifier>{16f0207f-d7bd-4a7a-9992-cb603352618d}</UniqueIdentifier>
     </Filter>
@@ -76,14 +73,8 @@
     <Filter Include="03.Object\04.Unit">
       <UniqueIdentifier>{5c6b3388-49ec-4279-ac5b-52a58d97fb79}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Object\06.Decoration">
-      <UniqueIdentifier>{672232ef-5cd3-4634-bbc8-d968f2cb179b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Object\07.Monster">
       <UniqueIdentifier>{ecf0069f-fb93-4879-8129-8d738bb8e87a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Object\08.Projectile">
-      <UniqueIdentifier>{03a309d7-41db-4b78-98fa-017e7e3c6cef}</UniqueIdentifier>
     </Filter>
     <Filter Include="03.Object\05.UserInterface">
       <UniqueIdentifier>{0a43d64b-92c0-4edd-88fe-0231efb308bb}</UniqueIdentifier>
@@ -133,15 +124,6 @@
     <Filter Include="03.Object\05.UserInterface\Mouse">
       <UniqueIdentifier>{96f0c5ab-d3ab-433d-9198-0ab85bc5a021}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Object\01.Background\00.MainMenu">
-      <UniqueIdentifier>{c6fcc603-df84-4f14-8290-d441d52952f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Object\01.Background\01.MapSelect">
-      <UniqueIdentifier>{b0fd8ef9-8a9e-4ff4-b01a-fbc023d26c67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Object\01.Background\02.Stage0">
-      <UniqueIdentifier>{e7c6ed77-33d0-4216-bbfa-1126689699c9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="11.GameInfo">
       <UniqueIdentifier>{cbf2d5e0-48c3-47f1-8c3e-1041e58a3dee}</UniqueIdentifier>
     </Filter>
@@ -153,6 +135,12 @@
     </Filter>
     <Filter Include="05.Collision\01.CollisionHelper">
       <UniqueIdentifier>{6b9fac36-5c9e-446a-abda-da0c8253c696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\01.Decoration">
+      <UniqueIdentifier>{672232ef-5cd3-4634-bbc8-d968f2cb179b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\06.Projectile">
+      <UniqueIdentifier>{03a309d7-41db-4b78-98fa-017e7e3c6cef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -216,9 +204,6 @@
     <ClInclude Include="Camera.h">
       <Filter>04.Graphics\02.Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>03.Object\01.Background</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>07.Input</Filter>
     </ClInclude>
@@ -252,17 +237,11 @@
     <ClInclude Include="BaseTurret.h">
       <Filter>03.Object\03.Turret\00.BaseTurret</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenu_Background.h">
-      <Filter>03.Object\01.Background\00.MainMenu</Filter>
-    </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>03.Object\05.UserInterface\Mouse</Filter>
     </ClInclude>
     <ClInclude Include="ClickableComponent.h">
       <Filter>01.Component\ClickableComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage0_Background.h">
-      <Filter>03.Object\01.Background\02.Stage0</Filter>
     </ClInclude>
     <ClInclude Include="CollisionHelper.h">
       <Filter>05.Collision\01.CollisionHelper</Filter>
@@ -325,9 +304,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>04.Graphics\02.Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>03.Object\01.Background</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>07.Input</Filter>
     </ClCompile>
@@ -358,17 +334,11 @@
     <ClCompile Include="BaseTurret.cpp">
       <Filter>03.Object\03.Turret\00.BaseTurret</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu_Background.cpp">
-      <Filter>03.Object\01.Background\00.MainMenu</Filter>
-    </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>03.Object\05.UserInterface\Mouse</Filter>
     </ClCompile>
     <ClCompile Include="ClickableComponent.cpp">
       <Filter>01.Component\ClickableComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage0_Background.cpp">
-      <Filter>03.Object\01.Background\02.Stage0</Filter>
     </ClCompile>
     <ClCompile Include="CollisionHelper.cpp">
       <Filter>05.Collision\01.CollisionHelper</Filter>
