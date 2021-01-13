@@ -13,6 +13,9 @@ public:
 	virtual			void				Update				(void);
 	virtual			void				LateUpdate			(void);
 	virtual			void				Release				(void);
+
+private:
+	virtual			void				InitializeStates	(void);
 };
 
 #endif

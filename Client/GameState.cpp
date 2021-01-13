@@ -2,7 +2,6 @@
 #include "GameState.h"
 #include "Mouse.h"
 #include "DataStore.h"
-#include "Stage0_Background.h"
 #include "BaseTurret.h"
 #include "Decoration.h"
 

@@ -18,6 +18,7 @@ public:
 
 protected:	
 					void				Selected			(void);
+					void				InitializeStates	(void);
 
 	
 	GETTOR			(int,				m_level,			Level);

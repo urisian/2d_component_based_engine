@@ -37,3 +37,7 @@ void CUserInterface::LateUpdate(void)
 void CUserInterface::Release(void)
 {
 }
+
+void CUserInterface::InitializeStates(void)
+{
+}

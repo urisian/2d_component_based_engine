@@ -12,6 +12,9 @@ public:
 					void					Update				(void);
 					void					LateUpdate			(void);
 					void					Release				(void);
+
+protected:	
+					void					InitializeStates	(void);
 };
 
 #endif

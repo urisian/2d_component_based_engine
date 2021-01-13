@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Decoration.h"
 #include "GraphicsComponent.h"
+#include "StateMachine.h"
+#include "DecorationIdleState.h"
 
 CDecoration::CDecoration(std::string objectKey)
 {
@@ -21,10 +23,15 @@ void CDecoration::Initialize(void)
 	__super::Initialize();
 
 	AddComponent<CGraphicsComponent>();
+
+	InitializeStates();
+
+	m_pStateMachine->SetNextState(GetState(m_stateKey));
 }
 
 void CDecoration::Update(void)
 {
+	__super::Update();
 }
 
 void CDecoration::LateUpdate(void)
@@ -33,4 +40,9 @@ void CDecoration::LateUpdate(void)
 
 void CDecoration::Release(void)
 {
+}
+
+void CDecoration::InitializeStates(void)
+{
+	AddState("Idle", new CDecorationIdleState(this));
 }

@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="ArcherTurret.h" />
+    <ClInclude Include="ArcherUnit.h" />
     <ClInclude Include="BaseTurret.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionComponent.h" />
@@ -162,13 +163,17 @@
     <ClInclude Include="DataStore.h" />
     <ClInclude Include="Debugger.h" />
     <ClInclude Include="Decoration.h" />
+    <ClInclude Include="DecorationIdleState.h" />
     <ClInclude Include="FRC.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="GSM.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="MouseClickedState.h" />
+    <ClInclude Include="MouseIdleState.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="HelperFunctions.h" />
@@ -178,10 +183,12 @@
     <ClInclude Include="MyMacros.h" />
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="ObjectState.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RingBox.h" />
     <ClInclude Include="Stage0.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
@@ -189,11 +196,13 @@
     <ClInclude Include="Total.h" />
     <ClInclude Include="Turret.h" />
     <ClInclude Include="TurretRing.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="UserInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ArcherTurret.cpp" />
+    <ClCompile Include="ArcherUnit.cpp" />
     <ClCompile Include="BaseTurret.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClickableComponent.cpp" />
@@ -205,20 +214,26 @@
     <ClCompile Include="DataStore.cpp" />
     <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="Decoration.cpp" />
+    <ClCompile Include="DecorationIdleState.cpp" />
     <ClCompile Include="FRC.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="GSM.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="MouseClickedState.cpp" />
+    <ClCompile Include="MouseIdleState.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="ObjectState.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="RingBox.cpp" />
     <ClCompile Include="Stage0.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -229,6 +244,7 @@
     <ClCompile Include="TextureStore.cpp" />
     <ClCompile Include="Turret.cpp" />
     <ClCompile Include="TurretRing.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>

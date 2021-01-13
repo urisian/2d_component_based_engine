@@ -3,6 +3,8 @@
 #include "ObjectManager.h"
 #include "DataStore.h"
 #include "Component.h"
+#include "StateMachine.h"
+#include "ObjectState.h"
 
 CObject::CObject()
 {
@@ -20,7 +22,7 @@ CObject::CObject()
 	m_size				= D3DXVECTOR3(1, 1, 0);
 
 	m_pParent			= nullptr;
-
+	m_pStateMachine		= nullptr;
 }
 
 
@@ -41,17 +43,36 @@ void CObject::Initialize(void)
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_position", m_position);
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rotation", m_rotation);
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_size", m_size);
+
+	m_pStateMachine = new CStateMachine(this);
 }
 
 void CObject::Update(void)
 {
 	if (m_pParent)
 		m_parentPosition = m_pParent->GetParentPosition() + m_pParent->GetPosition();
+
+	m_pStateMachine->Update();
 }
 
 void CObject::Release(void)
 {
 	for (auto& component : m_mComponents)
 		component.second->SetNeedToBeDeleted(true);
+	for (auto& state : m_mStates)
+		delete state.second;
 }
 
+void CObject::InitializeStates(void)
+{
+}
+
+void CObject::AddState(std::string stateKey, CObjectState * pState)
+{
+	m_mStates[stateKey] = pState;
+}
+
+CObjectState * CObject::GetState(std::string stateKey)
+{
+	return m_mStates[stateKey];
+}

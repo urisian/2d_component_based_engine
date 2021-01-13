@@ -2,6 +2,8 @@
 #define OBJECT_H
 
 class CComponent;
+class CStateMachine;
+class CObjectState;
 
 class CObject abstract
 {
@@ -13,6 +15,8 @@ public:
 	virtual			void					Update				(void);
 	virtual			void					LateUpdate			(void) PURE;
 	virtual			void					Release				(void);
+
+	virtual			CObjectState*			GetState			(std::string stateKey);
 
 	GETTOR_SETTOR	(OBJID::ID,				m_objID,			ObjID);
 	GETTOR_SETTOR	(DATAID::ID,			m_dataID,			DataID);
@@ -32,12 +36,22 @@ public:
 
 	GETTOR_SETTOR	(CObject*,				m_pParent,			Parent);
 
+	GETTOR_SETTOR	(CStateMachine*,		m_pStateMachine,	StateMachine);
+
 	GETTOR			(std::vector<CObject*>, m_vChildList,		ChildList);
 
+protected:
+	virtual			void					InitializeStates	(void) PURE;
+	virtual			void					AddState			(std::string stateKey, CObjectState* pState);
 
 protected:
 	//오브젝트가 갖고 있는 컴포넌트들.
 	std::map<std::string, CComponent*>		m_mComponents;
+	//오브젝트의 스테이트 맵
+	std::map<std::string, CObjectState*>	m_mStates;
+
+
+
 
 public:
 	template <typename ComponentType>

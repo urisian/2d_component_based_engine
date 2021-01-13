@@ -46,9 +46,6 @@
     <Filter Include="07.Input">
       <UniqueIdentifier>{96174c25-2f0a-4af9-9c46-323dfebebb05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="09.Sound">
-      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Component\CollisionComponent">
       <UniqueIdentifier>{ecfda809-df9e-487f-be2f-cd46c90d983f}</UniqueIdentifier>
     </Filter>
@@ -60,9 +57,6 @@
     </Filter>
     <Filter Include="04.Graphics\02.Camera">
       <UniqueIdentifier>{6a5a79e8-e03a-478b-b1a0-c30fa40d0608}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="10.Debugger">
-      <UniqueIdentifier>{2569589e-8d07-4ad0-b5be-cafaa58f9087}</UniqueIdentifier>
     </Filter>
     <Filter Include="03.Object\02.Button">
       <UniqueIdentifier>{ad1e470e-c763-457f-baa0-ef4a2f0b024c}</UniqueIdentifier>
@@ -141,6 +135,33 @@
     </Filter>
     <Filter Include="03.Object\06.Projectile">
       <UniqueIdentifier>{03a309d7-41db-4b78-98fa-017e7e3c6cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Debugger">
+      <UniqueIdentifier>{2569589e-8d07-4ad0-b5be-cafaa58f9087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.Sound">
+      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.StateMachine">
+      <UniqueIdentifier>{5bc3a8d6-cf2f-45c1-8021-6b31692e3163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.StateMachine\ObjectState">
+      <UniqueIdentifier>{1a70de85-41b9-4f76-8398-e543651a8ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\04.Unit\00.ArcherUnit">
+      <UniqueIdentifier>{9e206ac7-0d7e-46a3-af17-cd564ac81ab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.StateMachine\ObjectState\Decoration_Idle">
+      <UniqueIdentifier>{be17bc55-c52d-4cb3-a6af-917bf138d94a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.StateMachine\ObjectState\Mouse">
+      <UniqueIdentifier>{06b075f4-3998-47ee-96e0-4b026e002bd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.StateMachine\ObjectState\Mouse\Mouse_Clicked">
+      <UniqueIdentifier>{0db068a8-6586-49de-b635-6c5cc17413a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09.StateMachine\ObjectState\Mouse\Mouse_Idle">
+      <UniqueIdentifier>{650aabb0-8c48-48c0-bfef-21ff5eedc619}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -223,7 +244,7 @@
       <Filter>06.FrameRateController</Filter>
     </ClInclude>
     <ClInclude Include="Debugger.h">
-      <Filter>10.Debugger</Filter>
+      <Filter>97.Debugger</Filter>
     </ClInclude>
     <ClInclude Include="UserInterface.h">
       <Filter>03.Object\05.UserInterface</Filter>
@@ -252,7 +273,6 @@
     <ClInclude Include="RingBox.h">
       <Filter>03.Object\05.UserInterface\RingBox</Filter>
     </ClInclude>
-    <ClInclude Include="ArcherTurret.h" />
     <ClInclude Include="GameInfo.h">
       <Filter>11.GameInfo</Filter>
     </ClInclude>
@@ -262,7 +282,36 @@
     <ClInclude Include="CollisionComponent.h">
       <Filter>01.Component\CollisionComponent</Filter>
     </ClInclude>
-    <ClInclude Include="Decoration.h" />
+    <ClInclude Include="Decoration.h">
+      <Filter>03.Object\01.Decoration</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcherTurret.h">
+      <Filter>03.Object\03.Turret\01.ArcherTurret</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>03.Object\07.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>03.Object\04.Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcherUnit.h">
+      <Filter>03.Object\04.Unit\00.ArcherUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectState.h">
+      <Filter>09.StateMachine\ObjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>09.StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="DecorationIdleState.h">
+      <Filter>09.StateMachine\ObjectState\Decoration_Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseIdleState.h">
+      <Filter>09.StateMachine\ObjectState\Mouse\Mouse_Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseClickedState.h">
+      <Filter>09.StateMachine\ObjectState\Mouse\Mouse_Clicked</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -320,7 +369,7 @@
       <Filter>06.FrameRateController</Filter>
     </ClCompile>
     <ClCompile Include="Debugger.cpp">
-      <Filter>10.Debugger</Filter>
+      <Filter>97.Debugger</Filter>
     </ClCompile>
     <ClCompile Include="UserInterface.cpp">
       <Filter>03.Object\05.UserInterface</Filter>
@@ -349,7 +398,6 @@
     <ClCompile Include="RingBox.cpp">
       <Filter>03.Object\05.UserInterface\RingBox</Filter>
     </ClCompile>
-    <ClCompile Include="ArcherTurret.cpp" />
     <ClCompile Include="GameInfo.cpp">
       <Filter>11.GameInfo</Filter>
     </ClCompile>
@@ -359,7 +407,36 @@
     <ClCompile Include="CollisionComponent.cpp">
       <Filter>01.Component\CollisionComponent</Filter>
     </ClCompile>
-    <ClCompile Include="Decoration.cpp" />
+    <ClCompile Include="Decoration.cpp">
+      <Filter>03.Object\01.Decoration</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcherTurret.cpp">
+      <Filter>03.Object\03.Turret\01.ArcherTurret</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>03.Object\07.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>03.Object\04.Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcherUnit.cpp">
+      <Filter>03.Object\04.Unit\00.ArcherUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectState.cpp">
+      <Filter>09.StateMachine\ObjectState</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>09.StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="DecorationIdleState.cpp">
+      <Filter>09.StateMachine\ObjectState\Decoration_Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseIdleState.cpp">
+      <Filter>09.StateMachine\ObjectState\Mouse\Mouse_Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseClickedState.cpp">
+      <Filter>09.StateMachine\ObjectState\Mouse\Mouse_Clicked</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">

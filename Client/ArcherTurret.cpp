@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ArcherTurret.h"
-
+#include "StateMachine.h"
 
 CArcherTurret::CArcherTurret()
 {
@@ -20,7 +20,6 @@ void CArcherTurret::Initialize(void)
 void CArcherTurret::Update(void)
 {
 	__super::Update();
-
 }
 
 void CArcherTurret::LateUpdate(void)

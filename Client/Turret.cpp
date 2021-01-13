@@ -97,3 +97,7 @@ void CTurret::Selected(void)
 {
 	CGameInfo::GetInstance()->SetFocusedObject(this);
 }
+
+void CTurret::InitializeStates(void)
+{
+}

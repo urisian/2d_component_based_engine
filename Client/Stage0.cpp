@@ -2,7 +2,6 @@
 #include "Stage0.h"
 #include "DataStore.h"
 #include "GraphicsComponent.h"
-#include "Stage0_Background.h"
 #include "BaseTurret.h"
 #include "TurretRing.h"
 
