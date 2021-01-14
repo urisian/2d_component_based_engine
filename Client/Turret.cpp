@@ -7,6 +7,8 @@
 #include "TurretRing.h"
 #include "RingBox.h"
 #include "GameInfo.h"
+#include "BaseTurret.h"
+#include "Decoration.h"
 
 CTurret::CTurret()
 {
@@ -30,13 +32,23 @@ void CTurret::Initialize(void)
 	//iniFile에서 정보 불러오기.
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_level", m_level);
 	
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfSkill", m_numOfSkill);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfRingBox", m_numOfRingBox);
+
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_sellable", m_sellable);
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_sellPrice", m_sellPrice);
 	
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rallyable", m_rallyable);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rallyRange", m_rallyRange);
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackRange", m_attackRange);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackSpeed", m_attackSpeed);
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_dmg", m_dmg);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_magicDmg", m_magicDmg);
+
 	
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfSkill", m_numOfSkill);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfRingBox", m_numOfRingBox);
+	
 
 	//RingBox 심기
 	for (int i = 0; i < m_numOfRingBox; ++i)
@@ -54,6 +66,15 @@ void CTurret::Initialize(void)
 	m_pTurretRing = new CTurretRing(this);
 	m_pTurretRing->SetParent(this);
 
+
+	//RangeCircle 심기
+	m_pRangeCircle = new CDecoration("RangeCircle", "Green");
+	m_pRangeCircle->SetParent(this);
+	m_pRangeCircle->SetSize(D3DXVECTOR3(m_attackRange, m_attackRange * 0.6f, 0));
+	
+	
+
+
 	//그래픽/클릭 컴포넌트 등록
 	AddComponent<CGraphicsComponent>();
 	AddComponent<CClickableComponent>()->SetPlayFunc(std::bind(&CTurret::Selected, this));
@@ -61,13 +82,19 @@ void CTurret::Initialize(void)
 
 void CTurret::Update(void)
 {
+	__super::Update();
 	//포커싱된 오브젝트가 나라면, 내 터렛링 활성화
 	if (CGameInfo::GetInstance()->GetFocusedObject() == this)
+	{
+		m_pRangeCircle->SetActivated(true);
 		m_pTurretRing->SetActivated(true);
+	}
 
 	//이제 포커싱이 넘어갔다면.
 	else //if(m_pTurretRing->GetLastFrameActivated() == true)
 	{
+		m_pRangeCircle->SetActivated(false);
+
 		m_pTurretRing->SetSize(m_pTurretRing->GetDefaultSize() * 0.7f);
 		m_pTurretRing->SetActivated(false);
 		m_pTurretRing->SetLastFrameActivated(false);
@@ -91,6 +118,68 @@ void CTurret::Release(void)
 	{
 		SAFE_DELETE(element);
 	}
+
+	m_vRingBoxInfo.clear();
+	
+	m_pRangeCircle->SetNeedToBeDeleted(true);
+	m_pTurretRing->SetNeedToBeDeleted(true);
+}
+
+void CTurret::UpgradeTurret(int increase)
+{
+	CTurret::Release();
+
+	m_level += increase;
+	m_stateKey = "Lv" + std::to_string(m_level) +"_Idle";
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_position", m_position);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rotation", m_rotation);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_size", m_size);
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfSkill", m_numOfSkill);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfRingBox", m_numOfRingBox);
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_sellable", m_sellable);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_sellPrice", m_sellPrice);
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rallyable", m_rallyable);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rallyRange", m_rallyRange);
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackRange", m_attackRange);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackSpeed", m_attackSpeed);
+
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_dmg", m_dmg);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_magicDmg", m_magicDmg);
+
+
+	for (int i = 0; i < m_numOfRingBox; ++i)
+	{
+		RingBoxInfo* pNewRingBoxInfo = new RingBoxInfo;
+
+		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_name", pNewRingBoxInfo->name);
+		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_price", pNewRingBoxInfo->price);
+		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_angle", pNewRingBoxInfo->angle);
+
+		m_vRingBoxInfo.push_back(pNewRingBoxInfo);
+	}
+	//RangedCircle 세팅
+	m_pRangeCircle = new CDecoration("RangeCircle", "Green");
+	m_pRangeCircle->SetParent(this);
+	m_pRangeCircle->SetSize(D3DXVECTOR3(m_attackRange, m_attackRange * 0.6f, 0));
+
+	//터렛링 세팅
+	m_pTurretRing = new CTurretRing(this);
+	m_pTurretRing->SetParent(this);
+}
+
+void CTurret::SellTurret(void)
+{
+	CGameInfo::GetInstance()->SetGold(CGameInfo::GetInstance()->GetGold() + m_sellPrice);
+
+	m_needToBeDeleted = true;
+
+	CBaseTurret* pNewTurret = new CBaseTurret;
+	pNewTurret->SetPosition(m_parentPosition);
 }
 
 void CTurret::Selected(void)
@@ -98,6 +187,3 @@ void CTurret::Selected(void)
 	CGameInfo::GetInstance()->SetFocusedObject(this);
 }
 
-void CTurret::InitializeStates(void)
-{
-}

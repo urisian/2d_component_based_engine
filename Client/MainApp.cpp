@@ -96,6 +96,7 @@ void CMainApp::Update(void)
 void CMainApp::LateUpdate(void)
 {
 	CObjectManager::GetInstance()->LateUpdate();
+	CGraphicsManager::GetInstance()->LateUpdate();
 	CGSM::GetInstance()->LateUpdate();
 	CDebugger::GetInstance()->LateUpdate();
 }

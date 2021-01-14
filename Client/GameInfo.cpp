@@ -46,6 +46,7 @@ CGameInfo::CGameInfo()
 	m_pFocusedObject = nullptr;
 	m_crystal = 0;
 	m_gameProgress = 0;
+	m_gold = 0;
 }
 
 

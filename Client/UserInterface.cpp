@@ -11,6 +11,7 @@ CUserInterface::CUserInterface(void)
 
 CUserInterface::~CUserInterface()
 {
+	Release();
 }
 
 void CUserInterface::Initialize(void)
@@ -38,6 +39,3 @@ void CUserInterface::Release(void)
 {
 }
 
-void CUserInterface::InitializeStates(void)
-{
-}

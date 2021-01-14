@@ -30,7 +30,7 @@ void CObjectManager::Update(void)
 	{
 		for (auto& element : m_vObjects[i])
 		{
-			if (element->GetActivated())
+			if (element->GetActivated() && !element->GetNeedToBeDeleted())
 				element->Update();
 		}
 	}
@@ -42,7 +42,7 @@ void CObjectManager::LateUpdate(void)
 	{
 		for (auto& it = m_vObjects[i].begin(); it != m_vObjects[i].end(); )
 		{
-			if ((*it)->GetActivated())
+			if ((*it)->GetActivated() && !(*it)->GetNeedToBeDeleted())
 				(*it)->LateUpdate();
 
 			if ((*it)->GetNeedToBeDeleted())

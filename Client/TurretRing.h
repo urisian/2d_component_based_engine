@@ -17,6 +17,8 @@ public:
 					void			LateUpdate				(void);
 					void			Release					(void);
 
+private:
+
 
 	GETTOR_SETTOR	(D3DXVECTOR3,	m_defaultSize,			DefaultSize);
 	GETTOR_SETTOR	(CRingBox*,		m_pFocusedRingBox,		FocusedRingBox);

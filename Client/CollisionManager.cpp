@@ -37,13 +37,14 @@ void CCollisionManager::Update(void)
 					return pCC1->GetCOrder() < pCC2->GetCOrder();
 				});
 
-	for (auto& element : m_vClickableComponent)
-	{
-		if (element->GetOwner()->GetActivated())
-		{
-			element->Update();
 
-			if (element->GetClickUp())
+	for (unsigned int i = 0; i < m_vClickableComponent.size(); ++i)
+	{
+		if (!m_vClickableComponent[i]->GetNeedToBeDeleted() && m_vClickableComponent[i]->GetOwner()->GetActivated())
+		{
+			m_vClickableComponent[i]->Update();
+
+			if (m_vClickableComponent[i]->GetClickUp())
 			{
 				anyClick = true;
 				break;
@@ -60,6 +61,9 @@ void CCollisionManager::LateUpdate(void)
 {
 	for (auto& it = m_vClickableComponent.begin(); it != m_vClickableComponent.end();)
 	{
+		if (!(*it)->GetNeedToBeDeleted() && (*it)->GetOwner()->GetActivated())
+			(*it)->LateUpdate();
+
 		if ((*it)->GetNeedToBeDeleted())
 		{
 			SAFE_DELETE(*it);

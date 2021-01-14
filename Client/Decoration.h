@@ -5,7 +5,7 @@
 class CDecoration final : public CObject
 {
 public:
-	explicit								CDecoration			(std::string objectKey);
+	explicit								CDecoration			(std::string objectKey, std::string stateKey = "");
 										   ~CDecoration			(void);
 
 					void					Initialize			(void);
@@ -13,8 +13,6 @@ public:
 					void					LateUpdate			(void);
 					void					Release				(void);
 
-protected:	
-					void					InitializeStates	(void);
 };
 
 #endif

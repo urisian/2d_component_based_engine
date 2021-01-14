@@ -23,12 +23,16 @@ CClickableComponent::~CClickableComponent()
 
 void CClickableComponent::Initialize(void)
 {
+	__super::Initialize();
+
 	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_cOrder", m_cOrder);
 	CCollisionManager::GetInstance()->AddClickableComponent(this);
 }
 
 void CClickableComponent::Update(void)
 {
+	__super::Update();
+
 	CheckMouseOver();
 	CheckClickUp();
 	CheckClickDown();

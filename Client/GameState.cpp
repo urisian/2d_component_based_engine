@@ -40,7 +40,7 @@ void CGameState::Initialize(void)
 	int numOfBaseTurret;
 	GET_VALUE(DATAID::STAGE, m_name, "numOfBaseTurret", numOfBaseTurret);
 
-	for (int i = 0; i < numOfBaseTurret; ++i)
+	for (int i = 0; i < 1; ++i)
 	{
 		CBaseTurret* pNewTurret = new CBaseTurret;
 		GET_VALUE(DATAID::STAGE, m_name, "baseTurret" + std::to_string(i) + "_m_pos", pNewTurret->GetPosition());

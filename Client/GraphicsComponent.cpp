@@ -32,18 +32,22 @@ CGraphicsComponent::~CGraphicsComponent()
 
 void CGraphicsComponent::Initialize(void)
 {
+	__super::Initialize();
 	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_zOrder", m_zOrder);
 	m_pCTexture = GET_TEXTURE(m_pOwner->GetObjID(), m_pOwner->GetObjectKey());
+
+	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetStateKey() + "_m_aniSecPerFrame", m_aniSecPerFrame);
+	m_curAniIndex = 0;
+	m_maxAniIndex = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey()).size();
 
 	CGraphicsManager::GetInstance()->AddGraphicsComponent(this);
 }
 
 void CGraphicsComponent::Update(void)
 {
-	m_position	= m_pOwner->GetPosition();
+	__super::Update();
 
-	if (m_pOwner->GetParent() != nullptr)
-		m_position += m_pOwner->GetParentPosition();
+	m_position	= m_pOwner->GetPosition() + m_pOwner->GetParentPosition();
 
 	m_rotation	= m_pOwner->GetRotation();
 	m_size		= m_pOwner->GetSize();

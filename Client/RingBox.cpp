@@ -7,6 +7,8 @@
 #include "ClickableComponent.h"
 #include "PhysicsComponent.h"
 #include "GameInfo.h"
+#include "Turret.h"
+#include "ArcherTurret.h"
 
 CRingBox::CRingBox(std::string objectKey)
 {
@@ -57,8 +59,13 @@ void CRingBox::Selected(void)
 	{
 		if (CGameInfo::GetInstance()->GetFocusedObject()->GetObjectKey() == "BaseTurret")
 		{
+			CTurret* pTurret;
 			if (m_objectKey == "Archer_RingBox")
-				;
+			{
+				pTurret = new CArcherTurret;
+				pTurret->SetParentPosition(m_pTurretRing->GetOwner()->GetPosition());
+				m_pTurretRing->GetOwner()->SetNeedToBeDeleted(true);
+			}
 			else if (m_objectKey == "Barrack_RingBox")
 				;
 			else if (m_objectKey == "Magic_RingBox")
@@ -67,15 +74,22 @@ void CRingBox::Selected(void)
 				;
 		}
 		else if (m_objectKey == "Upgrade_RingBox")
-			;
+			m_pTurretRing->GetOwner()->UpgradeTurret();
 		else if (m_objectKey == "Sell_RingBox")
-			;
+			m_pTurretRing->GetOwner()->SellTurret();
 		else if (m_objectKey == "Rally_RingBox")
 			;
 		else if (m_objectKey == "Repair_RingBox")
 			;
+		else if (m_pTurretRing->GetOwner()->GetLevel() == 2)
+		{
+			if (m_anglePosition == 135)
+				m_pTurretRing->GetOwner()->UpgradeTurret();
+			else if (m_anglePosition == 45)
+				m_pTurretRing->GetOwner()->UpgradeTurret(2);
+		}
 
-
+		CGameInfo::GetInstance()->SetFocusedObject(nullptr);
 	}
 }
 

@@ -163,7 +163,6 @@
     <ClInclude Include="DataStore.h" />
     <ClInclude Include="Debugger.h" />
     <ClInclude Include="Decoration.h" />
-    <ClInclude Include="DecorationIdleState.h" />
     <ClInclude Include="FRC.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameState.h" />
@@ -172,8 +171,6 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Mouse.h" />
-    <ClInclude Include="MouseClickedState.h" />
-    <ClInclude Include="MouseIdleState.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="HelperFunctions.h" />
@@ -183,12 +180,10 @@
     <ClInclude Include="MyMacros.h" />
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="ObjectManager.h" />
-    <ClInclude Include="ObjectState.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RingBox.h" />
     <ClInclude Include="Stage0.h" />
-    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
@@ -214,7 +209,6 @@
     <ClCompile Include="DataStore.cpp" />
     <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="Decoration.cpp" />
-    <ClCompile Include="DecorationIdleState.cpp" />
     <ClCompile Include="FRC.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -223,17 +217,13 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mouse.cpp" />
-    <ClCompile Include="MouseClickedState.cpp" />
-    <ClCompile Include="MouseIdleState.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="ObjectState.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="RingBox.cpp" />
     <ClCompile Include="Stage0.cpp" />
-    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

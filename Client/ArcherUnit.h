@@ -1,10 +1,22 @@
-#pragma once
+#ifndef ARCHERUNIT_H
+#define ARCHERUNIT_h
+
 #include "Unit.h"
-class CArcherUnit :
-	public CUnit
+
+
+
+class CArcherUnit final : public CUnit
 {
 public:
-	CArcherUnit();
-	virtual ~CArcherUnit();
+	explicit							CArcherUnit			(CObject* pArcherTurret, int order);
+	virtual							   ~CArcherUnit			(void);
+
+					void				Initialize			(void);
+					void				Update				(void);
+					void				LateUpdate			(void);
+					void				Release				(void);
+
+	GETTOR_SETTOR	(int,				m_order,			Order);
 };
 
+#endif

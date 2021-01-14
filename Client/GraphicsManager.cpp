@@ -58,7 +58,7 @@ void CGraphicsManager::Update(void)
 
 	for (auto& element : m_vGraphicsComponents)
 	{
-		if (element->GetOwner()->GetActivated())
+		if (!element->GetNeedToBeDeleted() && element->GetOwner()->GetActivated())
 		{
 			element->Update();
 
@@ -80,7 +80,7 @@ void CGraphicsManager::LateUpdate(void)
 {
 	for (auto& it = m_vGraphicsComponents.begin(); it != m_vGraphicsComponents.end();)
 	{
-		if ((*it)->GetOwner()->GetActivated())
+		if (!(*it)->GetNeedToBeDeleted() && (*it)->GetOwner()->GetActivated())
 			(*it)->LateUpdate();
 
 		if ((*it)->GetNeedToBeDeleted())
@@ -229,8 +229,8 @@ void CGraphicsManager::InitStates(void)
     //This is for light. Turn off the 3D light.
     m_pDevice->SetRenderState( D3DRS_LIGHTING, FALSE );
     //Turn on the z-buffer
-    m_pDevice->SetRenderState( D3DRS_ZENABLE, TRUE );
-    m_pDevice->SetRenderState( D3DRS_ZWRITEENABLE, TRUE );
+    m_pDevice->SetRenderState( D3DRS_ZENABLE, FALSE );
+    m_pDevice->SetRenderState( D3DRS_ZWRITEENABLE, FALSE );
 
     //You NEED these to do alpha blending!!!!
     m_pDevice->SetRenderState( D3DRS_ALPHABLENDENABLE, TRUE );//Transparent

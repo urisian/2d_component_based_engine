@@ -2,7 +2,6 @@
 #define OBJECT_H
 
 class CComponent;
-class CStateMachine;
 class CObjectState;
 
 class CObject abstract
@@ -36,12 +35,9 @@ public:
 
 	GETTOR_SETTOR	(CObject*,				m_pParent,			Parent);
 
-	GETTOR_SETTOR	(CStateMachine*,		m_pStateMachine,	StateMachine);
-
 	GETTOR			(std::vector<CObject*>, m_vChildList,		ChildList);
 
 protected:
-	virtual			void					InitializeStates	(void) PURE;
 	virtual			void					AddState			(std::string stateKey, CObjectState* pState);
 
 protected:

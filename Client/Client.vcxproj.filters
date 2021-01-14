@@ -118,9 +118,6 @@
     <Filter Include="03.Object\05.UserInterface\Mouse">
       <UniqueIdentifier>{96f0c5ab-d3ab-433d-9198-0ab85bc5a021}</UniqueIdentifier>
     </Filter>
-    <Filter Include="11.GameInfo">
-      <UniqueIdentifier>{cbf2d5e0-48c3-47f1-8c3e-1041e58a3dee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="05.Collision">
       <UniqueIdentifier>{951c160c-c57f-425b-ac36-ab1ac463b913}</UniqueIdentifier>
     </Filter>
@@ -142,26 +139,14 @@
     <Filter Include="10.Sound">
       <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
     </Filter>
-    <Filter Include="09.StateMachine">
-      <UniqueIdentifier>{5bc3a8d6-cf2f-45c1-8021-6b31692e3163}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09.StateMachine\ObjectState">
-      <UniqueIdentifier>{1a70de85-41b9-4f76-8398-e543651a8ae1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Object\04.Unit\00.ArcherUnit">
       <UniqueIdentifier>{9e206ac7-0d7e-46a3-af17-cd564ac81ab3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="09.StateMachine\ObjectState\Decoration_Idle">
-      <UniqueIdentifier>{be17bc55-c52d-4cb3-a6af-917bf138d94a}</UniqueIdentifier>
+    <Filter Include="09.GameInfo">
+      <UniqueIdentifier>{cbf2d5e0-48c3-47f1-8c3e-1041e58a3dee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="09.StateMachine\ObjectState\Mouse">
-      <UniqueIdentifier>{06b075f4-3998-47ee-96e0-4b026e002bd1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09.StateMachine\ObjectState\Mouse\Mouse_Clicked">
-      <UniqueIdentifier>{0db068a8-6586-49de-b635-6c5cc17413a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="09.StateMachine\ObjectState\Mouse\Mouse_Idle">
-      <UniqueIdentifier>{650aabb0-8c48-48c0-bfef-21ff5eedc619}</UniqueIdentifier>
+    <Filter Include="03.Object\07.Monster\Oak">
+      <UniqueIdentifier>{725ab498-f036-4e31-a4b9-8a0c88ac2713}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -274,7 +259,7 @@
       <Filter>03.Object\05.UserInterface\RingBox</Filter>
     </ClInclude>
     <ClInclude Include="GameInfo.h">
-      <Filter>11.GameInfo</Filter>
+      <Filter>09.GameInfo</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>05.Collision\00.Manager</Filter>
@@ -296,21 +281,6 @@
     </ClInclude>
     <ClInclude Include="ArcherUnit.h">
       <Filter>03.Object\04.Unit\00.ArcherUnit</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectState.h">
-      <Filter>09.StateMachine\ObjectState</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine.h">
-      <Filter>09.StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="DecorationIdleState.h">
-      <Filter>09.StateMachine\ObjectState\Decoration_Idle</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseIdleState.h">
-      <Filter>09.StateMachine\ObjectState\Mouse\Mouse_Idle</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseClickedState.h">
-      <Filter>09.StateMachine\ObjectState\Mouse\Mouse_Clicked</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -399,7 +369,7 @@
       <Filter>03.Object\05.UserInterface\RingBox</Filter>
     </ClCompile>
     <ClCompile Include="GameInfo.cpp">
-      <Filter>11.GameInfo</Filter>
+      <Filter>09.GameInfo</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>05.Collision\00.Manager</Filter>
@@ -421,21 +391,6 @@
     </ClCompile>
     <ClCompile Include="ArcherUnit.cpp">
       <Filter>03.Object\04.Unit\00.ArcherUnit</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectState.cpp">
-      <Filter>09.StateMachine\ObjectState</Filter>
-    </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>09.StateMachine</Filter>
-    </ClCompile>
-    <ClCompile Include="DecorationIdleState.cpp">
-      <Filter>09.StateMachine\ObjectState\Decoration_Idle</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseIdleState.cpp">
-      <Filter>09.StateMachine\ObjectState\Mouse\Mouse_Idle</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseClickedState.cpp">
-      <Filter>09.StateMachine\ObjectState\Mouse\Mouse_Clicked</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

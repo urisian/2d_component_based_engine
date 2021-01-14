@@ -9,7 +9,7 @@
 CTurretRing::CTurretRing(CTurret* pTurret)
 {
 	m_pOwner = pTurret;
-
+	m_activated = false;
 	
 	Initialize();
 }
@@ -17,6 +17,7 @@ CTurretRing::CTurretRing(CTurret* pTurret)
 
 CTurretRing::~CTurretRing()
 {
+	Release();
 }
 
 void CTurretRing::Initialize(void)
@@ -24,7 +25,6 @@ void CTurretRing::Initialize(void)
 	__super::Initialize();
 	
 	m_lastFrameActivated = false;
-	m_activated = false;
 	m_pFocusedRingBox = nullptr;
 
 	
@@ -50,7 +50,7 @@ void CTurretRing::Update(void)
 
 	if (m_size.x < m_defaultSize.x)
 		m_size += D3DXVECTOR3((m_defaultSize - m_defaultSize * 0.7f) / 5.f);
-	else
+	if(m_size.x >= m_defaultSize.x)
 		m_size = m_defaultSize;
 
 	if (!m_lastFrameActivated && m_activated)
@@ -70,4 +70,7 @@ void CTurretRing::LateUpdate(void)
 
 void CTurretRing::Release(void)
 {
+	for (auto& ringBox : m_vRingBoxes)
+		ringBox->SetNeedToBeDeleted(true);
+
 }

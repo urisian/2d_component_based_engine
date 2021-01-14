@@ -15,6 +15,7 @@ public:
 					void				LateUpdate				(void);
 					void				Release					(void);
 
+	GETTOR_SETTOR	(int,				m_gold,					Gold);
 	GETTOR_SETTOR	(CObject*,			m_pFocusedObject,		FocusedObject);
 	GETTOR_SETTOR	(int,				m_crystal,				Crystal);
 	GETTOR_SETTOR	(int,				m_gameProgress,			GameProgress);

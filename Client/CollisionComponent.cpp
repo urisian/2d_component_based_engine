@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CollisionComponent.h"
 #include "DataStore.h"
+#include "CollisionManager.h"
 
 CCollisionComponent::CCollisionComponent(CObject* pOwner) : CComponent(pOwner)
 {
@@ -21,11 +22,16 @@ CCollisionComponent::~CCollisionComponent()
 
 void CCollisionComponent::Initialize(void)
 {
+	__super::Initialize();
+
 	m_position = m_pOwner->GetParentPosition() + m_pOwner->GetPosition();
+	CCollisionManager::GetInstance()->AddCollisionComponent(this);
 }
 
 void CCollisionComponent::Update(void)
 {
+	__super::Update();
+
 	m_position = m_pOwner->GetParentPosition() + m_pOwner->GetPosition();
 }
 

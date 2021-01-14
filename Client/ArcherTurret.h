@@ -4,8 +4,7 @@
 #include "Turret.h"
 
 class CMonster;
-class CArcher;
-class CStateMachine;
+class CArcherUnit;
 
 class CArcherTurret final : public CTurret
 {
@@ -19,8 +18,7 @@ public:
 	virtual			void				Release				(void);
 
 	GETTOR_SETTOR	(CMonster*,			m_pTarget,			Target);
-	GETTOR_SETTOR	(CArcher*,			m_pArchers[2],		Archer);
-	GETTOR_SETTOR	(CStateMachine*,	m_pStateMachine,	StateMachine);
+	GETTOR_SETTOR	(CArcherUnit*,		m_pArchers[2],		Archer);
 };
 
 #endif
