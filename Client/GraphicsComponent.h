@@ -3,6 +3,7 @@
 
 #include "Component.h"
 class CTexture;
+class CAnimation;
 
 class CGraphicsComponent : public CComponent
 {
@@ -30,12 +31,9 @@ public:
 	GETTOR_SETTOR	(D3DCOLOR,				m_color,				Color);
 
 	GETTOR_SETTOR	(CTexture*,				m_pCTexture,			CTexture);
-	GETTOR_SETTOR	(LPDIRECT3DTEXTURE9,	m_pTexture,				Texture);
+	GETTOR_SETTOR	(CAnimation*,			m_pAnimation,			Animation);
 
-
-private:
-					void					PlayAnimation			(void);
-					
+	GETTOR_SETTOR	(LPDIRECT3DTEXTURE9,	m_pTexture,				Texture);					
 };
 
 #endif

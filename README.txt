@@ -43,5 +43,6 @@ decoration#_m_pos=넣을데코레이션의_인게임_포지션
 
 Mouse의 ZOrder는 10000
 UI는 9000++
+Unit은 7000
 Turret이 6000
 Decoration은 5000

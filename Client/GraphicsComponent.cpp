@@ -5,6 +5,7 @@
 #include "TextureStore.h"
 #include "PhysicsComponent.h"
 #include "GraphicsManager.h"
+#include "Animation.h"
 
 CGraphicsComponent::CGraphicsComponent(CObject* pOwner) : CComponent(pOwner)
 {
@@ -21,6 +22,7 @@ CGraphicsComponent::CGraphicsComponent(CObject* pOwner) : CComponent(pOwner)
 	//ARGB
 	m_color			= 0xffffffff;
 
+	m_pAnimation	= nullptr;
 	m_pCTexture		= nullptr;
 }
 
@@ -33,12 +35,14 @@ CGraphicsComponent::~CGraphicsComponent()
 void CGraphicsComponent::Initialize(void)
 {
 	__super::Initialize();
+	//ZOrder세팅
 	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_zOrder", m_zOrder);
+	//텍스쳐 세팅
 	m_pCTexture = GET_TEXTURE(m_pOwner->GetObjID(), m_pOwner->GetObjectKey());
 
-	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetStateKey() + "_m_aniSecPerFrame", m_aniSecPerFrame);
-	m_curAniIndex = 0;
-	m_maxAniIndex = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey()).size();
+	//애니메이션 세팅
+	if(m_pCTexture->GetTexInfos(m_pOwner->GetStateKey()).size() > 1)
+		m_pAnimation = new CAnimation(this);
 
 	CGraphicsManager::GetInstance()->AddGraphicsComponent(this);
 }
@@ -52,9 +56,9 @@ void CGraphicsComponent::Update(void)
 	m_rotation	= m_pOwner->GetRotation();
 	m_size		= m_pOwner->GetSize();
 
-	m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[(int)m_curAniIndex]->pTexture;
+	m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[(int)m_pAnimation->GetCurIndex()]->pTexture;
 
-	PlayAnimation();
+	m_pAnimation->Update();
 }
 
 void CGraphicsComponent::LateUpdate(void)
@@ -65,12 +69,6 @@ void CGraphicsComponent::Release(void)
 {
 }
 
-void CGraphicsComponent::PlayAnimation(void)
-{
-	m_curAniIndex += m_aniSecPerFrame;
-	if (m_curAniIndex > (float)m_maxAniIndex)
-		m_curAniIndex -= (float)m_maxAniIndex;
-}
 
 void CGraphicsComponent::StateChangeInit(void)
 {

@@ -20,6 +20,7 @@ public:
 	GETTOR_SETTOR	(int,				m_crystal,				Crystal);
 	GETTOR_SETTOR	(int,				m_gameProgress,			GameProgress);
 
+
 private:
 	explicit							CGameInfo				(void);
 									   ~CGameInfo				(void);

@@ -51,6 +51,7 @@ void CGSM::Update(void)
 
 void CGSM::LateUpdate(void)
 {
+	m_pCurState->LateUpdate();
 }
 
 void CGSM::Release(void)

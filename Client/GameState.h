@@ -17,18 +17,14 @@ public:
 	virtual			void			LateUpdate				(void) PURE;
 	virtual			void			Release					(void);
 
-					bool			GetActivated			(void);
-					void			SetActivated			(bool activated);
+	GETTOR			(CObject*,		m_pBackground,			Background);
+	GETTOR			(std::string,	m_name,					Name);
+	GETTOR_SETTOR	(bool,			m_activated,			Activated);
 
-	std::vector<CObject*>&			GetStateObjects			(void);
+	GETTOR (std::vector<CObject*>,	m_vStateObjects,		StateObjects);
+
 protected:
-					std::string		m_name;
-					bool			m_activated;
-
-					CObject*		m_pBackground;
-
 	static			CMouse*			m_s_pMouse;
-	std::vector<CObject*>			m_vStateObjects;
 };
 
 #endif

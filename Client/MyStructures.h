@@ -38,4 +38,23 @@ struct RingBoxInfo
 	float			angle;
 };
 
+
+struct MonsterParty
+{
+	MonsterParty() :
+		activated(false),
+		monsterType(""),
+		spawnStartTime(0),
+		spawnCoolTime(0),
+		routeNum(0)
+	{}
+
+	bool		activated;
+
+	std::string monsterType;
+	int			numOfMonster;
+	int			routeNum;
+	float		spawnStartTime;
+	float		spawnCoolTime;
+};
 #endif // !MYSTRUCTURES_H

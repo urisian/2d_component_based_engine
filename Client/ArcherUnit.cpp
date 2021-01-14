@@ -5,7 +5,7 @@
 CArcherUnit::CArcherUnit(CObject* pArcherTurret, int order)
 {
 	m_pParent = pArcherTurret;
-	m_order = order;
+	m_shootOrder = order;
 	Initialize();
 }
 
@@ -18,7 +18,7 @@ void CArcherUnit::Initialize(void)
 {
 	__super::Initialize();
 
-	if (m_order == 1)
+	if (m_shootOrder == 1)
 		m_position.x *= -1;
 }
 

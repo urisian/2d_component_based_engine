@@ -3,7 +3,6 @@
 #include "ObjectManager.h"
 #include "DataStore.h"
 #include "Component.h"
-#include "ObjectState.h"
 
 CObject::CObject()
 {
@@ -56,19 +55,4 @@ void CObject::Release(void)
 {
 	for (auto& component : m_mComponents)
 		component.second->SetNeedToBeDeleted(true);
-	for (auto& state : m_mStates)
-		delete state.second;
 }
-
-
-void CObject::AddState(std::string stateKey, CObjectState * pState)
-{
-	m_mStates[stateKey] = pState;
-}
-
-CObjectState * CObject::GetState(std::string stateKey)
-{
-	return m_mStates[stateKey];
-}
-
-

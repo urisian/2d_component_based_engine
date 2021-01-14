@@ -16,7 +16,7 @@ public:
 					void				LateUpdate			(void);
 					void				Release				(void);
 
-	GETTOR_SETTOR	(int,				m_order,			Order);
+	GETTOR_SETTOR	(int,				m_shootOrder,		ShootOrder);
 };
 
 #endif

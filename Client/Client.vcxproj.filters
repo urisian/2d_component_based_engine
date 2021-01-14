@@ -136,9 +136,6 @@
     <Filter Include="97.Debugger">
       <UniqueIdentifier>{2569589e-8d07-4ad0-b5be-cafaa58f9087}</UniqueIdentifier>
     </Filter>
-    <Filter Include="10.Sound">
-      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03.Object\04.Unit\00.ArcherUnit">
       <UniqueIdentifier>{9e206ac7-0d7e-46a3-af17-cd564ac81ab3}</UniqueIdentifier>
     </Filter>
@@ -147,6 +144,15 @@
     </Filter>
     <Filter Include="03.Object\07.Monster\Oak">
       <UniqueIdentifier>{725ab498-f036-4e31-a4b9-8a0c88ac2713}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.Sound">
+      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.Wave">
+      <UniqueIdentifier>{f77ef601-ca5b-4569-8dba-4da314ca9641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\GraphicComponent\Animation">
+      <UniqueIdentifier>{35163473-f11f-4d1f-b83f-e0886aeb2422}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +288,16 @@
     <ClInclude Include="ArcherUnit.h">
       <Filter>03.Object\04.Unit\00.ArcherUnit</Filter>
     </ClInclude>
+    <ClInclude Include="OakMonster.h">
+      <Filter>03.Object\07.Monster\Oak</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>08.GameState\03.Stages</Filter>
+    </ClInclude>
+    <ClInclude Include="Wave.h">
+      <Filter>10.Wave</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -392,6 +408,16 @@
     <ClCompile Include="ArcherUnit.cpp">
       <Filter>03.Object\04.Unit\00.ArcherUnit</Filter>
     </ClCompile>
+    <ClCompile Include="OakMonster.cpp">
+      <Filter>03.Object\07.Monster\Oak</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>08.GameState\03.Stages</Filter>
+    </ClCompile>
+    <ClCompile Include="Wave.cpp">
+      <Filter>10.Wave</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">

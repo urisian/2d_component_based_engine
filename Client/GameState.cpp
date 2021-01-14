@@ -36,15 +36,6 @@ void CGameState::Initialize(void)
 		if (i == 0)
 			m_pBackground = pNewDecoration;
 	}
-
-	int numOfBaseTurret;
-	GET_VALUE(DATAID::STAGE, m_name, "numOfBaseTurret", numOfBaseTurret);
-
-	for (int i = 0; i < 1; ++i)
-	{
-		CBaseTurret* pNewTurret = new CBaseTurret;
-		GET_VALUE(DATAID::STAGE, m_name, "baseTurret" + std::to_string(i) + "_m_pos", pNewTurret->GetPosition());
-	}
 }
 
 void CGameState::Release(void)
@@ -53,17 +44,3 @@ void CGameState::Release(void)
 		stateObject->SetNeedToBeDeleted(true);
 }
 
-bool CGameState::GetActivated(void)
-{
-	return m_activated;
-}
-
-void CGameState::SetActivated(bool activated)
-{
-	m_activated = activated;
-}
-
-std::vector<CObject*>& CGameState::GetStateObjects(void)
-{
-	return m_vStateObjects;
-}

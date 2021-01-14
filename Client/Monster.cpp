@@ -37,6 +37,24 @@ void CMonster::Initialize(void)
 void CMonster::Update(void)
 {
 	__super::Update();
+	if (m_qRoute.size() > 0)
+	{
+		D3DXVECTOR3 distanceFromGoal = m_qRoute.front() - m_position;
+		if (D3DXVec3Length(&distanceFromGoal) < 10)
+		{
+			m_position = m_qRoute.front();
+			m_qRoute.pop();
+		}
+		if (m_qRoute.size() > 0)
+		{
+			D3DXVECTOR3 direction = m_qRoute.front() - m_position;
+			D3DXVec3Normalize(&direction, &direction);
+
+			m_position += direction * 2;
+		}
+	}
+
+
 }
 
 void CMonster::LateUpdate(void)

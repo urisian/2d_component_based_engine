@@ -70,7 +70,7 @@ void CTurret::Initialize(void)
 	//RangeCircle ½É±â
 	m_pRangeCircle = new CDecoration("RangeCircle", "Green");
 	m_pRangeCircle->SetParent(this);
-	m_pRangeCircle->SetSize(D3DXVECTOR3(m_attackRange, m_attackRange * 0.6f, 0));
+	m_pRangeCircle->SetSize(D3DXVECTOR3(m_attackRange, m_attackRange, 0));
 	
 	
 
