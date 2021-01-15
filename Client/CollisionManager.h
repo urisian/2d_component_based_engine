@@ -19,12 +19,14 @@ public:
 					void					AddCollisionComponent		(CCollisionComponent* pCC);
 					void					AddClickableComponent		(CClickableComponent* pCC);
 
+	std::vector<CCollisionComponent*>		GetCollisionVector			(OBJID::ID	objID);
+
 private:
 	explicit								CCollisionManager			(void);
 	virtual								   ~CCollisionManager			(void);
 
 private:
-	std::vector<CCollisionComponent*>		m_vCollisionComponent[COLID::END];
+	std::vector<CCollisionComponent*>		m_vCollisionComponent[OBJID::END];
 	std::vector<CClickableComponent*>		m_vClickableComponent;
 	static			CCollisionManager*		m_s_pInstance;
 };

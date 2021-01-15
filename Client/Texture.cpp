@@ -9,6 +9,13 @@ CTexture::CTexture()
 
 CTexture::~CTexture()
 {
+	for (auto& vTexInfo : m_mTexInfo)
+	{
+		for (auto& texInfo : vTexInfo.second)
+		{
+			SAFE_DELETE(texInfo);
+		}
+	}
 }
 
 bool CTexture::InsertTexInfo(const std::string & fullPath)

@@ -14,6 +14,8 @@ public:
 	virtual			void			LateUpdate			(void) PURE;
 	virtual			void			Release				(void) PURE;
 
+	virtual			void			StateChangeInit		(void) PURE;
+
 	GETTOR_SETTOR	(bool,			m_activated,		Activated);
 	GETTOR_SETTOR	(bool,			m_needToBeDeleted,	NeedToBeDeleted);
 	GETTOR_SETTOR	(CObject*,		m_pOwner,			Owner);

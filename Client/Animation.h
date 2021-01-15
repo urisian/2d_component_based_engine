@@ -14,6 +14,8 @@ public:
 					void							LateUpdate			(void);
 					void							Release				(void);
 
+
+
 	GETTOR_SETTOR	(ANIMATION::STATUS,				m_status,			Status);
 
 	GETTOR_SETTOR	(float,							m_aniSecPerFrame,	AniSecPerFrame);

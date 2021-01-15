@@ -14,6 +14,11 @@ public:
 	virtual			void					LateUpdate			(void) PURE;
 	virtual			void					Release				(void);
 
+					void					StateChangeInit		(void);
+
+protected:
+	virtual			void					ReadDataFromStore	(void);
+
 	GETTOR_SETTOR	(OBJID::ID,				m_objID,			ObjID);
 	GETTOR_SETTOR	(DATAID::ID,			m_dataID,			DataID);
 
@@ -27,19 +32,15 @@ public:
 	//Graphics Component가 있다면 매 프레임 받아가서 사용.
 	GETTOR_SETTOR	(D3DXVECTOR3,			m_parentPosition,	ParentPosition);
 	GETTOR_SETTOR	(D3DXVECTOR3,			m_position,			Position);
+	GETTOR_SETTOR	(D3DXVECTOR3,			m_direction,		Direction);
 	GETTOR_SETTOR	(D3DXVECTOR3,			m_rotation,			Rotation);
 	GETTOR_SETTOR	(D3DXVECTOR3,			m_size,				Size);
 
 	GETTOR_SETTOR	(CObject*,				m_pParent,			Parent);
 
-	GETTOR			(std::vector<CObject*>, m_vChildList,		ChildList);
-
-
 protected:
 	//오브젝트가 갖고 있는 컴포넌트들.
 	std::map<std::string, CComponent*>		m_mComponents;
-
-
 
 
 public:

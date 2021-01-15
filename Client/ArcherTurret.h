@@ -17,7 +17,9 @@ public:
 	virtual			void				LateUpdate			(void);
 	virtual			void				Release				(void);
 
-	GETTOR_SETTOR	(CMonster*,			m_pTarget,			Target);
+private:
+					void				Shoot				(void);
+
 	GETTOR_SETTOR	(CArcherUnit*,		m_pArchers[2],		Archer);
 };
 

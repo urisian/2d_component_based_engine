@@ -15,10 +15,10 @@ public:
 					void				LateUpdate				(void);
 					void				Release					(void);
 
-	GETTOR_SETTOR	(D3DXVECTOR3,		m_position,				Position);
-	GETTOR_SETTOR	(D3DXVECTOR3,		m_parentPosition,		ParentPosition);
+					void				StateChangeInit			(void);
 
-	GETTOR_SETTOR	(D3DXVECTOR3,		m_rotation,				Rotation);
+	GETTOR_SETTOR	(D3DXVECTOR3,		m_position,				Position);
+	GETTOR_SETTOR	(D3DXVECTOR3,		m_direction,			Direction);
 
 	GETTOR_SETTOR	(float,				m_speed,				Speed);
 };

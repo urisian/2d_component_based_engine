@@ -57,4 +57,15 @@ struct MonsterParty
 	float		spawnStartTime;
 	float		spawnCoolTime;
 };
+
+
+struct RouteInfo
+{
+	RouteInfo() :
+		distanceFromGoal(0)
+	{}
+
+	float distanceFromGoal;
+	std::vector<D3DXVECTOR3> routePoints;
+};
 #endif // !MYSTRUCTURES_H

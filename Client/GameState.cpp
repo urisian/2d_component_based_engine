@@ -38,9 +38,11 @@ void CGameState::Initialize(void)
 	}
 }
 
+void CGameState::LateUpdate(void)
+{
+}
+
 void CGameState::Release(void)
 {
-	for (auto& stateObject : m_vStateObjects)
-		stateObject->SetNeedToBeDeleted(true);
 }
 

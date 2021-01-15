@@ -8,8 +8,6 @@ CArcherTurret::CArcherTurret()
 	m_pArchers[0] = nullptr;
 	m_pArchers[1] = nullptr;
 
-	m_pTarget = nullptr;
-
 	Initialize();
 }
 
@@ -28,6 +26,10 @@ void CArcherTurret::Initialize(void)
 void CArcherTurret::Update(void)
 {
 	__super::Update();
+
+
+	if(m_pTarget != nullptr)
+		Shoot();
 }
 
 void CArcherTurret::LateUpdate(void)
@@ -36,4 +38,9 @@ void CArcherTurret::LateUpdate(void)
 
 void CArcherTurret::Release(void)
 {
+}
+
+void CArcherTurret::Shoot(void)
+{
+
 }

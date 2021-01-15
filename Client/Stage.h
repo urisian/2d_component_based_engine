@@ -17,13 +17,10 @@ public:
 	virtual			void							Release				(void);
 
 protected:
-	virtual			void							SpawnWave			(void);
-
-
 	GETTOR			(float,							m_playTime,			PlayTime);
 
 	GETTOR (std::vector<CWave*>,					m_vWave,			Wave);
-	GETTOR (std::vector<std::queue<D3DXVECTOR3>>,	m_vqRoute,			Route);
+	GETTOR (std::vector<RouteInfo>,					m_vRouteInfo,		RouteInfo);
 };
 
 #endif

@@ -49,6 +49,10 @@ void CClickableComponent::Release(void)
 {
 }
 
+void CClickableComponent::StateChangeInit(void)
+{
+}
+
 
 void CClickableComponent::SetPlayFunc(std::function<void(void)> funcPointer)
 {

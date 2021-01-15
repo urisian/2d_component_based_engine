@@ -56,6 +56,11 @@ void CGSM::LateUpdate(void)
 
 void CGSM::Release(void)
 {
+	while (m_sStateStack.size() != 0)
+	{
+		SAFE_DELETE(m_sStateStack.top());
+		m_sStateStack.pop();
+	}
 }
 
 CGSM::CGSM(void)

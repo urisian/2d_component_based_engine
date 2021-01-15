@@ -154,6 +154,9 @@
     <Filter Include="01.Component\GraphicComponent\Animation">
       <UniqueIdentifier>{35163473-f11f-4d1f-b83f-e0886aeb2422}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Object\06.Projectile\Arrow">
+      <UniqueIdentifier>{93bfa2c2-93f3-42d3-81e5-96cc7163bf5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -297,7 +300,10 @@
     <ClInclude Include="Wave.h">
       <Filter>10.Wave</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Animation.h">
+      <Filter>01.Component\GraphicComponent\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -417,7 +423,10 @@
     <ClCompile Include="Wave.cpp">
       <Filter>10.Wave</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Animation.cpp">
+      <Filter>01.Component\GraphicComponent\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">

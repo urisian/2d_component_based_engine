@@ -11,7 +11,6 @@ CCollisionComponent::CCollisionComponent(CObject* pOwner) : CComponent(pOwner)
 	m_position	= { 0, 0, 0 };
 	m_halfExtent = { 0, 0, 0 };
 
-	m_collisionID = COLID::END;
 	m_pDebugDraw = nullptr;
 }
 
@@ -24,7 +23,6 @@ void CCollisionComponent::Initialize(void)
 {
 	__super::Initialize();
 
-	m_position = m_pOwner->GetParentPosition() + m_pOwner->GetPosition();
 	CCollisionManager::GetInstance()->AddCollisionComponent(this);
 }
 
@@ -40,5 +38,9 @@ void CCollisionComponent::LateUpdate(void)
 }
 
 void CCollisionComponent::Release(void)
+{
+}
+
+void CCollisionComponent::StateChangeInit(void)
 {
 }

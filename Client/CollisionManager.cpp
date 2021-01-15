@@ -4,6 +4,7 @@
 #include "CollisionComponent.h"
 #include "ClickableComponent.h"
 #include "GameInfo.h"
+#include "Monster.h"
 
 CCollisionManager* CCollisionManager::m_s_pInstance = nullptr;
 
@@ -52,6 +53,24 @@ void CCollisionManager::Update(void)
 		}
 	}
 
+	for (int i = 0; i < OBJID::END; ++i)
+	{
+		if(i == OBJID::MONSTER)
+			std::sort(m_vCollisionComponent[i].begin(),
+					  m_vCollisionComponent[i].end(),
+					  [](CCollisionComponent* pCC1, CCollisionComponent* pCC2)
+						{
+							return static_cast<CMonster*>(pCC1->GetOwner())->GetRouteDistance() < static_cast<CMonster*>(pCC2->GetOwner())->GetRouteDistance();
+						});
+
+
+		for (unsigned int j = 0; j < m_vCollisionComponent[i].size(); ++j)
+		{
+			if(!m_vCollisionComponent[i][j]->GetNeedToBeDeleted() && m_vCollisionComponent[i][j]->GetOwner()->GetActivated())
+				m_vCollisionComponent[i][j]->Update();
+		}
+	}
+
 
 	if (IMKEY_UP(MOUSE_LEFT) && !anyClick)
 		CGameInfo::GetInstance()->SetFocusedObject(nullptr);
@@ -76,16 +95,27 @@ void CCollisionManager::LateUpdate(void)
 
 void CCollisionManager::Release(void)
 {
+	for(int i = 0; i < OBJID::END; ++i)
+		for (auto& collisionComponent : m_vCollisionComponent[i])
+			SafeDelete(collisionComponent);
+
+	for (auto& clickableComponent : m_vClickableComponent)
+		SafeDelete(clickableComponent);
 }
 
 void CCollisionManager::AddCollisionComponent(CCollisionComponent * pCC)
 {
-	m_vCollisionComponent[pCC->GetCollisionID()].push_back(pCC);
+	m_vCollisionComponent[pCC->GetOwner()->GetObjID()].push_back(pCC);
 }
 
 void CCollisionManager::AddClickableComponent(CClickableComponent * pCC)
 {
 	m_vClickableComponent.push_back(pCC);
+}
+
+std::vector<CCollisionComponent*> CCollisionManager::GetCollisionVector(OBJID::ID objID)
+{
+	return m_vCollisionComponent[objID];
 }
 
 CCollisionManager::CCollisionManager()
@@ -95,4 +125,5 @@ CCollisionManager::CCollisionManager()
 
 CCollisionManager::~CCollisionManager()
 {
+	Release();
 }

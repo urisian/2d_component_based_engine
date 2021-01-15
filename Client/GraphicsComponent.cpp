@@ -56,9 +56,15 @@ void CGraphicsComponent::Update(void)
 	m_rotation	= m_pOwner->GetRotation();
 	m_size		= m_pOwner->GetSize();
 
-	m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[(int)m_pAnimation->GetCurIndex()]->pTexture;
+	
 
-	m_pAnimation->Update();
+	if (m_pAnimation != nullptr)
+	{
+		m_pAnimation->Update();
+		m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[(int)m_pAnimation->GetCurIndex()]->pTexture;
+	}
+	else
+		m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[0]->pTexture;
 }
 
 void CGraphicsComponent::LateUpdate(void)
@@ -67,12 +73,16 @@ void CGraphicsComponent::LateUpdate(void)
 
 void CGraphicsComponent::Release(void)
 {
+	SAFE_DELETE(m_pAnimation);
 }
 
 
 void CGraphicsComponent::StateChangeInit(void)
 {
-	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetStateKey() + "_m_aniSecPerFrame", m_aniSecPerFrame);
-	m_curAniIndex = 0;
-	m_maxAniIndex = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey()).size();
+	if (m_pAnimation == nullptr && (m_pCTexture->GetTexInfos(m_pOwner->GetStateKey()).size() > 1))
+		m_pAnimation = new CAnimation(this);
+	else if (m_pAnimation == nullptr)
+		return;
+
+	m_pAnimation->Initialize();
 }

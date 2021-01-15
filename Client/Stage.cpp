@@ -14,6 +14,7 @@ CStage::CStage()
 
 CStage::~CStage()
 {
+	Release();
 }
 
 void CStage::Initialize(void)
@@ -36,16 +37,20 @@ void CStage::Initialize(void)
 		int numOfPointInRoute;
 		GET_VALUE(DATAID::STAGE, m_name, "numOfPointInRoute" + std::to_string(i), numOfPointInRoute);
 		
-		std::queue<D3DXVECTOR3> routeQueue;
-		m_vqRoute.push_back(routeQueue);
+		RouteInfo routeInfo;
 		for (int j = 0; j < numOfPointInRoute; ++j)
 		{
 			D3DXVECTOR3 routePoint;
 			GET_VALUE(DATAID::STAGE, m_name, "Route" + std::to_string(i) + 
 											 "_routePoint" + std::to_string(j), routePoint);
 
-			m_vqRoute[i].push(routePoint);
+			routeInfo.routePoints.push_back(routePoint);
+
+			if (j > 0)
+				routeInfo.distanceFromGoal += D3DXVec3Length(&(routeInfo.routePoints[j] - routeInfo.routePoints[j - 1]));
 		}
+
+		m_vRouteInfo.push_back(routeInfo);
 	}
 
 	int numOfWave;
@@ -63,16 +68,38 @@ void CStage::Update(void)
 {
 	ADD_DEBUG_INFO(DEBUGID::OBJECT_INFO, "PLAYTIME", std::to_string(m_playTime));
 	m_playTime += GET_DT();
+
+	for (auto& wave : m_vWave)
+	{
+		if (!wave->GetActivated() && wave->GetWaveStartTime() <= m_playTime)
+			wave->SetActivated(true);
+
+		if (wave->GetActivated())
+			wave->Update();
+	}
 }
 
 void CStage::LateUpdate(void)
 {
+	__super::LateUpdate();
+
+	for (auto& it = m_vWave.begin(); it != m_vWave.end();)
+	{
+		if (!(*it)->GetNeedToBeDeleted() && (*it)->GetActivated())
+			(*it)->LateUpdate();
+
+		if ((*it)->GetNeedToBeDeleted())
+		{
+			SAFE_DELETE(*it);
+			it = m_vWave.erase(it);
+		}
+		else
+			++it;
+	}
 }
 
 void CStage::Release(void)
 {
-}
-
-void CStage::SpawnWave(void)
-{
+	for (auto& wave : m_vWave)
+		SafeDelete(wave);
 }

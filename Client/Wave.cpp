@@ -5,6 +5,7 @@
 #include "FRC.h"
 #include "Monster.h"
 #include "OakMonster.h"
+#include "PhysicsComponent.h"
 
 CWave::CWave(CStage* pStage, int id)
 {
@@ -22,6 +23,7 @@ CWave::CWave(CStage* pStage, int id)
 
 CWave::~CWave()
 {
+	Release();
 }
 
 void CWave::Initialize(void)
@@ -49,8 +51,11 @@ void CWave::Update(void)
 
 	for (int i = 0; i < m_numOfParty; ++i)
 	{
-		if (m_vMonsterParty[i]->spawnStartTime <= m_wavePlayTime)
+		if (m_vMonsterParty[i]->activated == false && m_vMonsterParty[i]->spawnStartTime <= m_wavePlayTime)
+		{
 			m_vMonsterParty[i]->activated = true;
+			m_vMonsterParty[i]->spawnStartTime = 0;
+		}
 
 		if (m_vMonsterParty[i]->activated)
 		{
@@ -59,14 +64,16 @@ void CWave::Update(void)
 			if (m_vMonsterParty[i]->numOfMonster > 0 && (m_vMonsterParty[i]->spawnStartTime >= m_vMonsterParty[i]->spawnCoolTime))
 			{
 				CMonster* pNewMonster = GetMonsterByString(m_vMonsterParty[i]->monsterType);
-				pNewMonster->GetRoute() = m_pStage->GetRoute()[m_vMonsterParty[i]->routeNum];
+				pNewMonster->GetRouteInfo() = &m_pStage->GetRouteInfo()[m_vMonsterParty[i]->routeNum];
+				pNewMonster->GetComponent<CPhysicsComponent>()->SetPosition((*pNewMonster->GetRouteInfo()).routePoints.front());
+				pNewMonster->SetRouteIndex(pNewMonster->GetRouteIndex() + 1);
+
+				pNewMonster->SetRouteDistance(pNewMonster->GetRouteInfo()->distanceFromGoal);
 
 				m_vMonsterParty[i]->spawnStartTime = 0.f;
 
 				--m_vMonsterParty[i]->numOfMonster;
 			}
-
-			m_vMonsterParty[i]->spawnStartTime += GET_DT();
 		}
 	}
 }
@@ -77,6 +84,8 @@ void CWave::LateUpdate(void)
 
 void CWave::Release(void)
 {
+	for (auto& monsterParty : m_vMonsterParty)
+		SafeDelete(monsterParty);
 }
 
 CMonster * CWave::GetMonsterByString(std::string monsterType)

@@ -85,6 +85,14 @@ void CTextureStore::Initialize(void)
 
 void CTextureStore::Release(void)
 {
+	for (int i = 0; i < OBJID::END; ++i)
+	{
+		for (auto& texture : m_mTexture[i])
+		{
+			SAFE_DELETE(texture.second);
+		}
+		m_mTexture[i].clear();
+	}
 }
 
 CTexture * CTextureStore::GetTexture(OBJID::ID OBJID, std::string objectKey)

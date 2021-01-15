@@ -16,6 +16,9 @@ public:
 					void						LateUpdate			(void);
 					void						Release				(void);
 
+	
+	GETTOR_SETTOR	(unsigned int,				m_routeIndex,		RouteIndex);
+	GETTOR_SETTOR	(float,						m_routeDistance,	RouteDistance);
 	GETTOR_SETTOR	(CUnit*,					m_pTarget,			Target);
 
 	GETTOR			(int,						m_numOfSkill,		NumOfSkill);
@@ -28,8 +31,12 @@ public:
 	GETTOR			(float,						m_hp,				HP);
 	GETTOR			(float,						m_armor,			Armor);
 	GETTOR			(float,						m_mr,				MR);	
+	
 
-	GETTOR			(std::queue<D3DXVECTOR3>,	m_qRoute,			Route);
+	
+	GETTOR			(RouteInfo*,				m_pRouteInfo,		RouteInfo);
+
+	
 };
 
 #endif

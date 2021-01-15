@@ -15,12 +15,13 @@ public:
 					void			Update						(void);
 					void			LateUpdate					(void);
 					void			Release						(void);
+
+					void			StateChangeInit				(void);
 	
 	GETTOR_SETTOR	(bool,			m_showDebug,				ShowDebug);
 	GETTOR_SETTOR	(D3DXVECTOR3,	m_position,					Position);
 	GETTOR_SETTOR	(D3DXVECTOR3,	m_halfExtent,				HalfExtent);
 	GETTOR_SETTOR	(float,			m_radius,					Radius);
-	GETTOR_SETTOR	(COLID::ID,		m_collisionID,				CollisionID);
 	GETTOR_SETTOR	(CDecoration*,	m_pDebugDraw,				DebugDraw);
 };
 

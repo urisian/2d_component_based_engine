@@ -30,20 +30,20 @@ inline std::string WStrToStr(const std::wstring& wstr)
 
 
 //Math helpers
-inline float GetAngleFromDir2D(D3DXVECTOR2& dir)
+inline D3DXVECTOR3 GetAngleFromDir(D3DXVECTOR2& dir)
 {
 
 	float hypotenuseSize = D3DXVec2Length(&dir);
 
-	return D3DXToDegree(acosf(dir.x / hypotenuseSize));
+	return D3DXVECTOR3(0, 0, D3DXToDegree(acosf(dir.x / hypotenuseSize)));
 }
 
-inline float GetAngleFromDir2D(D3DXVECTOR3& dir)
+inline D3DXVECTOR3 GetAngleFromDir(D3DXVECTOR3& dir)
 {
 	D3DXVECTOR2 temp = dir;
 	float hypotenuseSize = D3DXVec2Length(&temp);
 
-	return D3DXToDegree(acosf(dir.x / hypotenuseSize));
+	return D3DXVECTOR3(0, 0, D3DXToDegree(acosf(dir.x / hypotenuseSize)));
 }
 
 inline D3DXVECTOR3 GetDirFromAngle(float degree)

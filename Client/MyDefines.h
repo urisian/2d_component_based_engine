@@ -33,4 +33,10 @@
 #define PI 3.141592f
 
 
+//메모리 누수용
+#define _CRTDBG_MAP_ALLOC
+#ifdef _DEBUG
+#define new new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#endif
+
 #endif // !MYDEFINES_H

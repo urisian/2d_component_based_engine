@@ -11,6 +11,7 @@
 #include "GSM.h"
 #include "Debugger.h"
 #include "CollisionManager.h"
+#include "GameInfo.h"
 
 CMainApp::CMainApp()
 {
@@ -26,12 +27,17 @@ void CMainApp::Initialize(void)
 {
 	CObjectManager::GetInstance()->Initialize();
 	CGraphicsManager::GetInstance()->Initialize();
+
 	CTextureStore::GetInstance()->Initialize();
 	CInputManager::GetInstance()->Initialize();
+
 	CFRC::GetInstance()->Initialize();
 	CGSM::GetInstance()->Initialize();
+
 	CDebugger::GetInstance()->Initialize();
 	CCollisionManager::GetInstance()->Initialize();
+
+	CGameInfo::GetInstance()->Initialize();
 }
 
 void CMainApp::Update(void)
@@ -95,19 +101,28 @@ void CMainApp::Update(void)
 
 void CMainApp::LateUpdate(void)
 {
+	CGSM::GetInstance()->LateUpdate();
 	CObjectManager::GetInstance()->LateUpdate();
 	CGraphicsManager::GetInstance()->LateUpdate();
-	CGSM::GetInstance()->LateUpdate();
 	CDebugger::GetInstance()->LateUpdate();
 }
 
 void CMainApp::Release(void)
 {
-	CGraphicsManager::GetInstance()->DestroyInstance();
-	CObjectManager::GetInstance()->DestroyInstance();
+	CGameInfo::GetInstance()->DestroyInstance();
 
-	CTextureStore::GetInstance()->DestroyInstance();
 	CDataStore::GetInstance()->DestroyInstance();
+	CTextureStore::GetInstance()->DestroyInstance();
+	CInputManager::GetInstance()->DestroyInstance();
 
+	CFRC::GetInstance()->DestroyInstance();
+	CGSM::GetInstance()->DestroyInstance();
+
+	CDebugger::GetInstance()->DestroyInstance();
+	
 	CApplication::GetInstance()->DestroyInstance();
+
+	CObjectManager::GetInstance()->DestroyInstance();
+	CGraphicsManager::GetInstance()->DestroyInstance();
+	CCollisionManager::GetInstance()->DestroyInstance();
 }

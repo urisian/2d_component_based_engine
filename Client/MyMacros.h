@@ -24,4 +24,5 @@ protected: varType varName; public: virtual inline varType& Get##funcName(void) 
 #define ADD_DEBUG_INFO(debugID, key, info) CDebugger::GetInstance()->AddInfo(debugID, key, info)
 
 
+
 #endif // !MYMACROS_H

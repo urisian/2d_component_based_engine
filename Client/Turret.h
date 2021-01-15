@@ -21,10 +21,18 @@ public:
 	virtual			void				SellTurret			(void);
 
 protected:	
+	virtual			void				ReadDataFromStore	(void);
+
+					void				MakeRingBoxInfo		(void);
+					void				MakeTurretRing		(void);
+					void				MakeRangeCircle		(void);
+
 					void				Selected			(void);
+					void				FindTarget			(void);
 
 
-	
+
+	GETTOR_SETTOR	(CObject*,			m_pTarget,			Target);
 	GETTOR_SETTOR	(int,				m_level,			Level);
 
 	GETTOR			(int,				m_numOfSkill,		NumOfSkill);

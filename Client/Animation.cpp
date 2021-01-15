@@ -28,7 +28,7 @@ void CAnimation::Initialize(void)
 	GET_VALUE(pOwnerObject->GetDataID(), pOwnerObject->GetObjectKey(), pOwnerObject->GetStateKey() 
 				+ "_m_aniSecPerFrame", m_aniSecPerFrame);
 
-
+	m_curIndex = 0;
 	m_maxIndex = m_pOwner->GetCTexture()->GetTexInfos(pOwnerObject->GetStateKey()).size();
 }
 
@@ -51,3 +51,4 @@ void CAnimation::LateUpdate(void)
 void CAnimation::Release(void)
 {
 }
+

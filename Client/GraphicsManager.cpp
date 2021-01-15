@@ -96,6 +96,8 @@ void CGraphicsManager::LateUpdate(void)
 void CGraphicsManager::Release(void)
 {
 	SAFE_DELETE(m_pCamera);
+	for (auto& graphicsComponent : m_vGraphicsComponents)
+		SafeDelete(graphicsComponent);
 }
 
 void CGraphicsManager::AddGraphicsComponent(CGraphicsComponent * pGC)
@@ -276,6 +278,7 @@ void CGraphicsManager::SetWorldMatrix(CGraphicsComponent* pGC)
 
 CGraphicsManager::CGraphicsManager()
 {
+	m_pCamera = nullptr;
 }
 
 
