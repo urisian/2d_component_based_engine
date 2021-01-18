@@ -38,30 +38,45 @@ void CGraphicsManager::Initialize(void)
 
 void CGraphicsManager::Update(void)
 {
+	for (auto& it = m_vGraphicsComponents.begin(); it != m_vGraphicsComponents.end(); )
+	{
+		if ((*it)->GetActivated() && !(*it)->GetNeedToBeDeleted())
+			(*it)->Update();
+
+		if ((*it)->GetNeedToBeDeleted())
+		{
+			SAFE_DELETE(*it);
+			it = m_vGraphicsComponents.erase(it);
+		}
+		else
+			++it;
+	}
+}
+
+void CGraphicsManager::LateUpdate(void)
+{
 	m_pCamera->Update();
 
-	m_pDevice->Clear(0, nullptr, 
-					 D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 
-					 D3DCOLOR_ARGB(255, 120, 120, 0), 
-					 1.f, 0);
+	m_pDevice->Clear(0, nullptr,
+		D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
+		D3DCOLOR_ARGB(255, 120, 120, 0),
+		1.f, 0);
 
 	m_pDevice->BeginScene();
 
 
 	std::sort(m_vGraphicsComponents.begin(),
-			  m_vGraphicsComponents.end(),
-			  [](CGraphicsComponent* pGC1, CGraphicsComponent* pGC2)
-				{
-					return pGC1->GetZOrder() < pGC2->GetZOrder();
-				});
+		m_vGraphicsComponents.end(),
+		[](CGraphicsComponent* pGC1, CGraphicsComponent* pGC2)
+	{
+		return pGC1->GetZOrder() < pGC2->GetZOrder();
+	});
 
 
 	for (auto& element : m_vGraphicsComponents)
 	{
 		if (!element->GetNeedToBeDeleted() && element->GetOwner()->GetActivated())
 		{
-			element->Update();
-
 			SetWorldMatrix(element);
 			m_pDevice->SetTexture(0, element->GetTexture());
 			m_pDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
@@ -74,23 +89,6 @@ void CGraphicsManager::Update(void)
 
 	m_pDevice->EndScene();
 	m_pDevice->Present(NULL, NULL, NULL, NULL);
-}
-
-void CGraphicsManager::LateUpdate(void)
-{
-	for (auto& it = m_vGraphicsComponents.begin(); it != m_vGraphicsComponents.end();)
-	{
-		if (!(*it)->GetNeedToBeDeleted() && (*it)->GetOwner()->GetActivated())
-			(*it)->LateUpdate();
-
-		if ((*it)->GetNeedToBeDeleted())
-		{
-			SAFE_DELETE(*it);
-			it = m_vGraphicsComponents.erase(it);
-		}
-		else
-			++it;
-	}
 }
 
 void CGraphicsManager::Release(void)

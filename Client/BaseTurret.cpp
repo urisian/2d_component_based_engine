@@ -27,9 +27,19 @@ void CBaseTurret::Update(void)
 
 void CBaseTurret::LateUpdate(void)
 {
+	__super::LateUpdate();
 }
 
 void CBaseTurret::Release(void)
+{
+}
+
+void CBaseTurret::AddChildAndComponents(void)
+{
+	__super::AddChildAndComponents();
+}
+
+void CBaseTurret::InitializeComponents(void)
 {
 }
 

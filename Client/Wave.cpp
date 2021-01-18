@@ -64,8 +64,10 @@ void CWave::Update(void)
 			if (m_vMonsterParty[i]->numOfMonster > 0 && (m_vMonsterParty[i]->spawnStartTime >= m_vMonsterParty[i]->spawnCoolTime))
 			{
 				CMonster* pNewMonster = GetMonsterByString(m_vMonsterParty[i]->monsterType);
+				pNewMonster->AddChildAndComponents();
 				pNewMonster->GetRouteInfo() = &m_pStage->GetRouteInfo()[m_vMonsterParty[i]->routeNum];
 				pNewMonster->GetComponent<CPhysicsComponent>()->SetPosition((*pNewMonster->GetRouteInfo()).routePoints.front());
+				pNewMonster->SetPosition((*pNewMonster->GetRouteInfo()).routePoints.front());
 				pNewMonster->SetRouteIndex(pNewMonster->GetRouteIndex() + 1);
 
 				pNewMonster->SetRouteDistance(pNewMonster->GetRouteInfo()->distanceFromGoal);

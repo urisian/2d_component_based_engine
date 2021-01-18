@@ -142,12 +142,6 @@
     <Filter Include="09.GameInfo">
       <UniqueIdentifier>{cbf2d5e0-48c3-47f1-8c3e-1041e58a3dee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Object\07.Monster\Oak">
-      <UniqueIdentifier>{725ab498-f036-4e31-a4b9-8a0c88ac2713}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="11.Sound">
-      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="10.Wave">
       <UniqueIdentifier>{f77ef601-ca5b-4569-8dba-4da314ca9641}</UniqueIdentifier>
     </Filter>
@@ -156,6 +150,45 @@
     </Filter>
     <Filter Include="03.Object\06.Projectile\Arrow">
       <UniqueIdentifier>{93bfa2c2-93f3-42d3-81e5-96cc7163bf5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12.Sound">
+      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.Physics">
+      <UniqueIdentifier>{bc4e9714-69fa-4c3a-982f-04975efbc97e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\EffectComponent">
+      <UniqueIdentifier>{665e81c0-086a-45bf-a368-9ae13ffe209d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11.Physics\Manager">
+      <UniqueIdentifier>{d0ca9055-d482-4712-a7df-c11f51c41c22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\08.Effect">
+      <UniqueIdentifier>{8de10e5d-fe24-4b73-9d04-06340a842110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\EffectComponent\FadeInEffectComponent">
+      <UniqueIdentifier>{3249c3c5-5f68-42d9-8d17-7c19d0d6a1d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\EffectComponent\FadeOutEffectComponent">
+      <UniqueIdentifier>{0ee55307-47e3-46d8-ada9-baeeee48e521}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\EffectComponent\ShakeEffectComponent">
+      <UniqueIdentifier>{abae9872-6c8e-4f56-96e7-29df37b7c6f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\07.Monster\Orc">
+      <UniqueIdentifier>{725ab498-f036-4e31-a4b9-8a0c88ac2713}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Component\EffectComponent\KillOwnerEffectComponent">
+      <UniqueIdentifier>{054ececf-8806-4b00-8464-2c052aa43172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\04.Unit\01.MagicianUnit">
+      <UniqueIdentifier>{6df6ca28-06d9-4d67-85a3-02902c8fb913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\04.Unit\02.SoldierUnit">
+      <UniqueIdentifier>{809dd6ae-ae81-49ab-bdbe-873b0187d7a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\06.Projectile\MagicBall">
+      <UniqueIdentifier>{afcc3b7c-e390-452a-b719-e938ec8446d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -292,7 +325,7 @@
       <Filter>03.Object\04.Unit\00.ArcherUnit</Filter>
     </ClInclude>
     <ClInclude Include="OakMonster.h">
-      <Filter>03.Object\07.Monster\Oak</Filter>
+      <Filter>03.Object\07.Monster\Orc</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>08.GameState\03.Stages</Filter>
@@ -303,7 +336,39 @@
     <ClInclude Include="Animation.h">
       <Filter>01.Component\GraphicComponent\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Projectile.h">
+      <Filter>03.Object\06.Projectile</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrowProjectile.h">
+      <Filter>03.Object\06.Projectile\Arrow</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>11.Physics\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectComponent.h">
+      <Filter>01.Component\EffectComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>03.Object\08.Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeOutEffectComponent.h">
+      <Filter>01.Component\EffectComponent\FadeOutEffectComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="KillOwnerEffectComponent.h">
+      <Filter>01.Component\EffectComponent\KillOwnerEffectComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicTurret.h">
+      <Filter>03.Object\03.Turret\03.MagicTurret</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicianUnit.h">
+      <Filter>03.Object\04.Unit\01.MagicianUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierUnit.h">
+      <Filter>03.Object\04.Unit\02.SoldierUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicBallProjectile.h">
+      <Filter>03.Object\06.Projectile\MagicBall</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -415,7 +480,7 @@
       <Filter>03.Object\04.Unit\00.ArcherUnit</Filter>
     </ClCompile>
     <ClCompile Include="OakMonster.cpp">
-      <Filter>03.Object\07.Monster\Oak</Filter>
+      <Filter>03.Object\07.Monster\Orc</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
       <Filter>08.GameState\03.Stages</Filter>
@@ -426,7 +491,39 @@
     <ClCompile Include="Animation.cpp">
       <Filter>01.Component\GraphicComponent\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Projectile.cpp">
+      <Filter>03.Object\06.Projectile</Filter>
+    </ClCompile>
+    <ClCompile Include="ArrowProjectile.cpp">
+      <Filter>03.Object\06.Projectile\Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>11.Physics\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectComponent.cpp">
+      <Filter>01.Component\EffectComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>03.Object\08.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeOutEffectComponent.cpp">
+      <Filter>01.Component\EffectComponent\FadeOutEffectComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="KillOwnerEffectComponent.cpp">
+      <Filter>01.Component\EffectComponent\KillOwnerEffectComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicTurret.cpp">
+      <Filter>03.Object\03.Turret\03.MagicTurret</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicianUnit.cpp">
+      <Filter>03.Object\04.Unit\01.MagicianUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierUnit.cpp">
+      <Filter>03.Object\04.Unit\02.SoldierUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicBallProjectile.cpp">
+      <Filter>03.Object\06.Projectile\MagicBall</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">

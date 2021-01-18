@@ -18,9 +18,6 @@ public:
 
 					void					StateChangeInit			(void);
 
-	GETTOR_SETTOR	(float,					m_aniSecPerFrame,		AniSecPerFrame);
-	GETTOR_SETTOR	(float,					m_curAniIndex,			CurAniIndex);
-	GETTOR_SETTOR	(int,					m_maxAniIndex,			GetMaxAniIndex);
 
 	GETTOR_SETTOR	(int,					m_zOrder,				ZOrder);
 
@@ -28,10 +25,12 @@ public:
 	GETTOR_SETTOR	(D3DXVECTOR3,			m_rotation,				Rotation);
 	GETTOR_SETTOR	(D3DXVECTOR3,			m_size,					Size);
 
-	GETTOR_SETTOR	(D3DCOLOR,				m_color,				Color);
+	GETTOR_SETTOR	(D3DXCOLOR,				m_color,				Color);
 
 	GETTOR_SETTOR	(CTexture*,				m_pCTexture,			CTexture);
 	GETTOR_SETTOR	(CAnimation*,			m_pAnimation,			Animation);
+
+	GETTOR_SETTOR	(bool,					m_xFlip,				XFlip);
 
 	GETTOR_SETTOR	(LPDIRECT3DTEXTURE9,	m_pTexture,				Texture);					
 };

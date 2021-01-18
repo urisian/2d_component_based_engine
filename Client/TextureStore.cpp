@@ -137,6 +137,8 @@ bool CTextureStore::CreateTexture(const std::string& fullPath)
 		pCurMap = &m_mTexture[OBJID::UI];
 	else if (sectionKey == "UNIT")
 		pCurMap = &m_mTexture[OBJID::UNIT];
+	else if (sectionKey == "EFFECT")
+		pCurMap = &m_mTexture[OBJID::EFFECT];
 	else
 		MessageBox(nullptr, L"Need to set right map for sectionKey in CreateTexture", L"CTextureStore", MB_OK);
 

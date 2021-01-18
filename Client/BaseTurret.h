@@ -5,13 +5,16 @@
 class CBaseTurret final : public CTurret
 {
 public:
-	explicit					CBaseTurret				(void);
-	virtual					   ~CBaseTurret				(void);
+	explicit				CBaseTurret				(void);
+	virtual				   ~CBaseTurret				(void);
 
-				void			Initialize				(void);
-				void			Update					(void);
-				void			LateUpdate				(void);
-				void			Release					(void);
+				void		Initialize				(void);
+				void		Update					(void);
+				void		LateUpdate				(void);
+				void		Release					(void);
+
+				void		AddChildAndComponents	(void);
+				void		InitializeComponents	(void);
 };
 
 #endif

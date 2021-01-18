@@ -21,8 +21,6 @@ void CUserInterface::Initialize(void)
 
 	__super::Initialize();
 
-
-	AddComponent<CGraphicsComponent>();
 }
 
 void CUserInterface::Update(void)
@@ -33,9 +31,15 @@ void CUserInterface::Update(void)
 
 void CUserInterface::LateUpdate(void)
 {
+	__super::LateUpdate();
 }
 
 void CUserInterface::Release(void)
 {
+}
+
+void CUserInterface::AddChildAndComponents(void)
+{
+	AddComponent<CGraphicsComponent>();
 }
 

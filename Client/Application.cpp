@@ -2,7 +2,7 @@
 #include "Application.h"
 #include "Resource.h"
 #include "DataStore.h"
-
+#include "FRC.h"
 
 CApplication* CApplication::m_s_pInstance = nullptr;
 
@@ -111,6 +111,16 @@ LRESULT CApplication::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		}
 	}
 	break;
+	case WM_ACTIVATE:
+		if (wParam == WA_ACTIVE || wParam == WA_CLICKACTIVE)
+		{
+			
+		}
+		else if (wParam == WA_INACTIVE)
+		{
+			CFRC::GetInstance()->Initialize();
+		}
+		break;
 
 	case WM_DESTROY:
 		PostQuitMessage(0);

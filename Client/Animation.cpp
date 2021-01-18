@@ -3,6 +3,7 @@
 #include "GraphicsComponent.h"
 #include "DataStore.h"
 #include "Texture.h"
+#include "FRC.h"
 
 CAnimation::CAnimation(CGraphicsComponent* pOwner)
 {
@@ -13,6 +14,7 @@ CAnimation::CAnimation(CGraphicsComponent* pOwner)
 	m_curIndex			= 0.f;
 	m_maxIndex			= 0;
 
+	m_repeat			= true;
 	Initialize();
 }
 
@@ -34,21 +36,47 @@ void CAnimation::Initialize(void)
 
 void CAnimation::Update(void)
 {
-	if (m_status == ANIMATION::STATUS::STOP)
-		m_curIndex = 0;
-	else if (m_status == ANIMATION::STATUS::PLAY)
-	{
-		m_curIndex += m_aniSecPerFrame;
-		if (m_curIndex > m_maxIndex)
-			m_curIndex -= (float)m_maxIndex;
-	}
+	
 }
 
 void CAnimation::LateUpdate(void)
 {
+	if (m_status == ANIMATION::STATUS::STOP)
+		m_curIndex = 0;
+	else if (m_status == ANIMATION::STATUS::PLAY)
+	{
+		m_curIndex += m_aniSecPerFrame * GET_DT();
+		if (m_curIndex >= m_maxIndex)
+		{
+			if (m_repeat)
+				m_curIndex -= (float)m_maxIndex;
+			else
+			{
+				m_aniSecPerFrame = 0.f;
+				m_curIndex = (float)m_maxIndex - 1;
+			}
+		}
+
+	}
 }
 
 void CAnimation::Release(void)
 {
+}
+
+void CAnimation::StateChangeInit(void)
+{
+	int curMaxIndex = m_maxIndex;
+	float curAniSecPerFrame = m_aniSecPerFrame;
+
+	CObject* pOwnerObject = m_pOwner->GetOwner();
+
+	GET_VALUE(pOwnerObject->GetDataID(), pOwnerObject->GetObjectKey(), 
+			  pOwnerObject->GetStateKey() + "_m_aniSecPerFrame", m_aniSecPerFrame);
+
+	m_maxIndex = m_pOwner->GetCTexture()->GetTexInfos(pOwnerObject->GetStateKey()).size();
+
+	if (m_aniSecPerFrame != curAniSecPerFrame || curMaxIndex != m_maxIndex)
+		m_curIndex = 0;
 }
 

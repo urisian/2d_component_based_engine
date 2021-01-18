@@ -21,6 +21,9 @@ public:
 
 					void			SetPlayFunc					(std::function<void(void)> funcPointer);
 
+					void			CheckMouseOver				(void);
+					void			CheckClickDown				(void);
+					void			CheckClickUp				(void);
 
 	GETTOR_SETTOR	(bool,			m_mouseOver,				MouseOver);
 	GETTOR_SETTOR	(bool,			m_clickDown,				ClickDown);
@@ -28,9 +31,7 @@ public:
 	GETTOR_SETTOR	(int,			m_cOrder,					COrder);
 
 private:
-					void			CheckMouseOver				(void);
-					void			CheckClickDown				(void);
-					void			CheckClickUp				(void);
+					
 
 					std::function<void(void)> m_fpPlay;
 };

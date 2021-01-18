@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "GSM.h"
 #include "GameState.h"
+#include "GraphicsComponent.h"
 
 CObject::CObject()
 {
@@ -32,20 +33,43 @@ CObject::~CObject()
 	Release();
 }
 
+//모든 오브젝트는 만들어질 때 Constructor 이후에 여기로 온다.
 void CObject::Initialize(void)
 {
+	//오브젝트 리스트에 추가.
 	CObjectManager::GetInstance()->AddObject(this, m_objID);
 
+	//부모가 있다면 부모 좌표 설정
+	if (m_pParent)
+		m_parentPosition = m_pParent->GetParentPosition() + m_pParent->GetPosition();
+
+	//오브젝트 키가 없는 경우 설정
 	if(m_objectKey == "")
 		m_objectKey = GetCurClassName(this);
 
+
+	//오브젝트 기본 정보 세팅
 	CObject::ReadDataFromStore();
 }
 
 void CObject::Update(void)
 {
-	if (m_pParent)
-		m_parentPosition = m_pParent->GetParentPosition() + m_pParent->GetPosition();
+	for (auto& it = m_mComponents.begin(); it != m_mComponents.end();)
+	{
+		if ((*it).second->GetNeedToBeDeleted() == true)
+		{
+			delete (*it).second;
+			it = m_mComponents.erase(it);
+		}
+		else
+			++it;
+	}
+}
+
+void CObject::LateUpdate(void)
+{
+	for (auto& component : m_mComponents)
+		component.second->LateUpdate();
 }
 
 void CObject::Release(void)
@@ -54,11 +78,21 @@ void CObject::Release(void)
 		component.second->SetNeedToBeDeleted(true);
 }
 
+void CObject::EraseElementFromMap(std::string objectKey)
+{
+	m_mComponents.erase(objectKey);
+}
+
 void CObject::StateChangeInit(void)
 {
 	for (auto& component : m_mComponents)
 		component.second->StateChangeInit();
 
+}
+
+D3DXVECTOR3 CObject::GetFinalPos(void)
+{
+	return m_parentPosition + m_position;
 }
 
 void CObject::ReadDataFromStore(void)

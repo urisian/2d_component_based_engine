@@ -10,12 +10,12 @@ CMouse::CMouse()
 
 CMouse::~CMouse()
 {
+	Release();
 }
 
 void CMouse::Initialize(void)
 {
 	__super::Initialize();
-	
 }
 
 void CMouse::Update(void)
@@ -34,8 +34,18 @@ void CMouse::Update(void)
 
 void CMouse::LateUpdate(void)
 {
+	__super::LateUpdate();
 }
 
 void CMouse::Release(void)
+{
+}
+
+void CMouse::AddChildAndComponents(void)
+{
+	__super::AddChildAndComponents();
+}
+
+void CMouse::InitializeComponents(void)
 {
 }

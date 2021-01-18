@@ -36,14 +36,6 @@ void CTurret::Initialize(void)
 	
 	CTurret::ReadDataFromStore();
 
-	MakeRingBoxInfo();
-	MakeTurretRing();
-	MakeRangeCircle();
-
-	//그래픽/클릭 컴포넌트 등록
-	AddComponent<CCollisionComponent>();
-	AddComponent<CGraphicsComponent>();
-	AddComponent<CClickableComponent>()->SetPlayFunc(std::bind(&CTurret::Selected, this));
 }
 
 void CTurret::Update(void)
@@ -72,11 +64,13 @@ void CTurret::Update(void)
 		}
 	}
 
-	FindTarget();
+	
 }
 
 void CTurret::LateUpdate(void)
 {
+	__super::LateUpdate();
+	FindTarget();
 }
 
 void CTurret::Release(void)
@@ -119,24 +113,15 @@ void CTurret::UpgradeTurret(int increase)
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_magicDmg", m_magicDmg);
 
 
-	for (int i = 0; i < m_numOfRingBox; ++i)
-	{
-		RingBoxInfo* pNewRingBoxInfo = new RingBoxInfo;
+	MakeRingBoxInfo();
 
-		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_name", pNewRingBoxInfo->name);
-		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_price", pNewRingBoxInfo->price);
-		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_angle", pNewRingBoxInfo->angle);
-
-		m_vRingBoxInfo.push_back(pNewRingBoxInfo);
-	}
 	//RangedCircle 세팅
-	m_pRangeCircle = new CDecoration("RangeCircle", "Green");
-	m_pRangeCircle->SetParent(this);
-	m_pRangeCircle->SetSize(D3DXVECTOR3(m_attackRange, m_attackRange * 0.6f, 0));
+	MakeRangeCircle();
 
 	//터렛링 세팅
-	m_pTurretRing = new CTurretRing(this);
-	m_pTurretRing->SetParent(this);
+	MakeTurretRing();
+
+	StateChangeInit();
 }
 
 void CTurret::SellTurret(void)
@@ -147,6 +132,19 @@ void CTurret::SellTurret(void)
 
 	CBaseTurret* pNewTurret = new CBaseTurret;
 	pNewTurret->SetPosition(m_parentPosition);
+	pNewTurret->AddChildAndComponents();
+}
+
+void CTurret::AddChildAndComponents(void)
+{
+	MakeRingBoxInfo();
+	MakeTurretRing();
+	MakeRangeCircle();
+
+	//그래픽/클릭 컴포넌트 등록
+	AddComponent<CCollisionComponent>();
+	AddComponent<CGraphicsComponent>();
+	AddComponent<CClickableComponent>()->SetPlayFunc(std::bind(&CTurret::Selected, this));
 }
 
 void CTurret::ReadDataFromStore(void)
@@ -189,14 +187,14 @@ void CTurret::MakeTurretRing(void)
 {
 	//터렛링 세팅
 	m_pTurretRing = new CTurretRing(this);
-	m_pTurretRing->SetParent(this);
+	m_pTurretRing->AddChildAndComponents();
 }
 
 void CTurret::MakeRangeCircle(void)
 {
 	//RangeCircle 심기
-	m_pRangeCircle = new CDecoration("RangeCircle", "Green");
-	m_pRangeCircle->SetParent(this);
+	m_pRangeCircle = new CDecoration("RangeCircle", "Green", this);
+	m_pRangeCircle->AddChildAndComponents();
 	m_pRangeCircle->SetSize(D3DXVECTOR3(m_attackRange, m_attackRange * 0.6f, 0));
 }
 
@@ -209,22 +207,27 @@ void CTurret::FindTarget(void)
 {
 	if (m_pTarget == nullptr && m_attackRange > 0)
 	{
-		bool findTarget = false;
 		for (auto& monsterCC : CCollisionManager::GetInstance()->GetCollisionVector(OBJID::MONSTER))
 		{
-			if (CollisionHelper::PointEclipseCollision(monsterCC->GetPosition(), m_position + m_parentPosition, m_pRangeCircle->GetSize()))
+			if (monsterCC->GetOwner()->GetStateKey() != "Die")
 			{
-				m_pRangeCircle->SetStateKey("Blue");
-				m_pRangeCircle->StateChangeInit();
-				m_pTarget = monsterCC->GetOwner();
-				findTarget = true;
-				break;
+				if (CollisionHelper::PointEclipseCollision(monsterCC->GetPosition(),
+														   m_position + m_parentPosition,
+														   m_pRangeCircle->GetSize()))
+				{
+					m_pRangeCircle->SetStateKey("Blue");
+					m_pRangeCircle->StateChangeInit();
+					m_pTarget = monsterCC->GetOwner();
+					break;
+				}
 			}
 		}
 	}
-	else if (m_pTarget != nullptr && !m_pTarget->GetNeedToBeDeleted())
+	else if (m_pTarget != nullptr && m_pTarget->GetStateKey() != "Die")
 	{
-		if (!CollisionHelper::PointEclipseCollision(m_pTarget->GetPosition(), m_position + m_parentPosition, m_pRangeCircle->GetSize()))
+		if (!CollisionHelper::PointEclipseCollision(m_pTarget->GetPosition(), 
+													m_position + m_parentPosition, 
+													m_pRangeCircle->GetSize()))
 			m_pTarget = nullptr;
 	}
 	else

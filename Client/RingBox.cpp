@@ -9,9 +9,11 @@
 #include "GameInfo.h"
 #include "Turret.h"
 #include "ArcherTurret.h"
+#include "MagicTurret.h"
 
-CRingBox::CRingBox(std::string objectKey)
+CRingBox::CRingBox(CTurretRing* pParent, std::string objectKey)
 {
+	m_pParent = pParent;
 	m_objectKey = objectKey;
 	m_activated = false;
 	Initialize();
@@ -26,67 +28,81 @@ void CRingBox::Initialize(void)
 {
 	__super::Initialize();
 
-	GET_VALUE(m_dataID, m_objectKey, "m_type", m_type);
-
-	AddComponent<CClickableComponent>()->SetPlayFunc(std::bind(&CRingBox::Selected, this));
 }
 
 void CRingBox::Update(void)
 {
 	__super::Update();
 
-	SetPosition(D3DXVECTOR3(cosf(D3DXToRadian(m_anglePosition)), sinf(D3DXToRadian(m_anglePosition)), 0) * m_pTurretRing->GetSize().x / 2.f);
+	CTurretRing* pTurretRing = static_cast<CTurretRing*>(m_pParent);
+	SetPosition(D3DXVECTOR3(cosf(D3DXToRadian(m_anglePosition)), sinf(D3DXToRadian(m_anglePosition)), 0) * pTurretRing->GetSize().x / 2.f);
 
-	if (m_pTurretRing->GetFocusedRingBox() != this)
+	if (pTurretRing->GetFocusedRingBox() != this)
 		m_stateKey = "Idle";
 }
 
 void CRingBox::LateUpdate(void)
 {
+	__super::LateUpdate();
 }
 
 void CRingBox::Release(void)
 {
 }
 
+void CRingBox::AddChildAndComponents(void)
+{
+	__super::AddChildAndComponents();
+	AddComponent<CClickableComponent>()->SetPlayFunc(std::bind(&CRingBox::Selected, this));
+}
+
+void CRingBox::InitializeComponents(void)
+{
+}
+
 void CRingBox::Selected(void)
 {
-	m_pTurretRing->SetFocusedRingBox(this);
+	CTurretRing* pTurretRing = static_cast<CTurretRing*>(m_pParent);
+	pTurretRing->SetFocusedRingBox(this);
 
 	if (m_stateKey == "Idle")
 		m_stateKey = "Selected";
 	else if (m_stateKey == "Selected")
 	{
+		CTurret* pTurretRingParent = static_cast<CTurret*>(pTurretRing->GetParent());
+
 		if (CGameInfo::GetInstance()->GetFocusedObject()->GetObjectKey() == "BaseTurret")
 		{
-			CTurret* pTurret;
+			CTurret* pTurret = nullptr;
+
 			if (m_objectKey == "Archer_RingBox")
-			{
 				pTurret = new CArcherTurret;
-				pTurret->SetParentPosition(m_pTurretRing->GetOwner()->GetPosition());
-				m_pTurretRing->GetOwner()->SetNeedToBeDeleted(true);
-			}
 			else if (m_objectKey == "Barrack_RingBox")
-				;
+				pTurret = nullptr;
 			else if (m_objectKey == "Magic_RingBox")
-				;
+				pTurret = new CMagicTurret;
 			else if (m_objectKey == "Bomb_RingBox")
-				;
+				pTurret = nullptr;
+
+			pTurret->SetParentPosition(pTurretRingParent->GetPosition());
+			pTurret->AddChildAndComponents();
+
+			pTurretRingParent->SetNeedToBeDeleted(true);
 		}
 		else if (m_objectKey == "Upgrade_RingBox")
-			m_pTurretRing->GetOwner()->UpgradeTurret();
+			pTurretRingParent->UpgradeTurret();
 		else if (m_objectKey == "Sell_RingBox")
-			m_pTurretRing->GetOwner()->SellTurret();
+			pTurretRingParent->SellTurret();
 		else if (m_objectKey == "Rally_RingBox")
 			;
 		else if (m_objectKey == "Repair_RingBox")
 			;
-		else if (m_pTurretRing->GetOwner()->GetLevel() == 2)
+		else if (pTurretRingParent->GetLevel() == 2)
 		{
 			if (m_anglePosition == 135)
-				m_pTurretRing->GetOwner()->UpgradeTurret();
+				pTurretRingParent->UpgradeTurret();
 			else if (m_anglePosition == 45)
-				m_pTurretRing->GetOwner()->UpgradeTurret(2);
+				pTurretRingParent->UpgradeTurret(2);
 		}
 
 		CGameInfo::GetInstance()->SetFocusedObject(nullptr);

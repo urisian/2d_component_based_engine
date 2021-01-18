@@ -7,13 +7,19 @@
 class COakMonster final : public CMonster
 {
 public:
-	explicit						COakMonster			(void);
-	virtual						   ~COakMonster			(void);
+	explicit						COakMonster				(void);
+	virtual						   ~COakMonster				(void);
 
-					void			Initialize			(void);
-					void			Update				(void);
-					void			LateUpdate			(void);
-					void			Release				(void);
+					void			Initialize				(void);
+					void			Update					(void);
+					void			LateUpdate				(void);
+					void			Release					(void);
+
+	virtual			void			AddChildAndComponents	(void);
+					void			InitializeComponents	(void);
+
+protected:
+					void			Die						(void);
 };
 
 #endif

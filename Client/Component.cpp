@@ -21,6 +21,10 @@ void CComponent::Initialize(void)
 
 void CComponent::Update(void)
 {
+}
+
+void CComponent::LateUpdate(void)
+{
 	m_activated = m_pOwner->GetActivated();
 }
 

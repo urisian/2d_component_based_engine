@@ -43,7 +43,10 @@ inline D3DXVECTOR3 GetAngleFromDir(D3DXVECTOR3& dir)
 	D3DXVECTOR2 temp = dir;
 	float hypotenuseSize = D3DXVec2Length(&temp);
 
-	return D3DXVECTOR3(0, 0, D3DXToDegree(acosf(dir.x / hypotenuseSize)));
+	if(dir.y >= 0)
+		return D3DXVECTOR3(0, 0, acosf(dir.x / hypotenuseSize));
+	else
+		return D3DXVECTOR3(0, 0, -acosf(dir.x / hypotenuseSize));
 }
 
 inline D3DXVECTOR3 GetDirFromAngle(float degree)

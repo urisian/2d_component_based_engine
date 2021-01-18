@@ -11,7 +11,7 @@ public:
 
 	virtual			void			Initialize			(void);
 	virtual			void			Update				(void);
-	virtual			void			LateUpdate			(void) PURE;
+	virtual			void			LateUpdate			(void);
 	virtual			void			Release				(void) PURE;
 
 	virtual			void			StateChangeInit		(void) PURE;

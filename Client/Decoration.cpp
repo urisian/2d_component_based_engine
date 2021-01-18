@@ -3,8 +3,9 @@
 #include "GraphicsComponent.h"
 #include "StateMachine.h"
 
-CDecoration::CDecoration(std::string objectKey, std::string stateKey)
+CDecoration::CDecoration(std::string objectKey, std::string stateKey, CObject* pParent)
 {
+	m_pParent = pParent;
 	m_objectKey = objectKey;
 	m_stateKey = stateKey;
 	Initialize();
@@ -13,6 +14,7 @@ CDecoration::CDecoration(std::string objectKey, std::string stateKey)
 
 CDecoration::~CDecoration()
 {
+	Release();
 }
 
 void CDecoration::Initialize(void)
@@ -21,9 +23,6 @@ void CDecoration::Initialize(void)
 	m_dataID = DATAID::DECORATION;
 
 	__super::Initialize();
-
-	AddComponent<CGraphicsComponent>();
-
 }
 
 void CDecoration::Update(void)
@@ -33,8 +32,18 @@ void CDecoration::Update(void)
 
 void CDecoration::LateUpdate(void)
 {
+	__super::LateUpdate();
 }
 
 void CDecoration::Release(void)
+{
+}
+
+void CDecoration::AddChildAndComponents(void)
+{
+	AddComponent<CGraphicsComponent>();
+}
+
+void CDecoration::InitializeComponents(void)
 {
 }

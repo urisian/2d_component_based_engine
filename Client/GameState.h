@@ -17,9 +17,15 @@ public:
 	virtual			void			LateUpdate				(void);
 	virtual			void			Release					(void);
 
+protected:
+					void			MakeMouse				(void);
+					void			SetupDecorations		(void);
+
 	GETTOR			(CObject*,		m_pBackground,			Background);
 	GETTOR			(std::string,	m_name,					Name);
 	GETTOR_SETTOR	(bool,			m_activated,			Activated);
+
+
 
 protected:
 	static			CMouse*			m_s_pMouse;

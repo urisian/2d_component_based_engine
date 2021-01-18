@@ -28,22 +28,10 @@ void CObjectManager::Update(void)
 
 	for (int i = 0; i < OBJID::END; ++i)
 	{
-		for (auto& element : m_vObjects[i])
-		{
-			if (element->GetActivated() && !element->GetNeedToBeDeleted())
-				element->Update();
-		}
-	}
-}
-
-void CObjectManager::LateUpdate(void)
-{
-	for (int i = 0; i < OBJID::END; ++i)
-	{
 		for (auto& it = m_vObjects[i].begin(); it != m_vObjects[i].end(); )
 		{
 			if ((*it)->GetActivated() && !(*it)->GetNeedToBeDeleted())
-				(*it)->LateUpdate();
+				(*it)->Update();
 
 			if ((*it)->GetNeedToBeDeleted())
 			{
@@ -52,6 +40,20 @@ void CObjectManager::LateUpdate(void)
 			}
 			else
 				++it;
+		}
+	}
+}
+
+void CObjectManager::LateUpdate(void)
+{
+	
+	for (int i = 0; i < OBJID::END; ++i)
+	{
+		int vectorSize = m_vObjects[i].size();
+		for (int j = 0; j < vectorSize; ++j)
+		{
+			if (m_vObjects[i][j]->GetActivated() && !m_vObjects[i][j]->GetNeedToBeDeleted())
+				m_vObjects[i][j]->LateUpdate();
 		}
 	}
 }

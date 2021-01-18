@@ -17,14 +17,15 @@ public:
 					void			LateUpdate				(void);
 					void			Release					(void);
 
+					void			AddChildAndComponents	(void);
+					void			InitializeComponents	(void);
 private:
-
+					void			MakeRingBoxes			(void);
 
 	GETTOR_SETTOR	(D3DXVECTOR3,	m_defaultSize,			DefaultSize);
 	GETTOR_SETTOR	(CRingBox*,		m_pFocusedRingBox,		FocusedRingBox);
 	GETTOR_SETTOR	(bool,			m_lastFrameActivated,	LastFrameActivated);
 
-	GETTOR			(CTurret*,		m_pOwner,				Owner);
 	GETTOR(std::vector<CRingBox*>,	m_vRingBoxes,			RingBoxes);
 
 };

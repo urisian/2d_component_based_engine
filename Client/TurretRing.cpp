@@ -8,9 +8,11 @@
 
 CTurretRing::CTurretRing(CTurret* pTurret)
 {
-	m_pOwner = pTurret;
+	//m_pOwner = pTurret;
+	m_pParent = pTurret;
 	m_activated = false;
 	
+
 	Initialize();
 }
 
@@ -30,18 +32,6 @@ void CTurretRing::Initialize(void)
 	
 	m_defaultSize = m_size;
 	m_size *= 0.7f;
-
-
-	for (int i = 0; i < m_pOwner->GetNumOfRingBox(); ++i)
-	{
-		CRingBox* pRingBox = new CRingBox(m_pOwner->GetRingBoxInfo()[i]->name);
-		pRingBox->SetPrice(m_pOwner->GetRingBoxInfo()[i]->price);
-		pRingBox->SetAnglePosition(m_pOwner->GetRingBoxInfo()[i]->angle);
-	
-		pRingBox->SetParent(this);
-		pRingBox->SetTurretRing(this);
-		m_vRingBoxes.push_back(pRingBox);
-	}
 }
 
 void CTurretRing::Update(void)
@@ -49,7 +39,7 @@ void CTurretRing::Update(void)
 	__super::Update();
 
 	if (m_size.x < m_defaultSize.x)
-		m_size += D3DXVECTOR3((m_defaultSize - m_defaultSize * 0.7f) / 5.f);
+		m_size += D3DXVECTOR3((m_defaultSize * 0.3f) / 5.f);
 	if(m_size.x >= m_defaultSize.x)
 		m_size = m_defaultSize;
 
@@ -65,7 +55,7 @@ void CTurretRing::Update(void)
 
 void CTurretRing::LateUpdate(void)
 {
-
+	__super::LateUpdate();
 }
 
 void CTurretRing::Release(void)
@@ -73,4 +63,28 @@ void CTurretRing::Release(void)
 	for (auto& ringBox : m_vRingBoxes)
 		ringBox->SetNeedToBeDeleted(true);
 
+}
+
+void CTurretRing::AddChildAndComponents(void)
+{
+	__super::AddChildAndComponents();
+	MakeRingBoxes();
+}
+
+void CTurretRing::InitializeComponents(void)
+{
+}
+
+void CTurretRing::MakeRingBoxes(void)
+{
+	CTurret* pParentTurret = static_cast<CTurret*>(m_pParent);
+	for (int i = 0; i < pParentTurret->GetNumOfRingBox(); ++i)
+	{
+		CRingBox* pRingBox = new CRingBox(this, pParentTurret->GetRingBoxInfo()[i]->name);
+		pRingBox->AddChildAndComponents();
+		pRingBox->SetPrice(pParentTurret->GetRingBoxInfo()[i]->price);
+		pRingBox->SetAnglePosition(pParentTurret->GetRingBoxInfo()[i]->angle);
+
+		m_vRingBoxes.push_back(pRingBox);
+	}
 }

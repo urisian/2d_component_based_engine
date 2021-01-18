@@ -20,22 +20,8 @@ void CGameState::Initialize(void)
 {
 	m_name = GetCurClassName(this);
 
-	if(m_s_pMouse == nullptr)
-		m_s_pMouse = new CMouse;
-
-	int numOfDecoration;
-	GET_VALUE(DATAID::STAGE, m_name, "numOfDecoration", numOfDecoration);
-	for (int i = 0; i < numOfDecoration; ++i)
-	{
-		std::string objectKey;
-		GET_VALUE(DATAID::STAGE, m_name, "decoration" + std::to_string(i) + "_objectKey", objectKey);
-		CDecoration* pNewDecoration = new CDecoration(objectKey);
-
-		GET_VALUE(DATAID::STAGE, m_name, "decoration" + std::to_string(i) + "_m_pos", pNewDecoration->GetPosition());
-		
-		if (i == 0)
-			m_pBackground = pNewDecoration;
-	}
+	MakeMouse();
+	SetupDecorations();	
 }
 
 void CGameState::LateUpdate(void)
@@ -44,5 +30,31 @@ void CGameState::LateUpdate(void)
 
 void CGameState::Release(void)
 {
+}
+
+void CGameState::MakeMouse(void)
+{
+	if (m_s_pMouse == nullptr)
+	{
+		m_s_pMouse = new CMouse;
+		m_s_pMouse->AddChildAndComponents();
+	}
+}
+
+void CGameState::SetupDecorations(void)
+{
+	int numOfDecoration;
+	GET_VALUE(DATAID::STAGE, m_name, "numOfDecoration", numOfDecoration);
+	for (int i = 0; i < numOfDecoration; ++i)
+	{
+		std::string objectKey;
+		GET_VALUE(DATAID::STAGE, m_name, "decoration" + std::to_string(i) + "_objectKey", objectKey);
+		CDecoration* pNewDecoration = new CDecoration(objectKey);
+		GET_VALUE(DATAID::STAGE, m_name, "decoration" + std::to_string(i) + "_m_pos", pNewDecoration->GetPosition());
+		pNewDecoration->AddChildAndComponents();
+
+		if (i == 0)
+			m_pBackground = pNewDecoration;
+	}
 }
 

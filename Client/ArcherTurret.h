@@ -3,24 +3,29 @@
 
 #include "Turret.h"
 
-class CMonster;
 class CArcherUnit;
 
 class CArcherTurret final : public CTurret
 {
 public:
-	explicit							CArcherTurret		(void);
-									   ~CArcherTurret		(void);
+	explicit							CArcherTurret				(void);
+									   ~CArcherTurret				(void);
 
-	virtual			void				Initialize			(void);
-	virtual			void				Update				(void);
-	virtual			void				LateUpdate			(void);
-	virtual			void				Release				(void);
+					void				Initialize					(void);
+					void				Update						(void);
+					void				LateUpdate					(void);
+					void				Release						(void);
 
+					void				UpgradeTurret				(int increase = 1);
+
+					void				AddChildAndComponents		(void);
+					void				InitializeComponents		(void);
+
+					CArcherUnit**		GetArchers					(void);
+
+	GETTOR			(int,				m_shootTurn,				ShootTurn);;
 private:
-					void				Shoot				(void);
-
-	GETTOR_SETTOR	(CArcherUnit*,		m_pArchers[2],		Archer);
+					CArcherUnit*		m_pArchers[2];
 };
 
 #endif

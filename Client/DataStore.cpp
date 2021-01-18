@@ -120,6 +120,10 @@ void CDataStore::ReadFile(const std::string & fullPath)
 			pCurMap = &m_mDataMap[DATAID::UI];
 		else if (sectionKey == "UNIT")
 			pCurMap = &m_mDataMap[DATAID::UNIT];
+		else if (sectionKey == "PROJECTILE")
+			pCurMap = &m_mDataMap[DATAID::PROJECTILE];
+		else if (sectionKey == "EFFECT")
+			pCurMap = &m_mDataMap[DATAID::EFFECT];
 		else
 			MessageBox(nullptr, L"Need to set right map for sectionKey in ReadFile", L"CDataStore", MB_OK);
 
@@ -215,13 +219,4 @@ std::stringstream & operator >> (std::stringstream & in, std::wstring & wStr)
 	return in;
 }
 
-std::stringstream & operator >> (std::stringstream & in, RBTYPE::TYPE & type)
-{
-	int curTypeNum;
 
-	in >> curTypeNum;
-	type = RBTYPE::TYPE(curTypeNum);
-
-	return in;
-
-}

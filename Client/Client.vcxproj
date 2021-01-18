@@ -153,6 +153,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="ArcherTurret.h" />
     <ClInclude Include="ArcherUnit.h" />
+    <ClInclude Include="ArrowProjectile.h" />
     <ClInclude Include="BaseTurret.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionComponent.h" />
@@ -164,12 +165,21 @@
     <ClInclude Include="DataStore.h" />
     <ClInclude Include="Debugger.h" />
     <ClInclude Include="Decoration.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectComponent.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="FadeOutEffectComponent.h" />
     <ClInclude Include="FRC.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="GSM.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="KillOwnerEffectComponent.h" />
+    <ClInclude Include="MagicBallProjectile.h" />
+    <ClInclude Include="MagicianUnit.h" />
+    <ClInclude Include="MagicTurret.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="OakMonster.h" />
@@ -183,9 +193,11 @@
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="PhysicsComponent.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RingBox.h" />
+    <ClInclude Include="SoldierUnit.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Stage0.h" />
     <ClInclude Include="stdafx.h" />
@@ -204,6 +216,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ArcherTurret.cpp" />
     <ClCompile Include="ArcherUnit.cpp" />
+    <ClCompile Include="ArrowProjectile.cpp" />
     <ClCompile Include="BaseTurret.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClickableComponent.cpp" />
@@ -215,12 +228,21 @@
     <ClCompile Include="DataStore.cpp" />
     <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="Decoration.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectComponent.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="FadeOutEffectComponent.cpp" />
     <ClCompile Include="FRC.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GraphicsManager.cpp" />
     <ClCompile Include="GSM.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="KillOwnerEffectComponent.cpp" />
+    <ClCompile Include="MagicBallProjectile.cpp" />
+    <ClCompile Include="MagicianUnit.cpp" />
+    <ClCompile Include="MagicTurret.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="OakMonster.cpp" />
@@ -229,8 +251,10 @@
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="RingBox.cpp" />
+    <ClCompile Include="SoldierUnit.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Stage0.cpp" />
     <ClCompile Include="stdafx.cpp">

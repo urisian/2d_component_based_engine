@@ -25,7 +25,7 @@ private:
 
 	friend		std::stringstream&		operator >>					(std::stringstream& in, D3DXVECTOR3& d3dVec3);
 	friend		std::stringstream&		operator >>					(std::stringstream& in, std::wstring& wStr);
-	friend		std::stringstream&		operator >>					(std::stringstream& in, RBTYPE::TYPE& type);
+
 
 private:
 				std::string				m_resourcePath;

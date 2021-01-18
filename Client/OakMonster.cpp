@@ -3,6 +3,10 @@
 #include "PhysicsComponent.h"
 #include "Debugger.h"
 #include "FRC.h"
+#include "Effect.h"
+#include "GraphicsComponent.h"
+#include "Animation.h"
+#include "FadeOutEffectComponent.h"
 
 COakMonster::COakMonster()
 {
@@ -12,6 +16,7 @@ COakMonster::COakMonster()
 
 COakMonster::~COakMonster()
 {
+	Release();
 }
 
 void COakMonster::Initialize(void)
@@ -25,8 +30,14 @@ void COakMonster::Update(void)
 
 	std::string saveState = m_stateKey;
 
-	if (m_routeIndex < m_pRouteInfo->routePoints.size())
+	if (m_stateKey == "Die")
 	{
+		
+
+	}
+	else if (m_routeIndex < m_pRouteInfo->routePoints.size())
+	{
+		
 		m_stateKey = "Walk";
 		if (m_direction.y < 0 && (abs(m_direction.y) > abs(m_direction.x)))
 			m_stateKey += "Down";
@@ -35,10 +46,10 @@ void COakMonster::Update(void)
 		else
 		{
 			m_stateKey += "Hor";
-			if (m_direction.x < 0 && m_size.x > 0)
-				m_size.x *= -1;
-			else if (m_direction.x > 0 && m_size.x < 0)
-				m_size.x *= -1;
+			if (m_direction.x < 0)
+				GetComponent<CGraphicsComponent>()->SetXFlip(true);
+			else if (m_direction.x > 0)
+				GetComponent<CGraphicsComponent>()->SetXFlip(false);
 		}
 
 		m_routeDistance -= GetComponent<CPhysicsComponent>()->GetSpeed() * GET_DT();
@@ -48,17 +59,39 @@ void COakMonster::Update(void)
 
 	if (saveState != m_stateKey)
 		StateChangeInit();
-
-	
-	ADD_DEBUG_INFO(DEBUGID::OBJECT_INFO, "Oak", "distanceLeft : " + std::to_string(m_routeDistance) + "\n");
 }
 
 void COakMonster::LateUpdate(void)
 {
+	__super::LateUpdate();
 }
 
 void COakMonster::Release(void)
 {
+}
+
+void COakMonster::AddChildAndComponents(void)
+{
+	__super::AddChildAndComponents();
+}
+
+void COakMonster::InitializeComponents(void)
+{
+}
+
+void COakMonster::Die(void)
+{
+	if (m_stateKey != "Die")
+	{
+		__super::Die();
+		CEffect* pEffect = new CEffect("BloodPond", "Idle", this, -1, true);
+		pEffect->AddChildAndComponents();
+		pEffect->AddComponent<CFadeOutEffectComponent>();
+
+		m_stateKey = "Die";
+		StateChangeInit();
+		GetComponent<CGraphicsComponent>()->GetAnimation()->SetRepeat(false);
+	}
 }
 
 

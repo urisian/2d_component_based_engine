@@ -2,16 +2,19 @@
 #define MOUSE_H
 
 #include "UserInterface.h"
-class CMouse : public CUserInterface
+class CMouse final : public CUserInterface
 {
 public:
-	explicit							CMouse				(void);
-	virtual							   ~CMouse				(void);
+	explicit							CMouse					(void);
+									   ~CMouse					(void);
 
-	virtual			void				Initialize			(void);
-	virtual			void				Update				(void);
-	virtual			void				LateUpdate			(void);
-	virtual			void				Release				(void);
+					void				Initialize				(void);
+					void				Update					(void);
+					void				LateUpdate				(void);
+					void				Release					(void);
+
+					void				AddChildAndComponents	(void);
+					void				InitializeComponents	(void);
 };
 
 #endif

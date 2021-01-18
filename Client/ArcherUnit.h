@@ -8,15 +8,23 @@
 class CArcherUnit final : public CUnit
 {
 public:
-	explicit							CArcherUnit			(CObject* pArcherTurret, int order);
-	virtual							   ~CArcherUnit			(void);
+	explicit							CArcherUnit				(CObject* pArcherTurret);
+	virtual							   ~CArcherUnit				(void);
 
-					void				Initialize			(void);
-					void				Update				(void);
-					void				LateUpdate			(void);
-					void				Release				(void);
+					void				Initialize				(void);
+					void				Update					(void);
+					void				LateUpdate				(void);
+					void				Release					(void);
 
-	GETTOR_SETTOR	(int,				m_shootOrder,		ShootOrder);
+					void				UpgradeUnit				(int increase);
+
+					void				AddChildAndComponents	(void);
+					void				InitializeComponents	(void);
+
+					void				StateChangeInit			(void);
+
+					void				Shoot					(void);
+
 };
 
 #endif

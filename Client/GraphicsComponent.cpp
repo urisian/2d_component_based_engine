@@ -9,10 +9,6 @@
 
 CGraphicsComponent::CGraphicsComponent(CObject* pOwner) : CComponent(pOwner)
 {
-	m_aniSecPerFrame	= 0;
-	m_curAniIndex		= 0;
-	m_maxAniIndex		= 0;
-
 	m_zOrder			= 0;
 
 	m_position			= {};
@@ -21,6 +17,7 @@ CGraphicsComponent::CGraphicsComponent(CObject* pOwner) : CComponent(pOwner)
 
 	//ARGB
 	m_color			= 0xffffffff;
+	m_xFlip			= false;
 
 	m_pAnimation	= nullptr;
 	m_pCTexture		= nullptr;
@@ -44,31 +41,35 @@ void CGraphicsComponent::Initialize(void)
 	if(m_pCTexture->GetTexInfos(m_pOwner->GetStateKey()).size() > 1)
 		m_pAnimation = new CAnimation(this);
 
+	m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[0]->pTexture;
 	CGraphicsManager::GetInstance()->AddGraphicsComponent(this);
 }
 
 void CGraphicsComponent::Update(void)
 {
 	__super::Update();
-
-	m_position	= m_pOwner->GetPosition() + m_pOwner->GetParentPosition();
-
-	m_rotation	= m_pOwner->GetRotation();
-	m_size		= m_pOwner->GetSize();
-
-	
-
-	if (m_pAnimation != nullptr)
-	{
-		m_pAnimation->Update();
-		m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[(int)m_pAnimation->GetCurIndex()]->pTexture;
-	}
-	else
-		m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[0]->pTexture;
 }
 
 void CGraphicsComponent::LateUpdate(void)
 {
+	__super::LateUpdate();
+	m_position = m_pOwner->GetPosition() + m_pOwner->GetParentPosition();
+
+	m_rotation = m_pOwner->GetRotation();
+	m_size = m_pOwner->GetSize();
+
+	if (m_xFlip && m_size.x > 0)
+		m_size.x *= -1;
+	else if (!m_xFlip && m_size.x < 0)
+		m_size.x *= -1;
+
+	if (m_pAnimation != nullptr)
+	{
+		m_pAnimation->LateUpdate();
+		m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[(int)m_pAnimation->GetCurIndex()]->pTexture;
+	}
+	else
+		m_pTexture = m_pCTexture->GetTexInfos(m_pOwner->GetStateKey())[0]->pTexture;
 }
 
 void CGraphicsComponent::Release(void)

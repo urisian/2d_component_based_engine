@@ -32,17 +32,14 @@ void CClickableComponent::Initialize(void)
 void CClickableComponent::Update(void)
 {
 	__super::Update();
-
-	CheckMouseOver();
-	CheckClickUp();
-	CheckClickDown();
-
-	if (m_clickUp)
-		m_fpPlay();
 }
 
 void CClickableComponent::LateUpdate(void)
 {
+	__super::LateUpdate();
+
+	if (m_clickUp)
+		m_fpPlay();
 }
 
 void CClickableComponent::Release(void)

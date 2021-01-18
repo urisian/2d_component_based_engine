@@ -12,6 +12,7 @@
 #include "Debugger.h"
 #include "CollisionManager.h"
 #include "GameInfo.h"
+#include "PhysicsManager.h"
 
 CMainApp::CMainApp()
 {
@@ -46,9 +47,10 @@ void CMainApp::Update(void)
 	DWORD curTime = clock();
 	DWORD prevTime = 0;
 #endif
-
-
 	CObjectManager::GetInstance()->Update();
+	CPhysicsManager::GetInstance()->Update();
+
+	
 #ifdef GENERAL_DEBUG
 	prevTime = curTime;
 	curTime = clock();
@@ -66,7 +68,6 @@ void CMainApp::Update(void)
 	ADD_DEBUG_INFO(DEBUGID::FRAMETIME, "GraphicManager_Render", "Time spent on GraphicsManager_Render is "
 		+ std::to_string(curTime - prevTime) + "\n");
 #endif
-
 
 	CInputManager::GetInstance()->Update();
 #ifdef GENERAL_DEBUG
@@ -102,8 +103,10 @@ void CMainApp::Update(void)
 void CMainApp::LateUpdate(void)
 {
 	CGSM::GetInstance()->LateUpdate();
+	CPhysicsManager::GetInstance()->LateUpdate();
 	CObjectManager::GetInstance()->LateUpdate();
 	CGraphicsManager::GetInstance()->LateUpdate();
+	CCollisionManager::GetInstance()->LateUpdate();
 	CDebugger::GetInstance()->LateUpdate();
 }
 
@@ -125,4 +128,5 @@ void CMainApp::Release(void)
 	CObjectManager::GetInstance()->DestroyInstance();
 	CGraphicsManager::GetInstance()->DestroyInstance();
 	CCollisionManager::GetInstance()->DestroyInstance();
+	CPhysicsManager::GetInstance()->DestroyInstance();
 }
