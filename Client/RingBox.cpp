@@ -10,6 +10,8 @@
 #include "Turret.h"
 #include "ArcherTurret.h"
 #include "MagicTurret.h"
+#include "BombTurret.h"
+#include "BarrackTurret.h"
 
 CRingBox::CRingBox(CTurretRing* pParent, std::string objectKey)
 {
@@ -78,11 +80,11 @@ void CRingBox::Selected(void)
 			if (m_objectKey == "Archer_RingBox")
 				pTurret = new CArcherTurret;
 			else if (m_objectKey == "Barrack_RingBox")
-				pTurret = nullptr;
+				pTurret = new CBarrackTurret;
 			else if (m_objectKey == "Magic_RingBox")
 				pTurret = new CMagicTurret;
 			else if (m_objectKey == "Bomb_RingBox")
-				pTurret = nullptr;
+				pTurret = new CBombTurret;
 
 			pTurret->SetParentPosition(pTurretRingParent->GetPosition());
 			pTurret->AddChildAndComponents();
@@ -94,8 +96,6 @@ void CRingBox::Selected(void)
 		else if (m_objectKey == "Sell_RingBox")
 			pTurretRingParent->SellTurret();
 		else if (m_objectKey == "Rally_RingBox")
-			;
-		else if (m_objectKey == "Repair_RingBox")
 			;
 		else if (pTurretRingParent->GetLevel() == 2)
 		{

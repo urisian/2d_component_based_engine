@@ -100,7 +100,9 @@ void CObject::ReadDataFromStore(void)
 	if (m_stateKey == "")
 		GET_VALUE(m_dataID, m_objectKey, "m_stateKey", m_stateKey);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_position", m_position);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rotation", m_rotation);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_size", m_size);
+	m_basicStateKey = m_stateKey;
+
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_position", m_position);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_rotation", m_rotation);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_size", m_size);
 }

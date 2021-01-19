@@ -27,12 +27,14 @@ protected:
 
 	GETTOR_SETTOR	(CObject*,		m_pTarget,				Target);
 	GETTOR_SETTOR	(int,			m_level,				Level);
+	GETTOR_SETTOR	(bool,			m_attackNow,			AttackNow);
 
 	GETTOR			(int,			m_numOfSkill,			NumOfSkill);
 	GETTOR			(float,			m_attackRange,			AttackRange);
 
 	GETTOR			(float,			m_attackTimer,			AttackTimer);
-	GETTOR			(float,			m_attackSpeed,			AttackSpeed);
+	GETTOR			(float,			m_attackCooltime,		AttackCooltime);
+	GETTOR			(int,			m_attackFrameNum,		AttackFrameNum);
 	
 	GETTOR			(float,			m_dmg,					Dmg);
 	GETTOR			(float,			m_magicDmg,				MagicDmg);
@@ -44,3 +46,5 @@ protected:
 };
 
 #endif
+
+

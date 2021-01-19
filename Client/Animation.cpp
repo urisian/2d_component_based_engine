@@ -11,6 +11,7 @@ CAnimation::CAnimation(CGraphicsComponent* pOwner)
 	m_status	= ANIMATION::STATUS::PLAY;
 
 	m_aniSecPerFrame	= 0.f;
+	m_lastFrameIndex	= 0;
 	m_curIndex			= 0.f;
 	m_maxIndex			= 0;
 
@@ -45,6 +46,7 @@ void CAnimation::LateUpdate(void)
 		m_curIndex = 0;
 	else if (m_status == ANIMATION::STATUS::PLAY)
 	{
+		m_lastFrameIndex = (int)m_curIndex;
 		m_curIndex += m_aniSecPerFrame * GET_DT();
 		if (m_curIndex >= m_maxIndex)
 		{
@@ -56,8 +58,9 @@ void CAnimation::LateUpdate(void)
 				m_curIndex = (float)m_maxIndex - 1;
 			}
 		}
-
 	}
+	else if (m_status == ANIMATION::STATUS::PAUSE)
+		return;
 }
 
 void CAnimation::Release(void)

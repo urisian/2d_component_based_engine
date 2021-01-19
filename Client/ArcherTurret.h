@@ -21,8 +21,6 @@ public:
 					void				AddChildAndComponents		(void);
 					void				InitializeComponents		(void);
 
-					CArcherUnit**		GetArchers					(void);
-
 	GETTOR			(int,				m_shootTurn,				ShootTurn);;
 private:
 					CArcherUnit*		m_pArchers[2];

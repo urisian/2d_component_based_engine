@@ -2,6 +2,7 @@
 #include "MagicTurret.h"
 #include "MagicianUnit.h"
 #include "FRC.h"
+#include "DataStore.h"
 
 CMagicTurret::CMagicTurret()
 {
@@ -12,11 +13,13 @@ CMagicTurret::CMagicTurret()
 
 CMagicTurret::~CMagicTurret()
 {
+	Release();
 }
 
 void CMagicTurret::Initialize(void)
 {
 	__super::Initialize();
+	m_attackTimer = m_attackCooltime;
 }
 
 void CMagicTurret::Update(void)
@@ -24,7 +27,16 @@ void CMagicTurret::Update(void)
 	__super::Update();
 	
 	m_pMagician->SetTarget(m_pTarget);
-	m_pMagician->GetAttackTimer() += GET_DT();
+	if (m_pTarget != nullptr)
+	{
+		if (m_attackTimer >= m_attackCooltime)
+		{
+			m_pMagician->SetAttackNow(true);
+			m_attackTimer = 0.f;
+		}
+	}
+	
+	m_attackTimer += GET_DT();
 }
 
 void CMagicTurret::LateUpdate(void)
@@ -40,7 +52,6 @@ void CMagicTurret::Release(void)
 void CMagicTurret::UpgradeTurret(int increase)
 {
 	__super::UpgradeTurret(increase);
-	m_pMagician->UpgradeUnit(increase);
 }
 
 void CMagicTurret::AddChildAndComponents(void)

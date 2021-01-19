@@ -85,5 +85,5 @@ void CGraphicsComponent::StateChangeInit(void)
 	else if (m_pAnimation == nullptr)
 		return;
 
-	m_pAnimation->Initialize();
+	m_pAnimation->StateChangeInit();
 }

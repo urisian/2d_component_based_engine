@@ -24,7 +24,7 @@ CArcherTurret::~CArcherTurret()
 void CArcherTurret::Initialize(void)
 {
 	__super::Initialize();
-
+	m_attackTimer = m_attackCooltime;
 }
 
 void CArcherTurret::Update(void)
@@ -35,8 +35,16 @@ void CArcherTurret::Update(void)
 	m_pArchers[0]->SetTarget(m_pTarget);
 	m_pArchers[1]->SetTarget(m_pTarget);
 
+	if (m_pTarget != nullptr)
+	{
+		if (m_attackTimer >= m_attackCooltime)
+		{
+			m_pArchers[m_shootTurn % 2]->SetAttackNow(true);
+			m_attackTimer = 0.f;
+		}
+	}
 
-	m_pArchers[m_shootTurn % 2]->GetAttackTimer() += GET_DT();
+	m_attackTimer += GET_DT();
 }
 
 void CArcherTurret::LateUpdate(void)
@@ -73,10 +81,4 @@ void CArcherTurret::AddChildAndComponents(void)
 void CArcherTurret::InitializeComponents(void)
 {
 }
-
-CArcherUnit ** CArcherTurret::GetArchers(void)
-{
-	return m_pArchers;
-}
-
 

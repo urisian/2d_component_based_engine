@@ -30,6 +30,7 @@ protected:
 
 	GETTOR_SETTOR	(std::string,			m_objectKey,				ObjectKey);
 	GETTOR_SETTOR	(std::string,			m_stateKey,					StateKey);
+	GETTOR_SETTOR	(std::string,			m_basicStateKey,			BasicStateKey);
 
 	GETTOR_SETTOR	(bool,					m_activated,				Activated);
 	GETTOR_SETTOR	(bool,					m_needToBeDeleted,			NeedToBeDeleted);

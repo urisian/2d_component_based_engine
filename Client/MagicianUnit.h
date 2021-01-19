@@ -2,7 +2,7 @@
 #define MAGICIANUNIT_H
 
 #include "Unit.h"
-class CMagicianUnit : public CUnit
+class CMagicianUnit final : public CUnit
 {
 public:
 	explicit						CMagicianUnit			(CObject* pMagicTurret);

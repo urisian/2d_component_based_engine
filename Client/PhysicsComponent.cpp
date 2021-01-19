@@ -23,7 +23,7 @@ CPhysicsComponent::~CPhysicsComponent()
 void CPhysicsComponent::Initialize(void)
 {
 	m_position = m_pOwner->GetPosition();
-	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetStateKey() + "_m_speed", m_speed);
+	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetBasicStateKey() + "_m_speed", m_speed);
 
 	CPhysicsManager::GetInstance()->AddPhysicsComponent(this);
 }
@@ -35,6 +35,7 @@ void CPhysicsComponent::Update(void)
 
 void CPhysicsComponent::LateUpdate(void)
 {
+	
 	__super::LateUpdate();
 }
 
@@ -45,7 +46,9 @@ void CPhysicsComponent::Release(void)
 void CPhysicsComponent::SetFromVelocity(void)
 {
 	m_speed = D3DXVec3Length(&m_velocity);
-	m_direction = m_velocity / m_speed;
+
+	if(m_speed != 0)
+		m_direction = m_velocity / m_speed;
 }
 
 void CPhysicsComponent::StateChangeInit(void)

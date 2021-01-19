@@ -21,9 +21,8 @@ public:
 					void				AddChildAndComponents		(void);
 					void				InitializeComponents		(void);
 
+					
 	GETTOR			(CMagicianUnit*,	m_pMagician,				Magician);
-
-
 };
 
 #endif

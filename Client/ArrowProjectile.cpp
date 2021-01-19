@@ -9,16 +9,17 @@
 #include "CollisionComponent.h"
 #include "CollisionHelper.h"
 #include "KillOwnerEffectComponent.h"
+#include "Animation.h"
 
 CArrowProjectile::CArrowProjectile(CObject* pShooter) : CProjectile(pShooter)
 {
-	m_pShooter = pShooter;
 	Initialize();
 }
 
 
 CArrowProjectile::~CArrowProjectile()
 {
+	Release();
 }
 
 void CArrowProjectile::Initialize(void)
@@ -30,9 +31,7 @@ void CArrowProjectile::Initialize(void)
 	m_pTarget	= pShooter->GetTarget();
 	m_dmg		= pShooter->GetDmg();
 	m_magicDmg	= pShooter->GetMagicDmg();
-
-	
-	m_position = pShooter->GetFinalPos();
+	m_position	= pShooter->GetFinalPos();
 
 	if (pShooter->GetLevel() == 4)
 	{
@@ -94,18 +93,18 @@ void CArrowProjectile::AddChildAndComponents(void)
 void CArrowProjectile::InitializeComponents(void)
 {
 	CArcherUnit* pShooter = static_cast<CArcherUnit*>(m_pShooter);
-
-	float duration = static_cast<CArcherTurret*>(pShooter->GetParent())->GetAttackSpeed();
+	CGraphicsComponent* pShooterGC = pShooter->GetComponent<CGraphicsComponent>();
+	float duration = pShooter->GetAttackFrameNum() / pShooterGC->GetAnimation()->GetAniSecPerFrame();//static_cast<CArcherTurret*>(pShooter->GetParent())->GetAttackCooltime();
 	D3DXVECTOR3 targetPos = m_pTarget->GetFinalPos() + m_pTarget->GetDirection() * m_pTarget->GetComponent<CPhysicsComponent>()->GetSpeed() * duration;
 
 
 	CPhysicsComponent* pPC = GetComponent<CPhysicsComponent>();
 
-	if (static_cast<CArcherUnit*>(m_pShooter)->GetLevel() < 4)
+	if (pShooter->GetLevel() < 4)
 	{
-		pPC->SetVelocity(D3DXVECTOR3((targetPos.x - GetPosition().x) / duration, ((targetPos.y - m_position.y) + 800.f * duration * duration) / duration, 0));
-		pPC->SetFromVelocity();
 		pPC->SetAccel(D3DXVECTOR3(0, -1600, 0));
+		pPC->SetVelocity((targetPos - GetPosition()) / duration - 0.5f * pPC->GetAccel() * duration);
+		pPC->SetFromVelocity();
 	}
 	else
 	{

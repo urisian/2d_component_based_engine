@@ -7,7 +7,7 @@
 class CProjectile abstract : public CObject
 {
 public:
-	explicit							CProjectile				(CObject* pTurret);
+	explicit							CProjectile				(CObject* pShooter);
 	virtual							   ~CProjectile				(void);
 
 	virtual			void				Initialize				(void);
@@ -21,6 +21,7 @@ public:
 protected:
 	virtual			void				HitTarget				(void);
 	virtual			void				AfterHit				(void);
+	virtual			void				GiveDamage				(void);
 
 	GETTOR_SETTOR	(CObject*,			m_pTarget,				Target);
 

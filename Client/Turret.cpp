@@ -15,6 +15,7 @@
 
 CTurret::CTurret()
 {
+	m_pTarget = nullptr;
 }
 
 
@@ -28,8 +29,6 @@ void CTurret::Initialize(void)
 	//ID 할당
 	m_objID = OBJID::TURRET;
 	m_dataID = DATAID::TURRET;
-
-	m_pTarget = nullptr;
 
 	//Object에서 매니저에 등록, objectKey+stateKey 할당, 위치 크기 회전 초기화.
 	__super::Initialize();
@@ -91,27 +90,30 @@ void CTurret::UpgradeTurret(int increase)
 	CTurret::Release();
 
 	m_level += increase;
-	m_stateKey = "Lv" + std::to_string(m_level) +"_Idle";
+	m_stateKey.replace(2, 1, std::to_string(m_level));
+	m_basicStateKey.replace(2, 1, std::to_string(m_level));
+	
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_position", m_position);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rotation", m_rotation);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_size", m_size);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_position", m_position);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_rotation", m_rotation);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_size", m_size);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfSkill", m_numOfSkill);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfRingBox", m_numOfRingBox);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_numOfSkill", m_numOfSkill);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_numOfRingBox", m_numOfRingBox);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_sellable", m_sellable);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_sellPrice", m_sellPrice);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_sellable", m_sellable);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_sellPrice", m_sellPrice);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rallyable", m_rallyable);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rallyRange", m_rallyRange);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_rallyable", m_rallyable);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_rallyRange", m_rallyRange);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackRange", m_attackRange);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackSpeed", m_attackSpeed);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_attackRange", m_attackRange);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_attackCooltime", m_attackCooltime);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_dmg", m_dmg);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_magicDmg", m_magicDmg);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_dmg", m_dmg);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_magicDmg", m_magicDmg);
 
+	m_attackTimer = 0;
 
 	MakeRingBoxInfo();
 
@@ -150,22 +152,22 @@ void CTurret::AddChildAndComponents(void)
 void CTurret::ReadDataFromStore(void)
 {
 	//iniFile에서 정보 불러오기.
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_level", m_level);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_level", m_level);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfSkill", m_numOfSkill);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfRingBox", m_numOfRingBox);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_numOfSkill", m_numOfSkill);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_numOfRingBox", m_numOfRingBox);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_sellable", m_sellable);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_sellPrice", m_sellPrice);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_sellable", m_sellable);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_sellPrice", m_sellPrice);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rallyable", m_rallyable);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_rallyRange", m_rallyRange);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_rallyable", m_rallyable);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_rallyRange", m_rallyRange);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackRange", m_attackRange);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackSpeed", m_attackSpeed);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_attackRange", m_attackRange);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_attackCooltime", m_attackCooltime);
 
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_dmg", m_dmg);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_magicDmg", m_magicDmg);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_dmg", m_dmg);
+	GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_m_magicDmg", m_magicDmg);
 }
 
 void CTurret::MakeRingBoxInfo(void)
@@ -175,9 +177,9 @@ void CTurret::MakeRingBoxInfo(void)
 	{
 		RingBoxInfo* pNewRingBoxInfo = new RingBoxInfo;
 
-		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_name", pNewRingBoxInfo->name);
-		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_price", pNewRingBoxInfo->price);
-		GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_ringBox" + std::to_string(i) + "_angle", pNewRingBoxInfo->angle);
+		GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_ringBox" + std::to_string(i) + "_name", pNewRingBoxInfo->name);
+		GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_ringBox" + std::to_string(i) + "_price", pNewRingBoxInfo->price);
+		GET_VALUE(m_dataID, m_objectKey, m_basicStateKey + "_ringBox" + std::to_string(i) + "_angle", pNewRingBoxInfo->angle);
 
 		m_vRingBoxInfo.push_back(pNewRingBoxInfo);
 	}
@@ -205,6 +207,20 @@ void CTurret::Selected(void)
 
 void CTurret::FindTarget(void)
 {
+	if (m_pTarget != nullptr)
+	{
+		if (m_pTarget->GetStateKey() != "Die")
+		{
+			if (!CollisionHelper::PointEclipseCollision(m_pTarget->GetPosition(),
+														m_position + m_parentPosition,
+														m_pRangeCircle->GetSize()))
+				m_pTarget = nullptr;
+		}
+		else
+			m_pTarget = nullptr;
+	}
+
+
 	if (m_pTarget == nullptr && m_attackRange > 0)
 	{
 		for (auto& monsterCC : CCollisionManager::GetInstance()->GetCollisionVector(OBJID::MONSTER))
@@ -223,15 +239,7 @@ void CTurret::FindTarget(void)
 			}
 		}
 	}
-	else if (m_pTarget != nullptr && m_pTarget->GetStateKey() != "Die")
-	{
-		if (!CollisionHelper::PointEclipseCollision(m_pTarget->GetPosition(), 
-													m_position + m_parentPosition, 
-													m_pRangeCircle->GetSize()))
-			m_pTarget = nullptr;
-	}
-	else
-		m_pTarget = nullptr;
+
 
 	if (m_pTarget == nullptr && m_pRangeCircle->GetStateKey() != "Green")
 	{

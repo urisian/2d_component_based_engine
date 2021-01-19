@@ -154,7 +154,10 @@
     <ClInclude Include="ArcherTurret.h" />
     <ClInclude Include="ArcherUnit.h" />
     <ClInclude Include="ArrowProjectile.h" />
+    <ClInclude Include="BarrackTurret.h" />
     <ClInclude Include="BaseTurret.h" />
+    <ClInclude Include="BombProjectile.h" />
+    <ClInclude Include="BombTurret.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="CollisionHelper.h" />
@@ -217,7 +220,10 @@
     <ClCompile Include="ArcherTurret.cpp" />
     <ClCompile Include="ArcherUnit.cpp" />
     <ClCompile Include="ArrowProjectile.cpp" />
+    <ClCompile Include="BarrackTurret.cpp" />
     <ClCompile Include="BaseTurret.cpp" />
+    <ClCompile Include="BombProjectile.cpp" />
+    <ClCompile Include="BombTurret.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClickableComponent.cpp" />
     <ClCompile Include="Client.cpp" />

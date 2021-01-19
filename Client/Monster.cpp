@@ -70,7 +70,7 @@ void CMonster::ReadDataFromStore(void)
 {
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_numOfSkill", m_numOfSkill);
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackRange", m_attackRange);
-	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackSpeed", m_attackSpeed);
+	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_attackCooltime", m_attackCooltime);
 
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_dmg", m_dmg);
 	GET_VALUE(m_dataID, m_objectKey, m_stateKey + "_m_magicDmg", m_magicDmg);

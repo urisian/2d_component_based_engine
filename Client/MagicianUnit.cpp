@@ -4,6 +4,7 @@
 #include "GraphicsComponent.h"
 #include "MagicBallProjectile.h"
 #include "DataStore.h"
+#include "Animation.h"
 
 CMagicianUnit::CMagicianUnit(CObject* pMagicTurret)
 {
@@ -36,27 +37,37 @@ void CMagicianUnit::Update(void)
 	}
 	else
 	{
-		D3DXVECTOR3 attackDir = m_pTarget->GetFinalPos() - (m_position + m_parentPosition);
+		D3DXVECTOR3 attackDir = m_pTarget->GetFinalPos() - m_pParent->GetFinalPos();
 
 		if (attackDir.x < 0)
 			pGC->SetXFlip(true);
 		else
 			pGC->SetXFlip(false);
 
-		if (attackDir.y < 0)
-			m_stateKey = "Lv" + std::to_string(m_level) + "_FrontAttack";
+		if (m_attackNow)
+		{
+			if (attackDir.y < 0)
+				m_stateKey = "Lv" + std::to_string(m_level) + "_FrontAttack";
+			else
+				m_stateKey = "Lv" + std::to_string(m_level) + "_BackAttack";
+		}
 		else
-			m_stateKey = "Lv" + std::to_string(m_level) + "_BackAttack";
-
-		if (m_pTarget->GetStateKey() == "Die")
-			m_pTarget = nullptr;
+		{
+			if (attackDir.y < 0)
+				m_stateKey = "Lv" + std::to_string(m_level) + "_Front";
+			else
+				m_stateKey = "Lv" + std::to_string(m_level) + "_Back";
+		}
 	}
 
 	if (saveKey != m_stateKey)
 		StateChangeInit();
 
-	if (m_pTarget != nullptr)
-		Shoot();
+	if (m_attackNow && (int)pGC->GetAnimation()->GetCurIndex() == m_attackFrameNum)
+	{
+		if ((int)pGC->GetAnimation()->GetCurIndex() != pGC->GetAnimation()->GetLastFrameIndex())
+			Shoot();
+	}
 }
 
 void CMagicianUnit::LateUpdate(void)
@@ -70,9 +81,6 @@ void CMagicianUnit::Release(void)
 
 void CMagicianUnit::UpgradeUnit(int increase)
 {
-	m_level += increase;
-	m_stateKey = "Lv" + std::to_string(m_level) + "_Front";
-
 	__super::UpgradeUnit(increase);
 }
 
@@ -92,13 +100,11 @@ void CMagicianUnit::StateChangeInit(void)
 
 void CMagicianUnit::Shoot(void)
 {
-	if (m_attackTimer >= m_attackSpeed)
-	{
-		CMagicBallProjectile* pMBP = new CMagicBallProjectile(this);
-		pMBP->AddChildAndComponents();
+	CMagicBallProjectile* pMBP = new CMagicBallProjectile(this);
+	pMBP->AddChildAndComponents();
 
-		m_attackTimer = 0.f;
-		
-		//레벨4일때?
-	}
+	m_attackNow = false;
+
+	//레벨4일때?
+
 }

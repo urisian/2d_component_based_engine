@@ -148,9 +148,6 @@
     <Filter Include="01.Component\GraphicComponent\Animation">
       <UniqueIdentifier>{35163473-f11f-4d1f-b83f-e0886aeb2422}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Object\06.Projectile\Arrow">
-      <UniqueIdentifier>{93bfa2c2-93f3-42d3-81e5-96cc7163bf5b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="12.Sound">
       <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
     </Filter>
@@ -187,8 +184,14 @@
     <Filter Include="03.Object\04.Unit\02.SoldierUnit">
       <UniqueIdentifier>{809dd6ae-ae81-49ab-bdbe-873b0187d7a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Object\06.Projectile\MagicBall">
+    <Filter Include="03.Object\06.Projectile\02.BombProjectile">
+      <UniqueIdentifier>{d4343b53-83a0-4bc1-837c-c1eee7898ff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\06.Projectile\01.MagicBallProjectile">
       <UniqueIdentifier>{afcc3b7c-e390-452a-b719-e938ec8446d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\06.Projectile\00.ArrowProjectile">
+      <UniqueIdentifier>{93bfa2c2-93f3-42d3-81e5-96cc7163bf5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -340,7 +343,7 @@
       <Filter>03.Object\06.Projectile</Filter>
     </ClInclude>
     <ClInclude Include="ArrowProjectile.h">
-      <Filter>03.Object\06.Projectile\Arrow</Filter>
+      <Filter>03.Object\06.Projectile\00.ArrowProjectile</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
       <Filter>11.Physics\Manager</Filter>
@@ -367,7 +370,16 @@
       <Filter>03.Object\04.Unit\02.SoldierUnit</Filter>
     </ClInclude>
     <ClInclude Include="MagicBallProjectile.h">
-      <Filter>03.Object\06.Projectile\MagicBall</Filter>
+      <Filter>03.Object\06.Projectile\01.MagicBallProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BombTurret.h">
+      <Filter>03.Object\03.Turret\04.BombTurret</Filter>
+    </ClInclude>
+    <ClInclude Include="BombProjectile.h">
+      <Filter>03.Object\06.Projectile\02.BombProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="BarrackTurret.h">
+      <Filter>03.Object\03.Turret\02.BarrackTurret</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -495,7 +507,7 @@
       <Filter>03.Object\06.Projectile</Filter>
     </ClCompile>
     <ClCompile Include="ArrowProjectile.cpp">
-      <Filter>03.Object\06.Projectile\Arrow</Filter>
+      <Filter>03.Object\06.Projectile\00.ArrowProjectile</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>11.Physics\Manager</Filter>
@@ -522,7 +534,16 @@
       <Filter>03.Object\04.Unit\02.SoldierUnit</Filter>
     </ClCompile>
     <ClCompile Include="MagicBallProjectile.cpp">
-      <Filter>03.Object\06.Projectile\MagicBall</Filter>
+      <Filter>03.Object\06.Projectile\01.MagicBallProjectile</Filter>
+    </ClCompile>
+    <ClCompile Include="BombTurret.cpp">
+      <Filter>03.Object\03.Turret\04.BombTurret</Filter>
+    </ClCompile>
+    <ClCompile Include="BombProjectile.cpp">
+      <Filter>03.Object\06.Projectile\02.BombProjectile</Filter>
+    </ClCompile>
+    <ClCompile Include="BarrackTurret.cpp">
+      <Filter>03.Object\03.Turret\02.BarrackTurret</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

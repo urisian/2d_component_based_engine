@@ -49,7 +49,7 @@ protected:
 
 	GETTOR_SETTOR	(float,				m_attackTimer,				AttackTimer);
 	GETTOR			(float,				m_attackRange,				AttackRange);
-	GETTOR			(float,				m_attackSpeed,				AttackSpeed);
+	GETTOR			(float,				m_attackCooltime,			AttackCooltime);
 	
 	GETTOR			(float,				m_dmg,						Dmg);
 	GETTOR			(float,				m_magicDmg,					MagicDmg);

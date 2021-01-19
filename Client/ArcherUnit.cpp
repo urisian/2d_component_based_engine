@@ -5,6 +5,7 @@
 #include "GraphicsComponent.h"
 #include "Effect.h"
 #include "DataStore.h"
+#include "Animation.h"
 
 CArcherUnit::CArcherUnit(CObject* pArcherTurret)
 {
@@ -38,19 +39,20 @@ void CArcherUnit::Update(void)
 	}
 	else
 	{
-		D3DXVECTOR3 attackDir = m_pTarget->GetFinalPos() - (m_position + m_parentPosition);
+		D3DXVECTOR3 attackDir = m_pTarget->GetFinalPos() - m_pParent->GetFinalPos();
 
 		if (attackDir.x < 0)
 			pGC->SetXFlip(true);
 		else
 			pGC->SetXFlip(false);
 
-		if (pAT->GetArchers()[pAT->GetShootTurn() % 2] == this)
+		if (m_attackNow)
 		{
 			if (attackDir.y < 0)
 				m_stateKey = "Lv" + std::to_string(m_level) + "_RightAttack";
 			else
 				m_stateKey = "Lv" + std::to_string(m_level) + "_BackRightAttack";
+				
 		}
 		else
 		{
@@ -60,15 +62,18 @@ void CArcherUnit::Update(void)
 				m_stateKey = "Lv" + std::to_string(m_level) + "_Back";
 		}
 
-		if (m_pTarget->GetStateKey() == "Die")
-			m_pTarget = nullptr;
+		//if (m_pTarget->GetStateKey() == "Die")
+		//	m_pTarget = nullptr;
 	}
 
 	if(saveKey != m_stateKey)
 		StateChangeInit();
 
-	if(m_pTarget != nullptr)
-		Shoot();
+	if (m_attackNow && (int)pGC->GetAnimation()->GetCurIndex() == m_attackFrameNum)
+	{
+		if((int)pGC->GetAnimation()->GetCurIndex() != pGC->GetAnimation()->GetLastFrameIndex())
+			Shoot();
+	}
 }
 
 void CArcherUnit::LateUpdate(void)
@@ -82,9 +87,6 @@ void CArcherUnit::Release(void)
 
 void CArcherUnit::UpgradeUnit(int increase)
 {
-	m_level += increase;
-	m_stateKey = "Lv" + std::to_string(m_level) + "_Right";
-
 	__super::UpgradeUnit(increase);
 }
 
@@ -104,25 +106,21 @@ void CArcherUnit::StateChangeInit(void)
 
 void CArcherUnit::Shoot(void)
 {
-	if (m_attackTimer >= m_attackSpeed)
+	CArrowProjectile* pAP = new CArrowProjectile(this);
+	pAP->AddChildAndComponents();
+	static_cast<CArcherTurret*>(m_pParent)->GetShootTurn() += 1;
+	m_attackNow = false;
+
+	if (m_level == 4)
 	{
-		CArrowProjectile* pAP = new CArrowProjectile(this);
-		pAP->AddChildAndComponents();
+		CEffect* pEffect = new CEffect("Fire", "Idle", this, 0, false);
+		pEffect->AddChildAndComponents();
 
-		static_cast<CArcherTurret*>(m_pParent)->GetShootTurn() += 1;
+		D3DXVECTOR3 direction = m_pTarget->GetFinalPos() - GetFinalPos();
 
-		m_attackTimer = 0.f;
-		if (m_level == 4)
-		{
-			CEffect* pEffect = new CEffect("Fire", "Idle", this, 0, false);
-			pEffect->AddChildAndComponents();
-
-			D3DXVECTOR3 direction = m_pTarget->GetFinalPos() - GetFinalPos();
-
-			D3DXVec3Normalize(&direction, &direction);
-			pEffect->SetRotation(GetAngleFromDir(direction));
-			pEffect->SetPosition(pEffect->GetPosition() + direction * 30);
-		}
+		D3DXVec3Normalize(&direction, &direction);
+		pEffect->SetRotation(GetAngleFromDir(direction));
+		pEffect->SetPosition(pEffect->GetPosition() + direction * 30);
 	}
 }
 
