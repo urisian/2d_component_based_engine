@@ -5,6 +5,8 @@
 #include "FRC.h"
 #include "Monster.h"
 #include "OakMonster.h"
+#include "DogMonster.h"
+#include "OrgeMonster.h"
 #include "PhysicsComponent.h"
 
 CWave::CWave(CStage* pStage, int id)
@@ -95,6 +97,9 @@ CMonster * CWave::GetMonsterByString(std::string monsterType)
 	CMonster* pMonster = nullptr;
 	if (monsterType == "OakMonster")
 		pMonster = new COakMonster;
-
+	else if (monsterType == "DogMonster")
+		pMonster = new CDogMonster;
+	else if (monsterType == "OrgeMonster")
+		pMonster = new COrgeMonster;
 	return pMonster;
 }

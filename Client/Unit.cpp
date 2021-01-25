@@ -72,7 +72,6 @@ void CUnit::AddChildAndComponents(void)
 
 void CUnit::StateChangeInit(void)
 {
-	
 	__super::StateChangeInit();
 }
 

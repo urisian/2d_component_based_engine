@@ -149,6 +149,8 @@ void CTurret::AddChildAndComponents(void)
 	AddComponent<CClickableComponent>()->SetPlayFunc(std::bind(&CTurret::Selected, this));
 }
 
+
+
 void CTurret::ReadDataFromStore(void)
 {
 	//iniFile에서 정보 불러오기.
@@ -207,21 +209,9 @@ void CTurret::Selected(void)
 
 void CTurret::FindTarget(void)
 {
-	if (m_pTarget != nullptr)
-	{
-		if (m_pTarget->GetStateKey() != "Die")
-		{
-			if (!CollisionHelper::PointEclipseCollision(m_pTarget->GetPosition(),
-														m_position + m_parentPosition,
-														m_pRangeCircle->GetSize()))
-				m_pTarget = nullptr;
-		}
-		else
-			m_pTarget = nullptr;
-	}
+	m_pTarget = nullptr;
 
-
-	if (m_pTarget == nullptr && m_attackRange > 0)
+	if (m_attackRange > 0)
 	{
 		for (auto& monsterCC : CCollisionManager::GetInstance()->GetCollisionVector(OBJID::MONSTER))
 		{

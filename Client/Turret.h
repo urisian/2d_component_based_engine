@@ -45,7 +45,7 @@ protected:
 	GETTOR			(int,				m_sellPrice,				SellPrice);
 
 	GETTOR			(bool,				m_rallyable,				Rallyable);	
-	GETTOR			(bool,				m_rallyRange,				RallyRange);
+	GETTOR			(float,				m_rallyRange,				RallyRange);
 
 	GETTOR_SETTOR	(float,				m_attackTimer,				AttackTimer);
 	GETTOR			(float,				m_attackRange,				AttackRange);

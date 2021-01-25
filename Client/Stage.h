@@ -22,6 +22,7 @@ protected:
 					void					SetupRoutes			(void);
 					void					SetupWaves			(void);
 
+	GETTOR			(int,					m_curWaveNum,		CurWaveNum);
 	GETTOR			(float,					m_playTime,			PlayTime);
 
 	GETTOR (std::vector<CWave*>,			m_vWave,			Wave);

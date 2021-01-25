@@ -52,6 +52,13 @@ void CMagicBallProjectile::Initialize(void)
 void CMagicBallProjectile::Update(void)
 {
 	__super::Update();
+	
+
+}
+
+void CMagicBallProjectile::LateUpdate(void)
+{
+	__super::LateUpdate();
 	CPhysicsComponent* pPC = GetComponent<CPhysicsComponent>();
 	CMagicianUnit* pShooter = static_cast<CMagicianUnit*>(m_pShooter);
 
@@ -66,11 +73,13 @@ void CMagicBallProjectile::Update(void)
 		{
 			HitTarget();
 
-
-			D3DXVECTOR3 dir = m_pTarget->GetPosition() - GetFinalPos();
-			D3DXVec3Normalize(&dir, &dir);
-			pPC->SetDirection(dir);
-			pPC->SetSpeed(pPC->GetSpeed() + 100 * GET_DT());
+			if (m_pTarget != nullptr)
+			{
+				D3DXVECTOR3 dir = m_pTarget->GetPosition() - GetFinalPos();
+				D3DXVec3Normalize(&dir, &dir);
+				pPC->SetDirection(dir);
+				pPC->SetSpeed(pPC->GetSpeed() + 100 * GET_DT());
+			}
 		}
 	}
 	else
@@ -91,12 +100,6 @@ void CMagicBallProjectile::Update(void)
 		if (m_pTarget == nullptr || m_stateKey == "Idle")
 			m_needToBeDeleted = true;
 	}
-
-}
-
-void CMagicBallProjectile::LateUpdate(void)
-{
-	__super::LateUpdate();
 }
 
 void CMagicBallProjectile::Release(void)

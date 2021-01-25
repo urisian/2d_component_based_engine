@@ -21,6 +21,7 @@ CGraphicsComponent::CGraphicsComponent(CObject* pOwner) : CComponent(pOwner)
 
 	m_pAnimation	= nullptr;
 	m_pCTexture		= nullptr;
+	m_isOrtho		= false;
 }
 
 
@@ -34,6 +35,7 @@ void CGraphicsComponent::Initialize(void)
 	__super::Initialize();
 	//ZOrder세팅
 	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_zOrder", m_zOrder);
+	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), "m_isOrtho", m_isOrtho);
 	//텍스쳐 세팅
 	m_pCTexture = GET_TEXTURE(m_pOwner->GetObjID(), m_pOwner->GetObjectKey());
 

@@ -168,11 +168,15 @@
     <ClInclude Include="DataStore.h" />
     <ClInclude Include="Debugger.h" />
     <ClInclude Include="Decoration.h" />
+    <ClInclude Include="DogMonster.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectComponent.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="FadeOutEffectComponent.h" />
+    <ClInclude Include="FireRain.h" />
+    <ClInclude Include="FireRainProjectile.h" />
+    <ClInclude Include="FontManager.h" />
     <ClInclude Include="FRC.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameState.h" />
@@ -195,9 +199,12 @@
     <ClInclude Include="MyMacros.h" />
     <ClInclude Include="MyStructures.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="OrgeMonster.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Reinforce.h" />
+    <ClInclude Include="ReinforceUnit.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RingBox.h" />
     <ClInclude Include="SoldierUnit.h" />
@@ -234,11 +241,15 @@
     <ClCompile Include="DataStore.cpp" />
     <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="Decoration.cpp" />
+    <ClCompile Include="DogMonster.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectComponent.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="FadeOutEffectComponent.cpp" />
+    <ClCompile Include="FireRain.cpp" />
+    <ClCompile Include="FireRainProjectile.cpp" />
+    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="FRC.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -256,9 +267,12 @@
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="OrgeMonster.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Reinforce.cpp" />
+    <ClCompile Include="ReinforceUnit.cpp" />
     <ClCompile Include="RingBox.cpp" />
     <ClCompile Include="SoldierUnit.cpp" />
     <ClCompile Include="Stage.cpp" />

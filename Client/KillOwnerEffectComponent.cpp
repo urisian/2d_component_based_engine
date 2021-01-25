@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "KillOwnerEffectComponent.h"
 #include "DataStore.h"
-
+#include "FRC.h"
 CKillOwnerEffectComponent::CKillOwnerEffectComponent(CObject* pOwner) : CEffectComponent(pOwner)
 {
 }
@@ -22,6 +22,7 @@ void CKillOwnerEffectComponent::Initialize(void)
 void CKillOwnerEffectComponent::Update(void)
 {
 	__super::Update();
+	m_timer += GET_DT();
 }
 
 void CKillOwnerEffectComponent::LateUpdate(void)

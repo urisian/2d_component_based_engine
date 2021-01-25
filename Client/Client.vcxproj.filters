@@ -148,9 +148,6 @@
     <Filter Include="01.Component\GraphicComponent\Animation">
       <UniqueIdentifier>{35163473-f11f-4d1f-b83f-e0886aeb2422}</UniqueIdentifier>
     </Filter>
-    <Filter Include="12.Sound">
-      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="11.Physics">
       <UniqueIdentifier>{bc4e9714-69fa-4c3a-982f-04975efbc97e}</UniqueIdentifier>
     </Filter>
@@ -192,6 +189,30 @@
     </Filter>
     <Filter Include="03.Object\06.Projectile\00.ArrowProjectile">
       <UniqueIdentifier>{93bfa2c2-93f3-42d3-81e5-96cc7163bf5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="13.Sound">
+      <UniqueIdentifier>{3257ed61-a8f6-4b7c-8ead-24c355392e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12.Font">
+      <UniqueIdentifier>{b0ce2949-e8b8-40c1-a73d-d25edc3b4a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\05.UserInterface\Reinforce">
+      <UniqueIdentifier>{9c222043-5121-4ed9-b2ba-b7a1dc513d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\05.UserInterface\FireRain">
+      <UniqueIdentifier>{f6fa241a-7aa6-43c3-981f-0e94bdfc79e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\06.Projectile\03.FireRainProjectile">
+      <UniqueIdentifier>{86151ad0-1a6e-44b0-82a7-6cc16ea8a913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\04.Unit\03.ReinforceUnit">
+      <UniqueIdentifier>{be50fc1e-40b6-4e22-96f7-ae410be3e52b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\07.Monster\Dog">
+      <UniqueIdentifier>{4dc977cd-2541-4cfa-80f1-c0a5b58b21ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Object\07.Monster\Orge">
+      <UniqueIdentifier>{7a6f8e19-3d5a-45e7-aab6-3d645b183bae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -381,6 +402,25 @@
     <ClInclude Include="BarrackTurret.h">
       <Filter>03.Object\03.Turret\02.BarrackTurret</Filter>
     </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>12.Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Reinforce.h">
+      <Filter>03.Object\05.UserInterface\Reinforce</Filter>
+    </ClInclude>
+    <ClInclude Include="FireRain.h">
+      <Filter>03.Object\05.UserInterface\FireRain</Filter>
+    </ClInclude>
+    <ClInclude Include="FireRainProjectile.h">
+      <Filter>03.Object\06.Projectile\03.FireRainProjectile</Filter>
+    </ClInclude>
+    <ClInclude Include="ReinforceUnit.h">
+      <Filter>03.Object\04.Unit\03.ReinforceUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="DogMonster.h">
+      <Filter>03.Object\07.Monster\Dog</Filter>
+    </ClInclude>
+    <ClInclude Include="OrgeMonster.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -545,6 +585,25 @@
     <ClCompile Include="BarrackTurret.cpp">
       <Filter>03.Object\03.Turret\02.BarrackTurret</Filter>
     </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>12.Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Reinforce.cpp">
+      <Filter>03.Object\05.UserInterface\Reinforce</Filter>
+    </ClCompile>
+    <ClCompile Include="FireRain.cpp">
+      <Filter>03.Object\05.UserInterface\FireRain</Filter>
+    </ClCompile>
+    <ClCompile Include="FireRainProjectile.cpp">
+      <Filter>03.Object\06.Projectile\03.FireRainProjectile</Filter>
+    </ClCompile>
+    <ClCompile Include="ReinforceUnit.cpp">
+      <Filter>03.Object\04.Unit\03.ReinforceUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="DogMonster.cpp">
+      <Filter>03.Object\07.Monster\Dog</Filter>
+    </ClCompile>
+    <ClCompile Include="OrgeMonster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">

@@ -30,6 +30,7 @@ protected:
 	GETTOR			(int,				m_numOfSkill,			NumOfSkill);
 	GETTOR			(float,				m_attackRange,			AttackRange);
 	GETTOR			(float,				m_attackCooltime,		AttackCooltime);
+	GETTOR			(float,				m_attackFrameNum,		AttackFrameNum);
 	
 	GETTOR			(float,				m_dmg,					Dmg);
 	GETTOR			(float,				m_magicDmg,				MagicDmg);

@@ -13,6 +13,7 @@
 #include "CollisionManager.h"
 #include "GameInfo.h"
 #include "PhysicsManager.h"
+#include "FontManager.h"
 
 CMainApp::CMainApp()
 {
@@ -39,6 +40,7 @@ void CMainApp::Initialize(void)
 	CCollisionManager::GetInstance()->Initialize();
 
 	CGameInfo::GetInstance()->Initialize();
+	CFontManager::GetInstance()->Initialize();
 }
 
 void CMainApp::Update(void)
@@ -112,6 +114,7 @@ void CMainApp::LateUpdate(void)
 
 void CMainApp::Release(void)
 {
+	CFontManager::GetInstance()->DestroyInstance();
 	CGameInfo::GetInstance()->DestroyInstance();
 
 	CDataStore::GetInstance()->DestroyInstance();

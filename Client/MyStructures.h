@@ -68,4 +68,15 @@ struct RouteInfo
 	float distanceFromGoal;
 	std::vector<D3DXVECTOR3> routePoints;
 };
+
+
+struct Text
+{
+	std::string		m_message;
+	D3DXVECTOR3		m_position;
+	D3DXCOLOR		m_color;
+	bool			m_isVisible;
+};
+
+
 #endif // !MYSTRUCTURES_H

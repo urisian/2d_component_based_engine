@@ -7,6 +7,7 @@
 #include "GraphicsComponent.h"
 #include "Animation.h"
 #include "FadeOutEffectComponent.h"
+#include "Unit.h"
 
 COakMonster::COakMonster()
 {
@@ -29,33 +30,57 @@ void COakMonster::Update(void)
 	__super::Update();
 
 	std::string saveState = m_stateKey;
-
-	if (m_stateKey == "Die")
+	CGraphicsComponent* pGC = GetComponent<CGraphicsComponent>();
+	CUnit* pUnit = static_cast<CUnit*>(m_pTarget);
+	if (m_stateKey != "Die")
 	{
-		
+		if (m_pTarget != nullptr)
+		{
+			if ((D3DXVec3Length(&(m_position - m_pTarget->GetFinalPos())) <= m_size.x / 2.f + m_pTarget->GetSize().x / 2.f)&&
+				m_position.y == m_pTarget->GetFinalPos().y)
+			{
+				m_stateKey = "Attack";
+				if ((int)pGC->GetAnimation()->GetCurIndex() == m_attackFrameNum &&
+					(int)pGC->GetAnimation()->GetCurIndex() != pGC->GetAnimation()->GetLastFrameIndex())
+				{
+					float actualDmg = (1 - pUnit->GetArmor()) * m_dmg;
+					float actualMagicDmg = (1 - pUnit->GetMR()) * m_magicDmg;
 
-	}
-	else if (m_routeIndex < m_pRouteInfo->routePoints.size())
-	{
-		
-		m_stateKey = "Walk";
-		if (m_direction.y < 0 && (abs(m_direction.y) > abs(m_direction.x)))
-			m_stateKey += "Down";
-		else if (m_direction.y > 0 && (abs(m_direction.y) > abs(m_direction.x)))
-			m_stateKey += "Up";
+					pUnit->GetHP() -= (actualDmg + actualMagicDmg);
+					CEffect* pEffect = new CEffect("BloodDrop", "Idle", m_pTarget, 0, false);
+					pEffect->AddChildAndComponents();
+				}
+			}
+			else
+				m_stateKey = "Idle";
+
+			GetComponent<CGraphicsComponent>()->SetXFlip(true);
+		}
 		else
 		{
-			m_stateKey += "Hor";
-			if (m_direction.x < 0)
-				GetComponent<CGraphicsComponent>()->SetXFlip(true);
-			else if (m_direction.x > 0)
-				GetComponent<CGraphicsComponent>()->SetXFlip(false);
-		}
+			if (m_routeIndex < m_pRouteInfo->routePoints.size())
+			{
 
-		m_routeDistance -= GetComponent<CPhysicsComponent>()->GetSpeed() * GET_DT();
+				m_stateKey = "Walk";
+				if (m_direction.y < 0 && (abs(m_direction.y) > abs(m_direction.x)))
+					m_stateKey += "Down";
+				else if (m_direction.y > 0 && (abs(m_direction.y) > abs(m_direction.x)))
+					m_stateKey += "Up";
+				else
+				{
+					m_stateKey += "Hor";
+					if (m_direction.x < 0)
+						GetComponent<CGraphicsComponent>()->SetXFlip(true);
+					else if (m_direction.x > 0)
+						GetComponent<CGraphicsComponent>()->SetXFlip(false);
+				}
+
+				m_routeDistance -= GetComponent<CPhysicsComponent>()->GetSpeed() * GET_DT();
+			}
+			else
+				m_stateKey = "Idle";
+		}
 	}
-	else
-		m_stateKey = "Idle";
 
 	if (saveState != m_stateKey)
 		StateChangeInit();
@@ -93,5 +118,4 @@ void COakMonster::Die(void)
 		GetComponent<CGraphicsComponent>()->GetAnimation()->SetRepeat(false);
 	}
 }
-
 

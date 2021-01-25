@@ -3,6 +3,7 @@
 #include "DataStore.h"
 #include "Application.h"
 #include "GraphicsManager.h"
+#include "InputManager.h"
 
 CCamera::CCamera()
 {
@@ -62,6 +63,7 @@ void CCamera::Update(void)
 {
 	UpdateViewMatrix();
 	UpdateProjMatrix();
+
 }
 
 void CCamera::UpdateViewMatrix(void)

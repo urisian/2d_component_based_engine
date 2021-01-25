@@ -24,6 +24,8 @@ void CStage::Initialize(void)
 	SetupBaseTurret();
 	SetupRoutes();
 	SetupWaves();
+
+	m_curWaveNum = 0;
 }
 
 void CStage::Update(void)
@@ -34,7 +36,10 @@ void CStage::Update(void)
 	for (auto& wave : m_vWave)
 	{
 		if (!wave->GetActivated() && wave->GetWaveStartTime() <= m_playTime)
+		{
 			wave->SetActivated(true);
+			++m_curWaveNum;
+		}
 
 		if (wave->GetActivated())
 			wave->Update();

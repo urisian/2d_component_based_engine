@@ -46,7 +46,6 @@ void CFadeOutEffectComponent::LateUpdate(void)
 
 			--m_repeat;
 		}
-		float a = m_pOwner->GetComponent<CGraphicsComponent>()->GetColor().a;
 		m_pOwner->GetComponent<CGraphicsComponent>()->GetColor().a -= 1 / m_lifeTime * GET_DT();
 
 

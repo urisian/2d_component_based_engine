@@ -12,6 +12,7 @@
 #include "MagicTurret.h"
 #include "BombTurret.h"
 #include "BarrackTurret.h"
+#include "Decoration.h"
 
 CRingBox::CRingBox(CTurretRing* pParent, std::string objectKey)
 {
@@ -96,7 +97,10 @@ void CRingBox::Selected(void)
 		else if (m_objectKey == "Sell_RingBox")
 			pTurretRingParent->SellTurret();
 		else if (m_objectKey == "Rally_RingBox")
-			;
+		{
+			CBarrackTurret* pBT = static_cast<CBarrackTurret*>(pTurretRing->GetParent());
+			pBT->GetRallyCircle()->SetActivated(true);
+		}
 		else if (pTurretRingParent->GetLevel() == 2)
 		{
 			if (m_anglePosition == 135)

@@ -56,6 +56,7 @@ void CObject::Update(void)
 {
 	for (auto& it = m_mComponents.begin(); it != m_mComponents.end();)
 	{
+		(*it).second->Update();
 		if ((*it).second->GetNeedToBeDeleted() == true)
 		{
 			delete (*it).second;

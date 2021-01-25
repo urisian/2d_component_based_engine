@@ -6,7 +6,7 @@
 #include "Camera.h"
 #include "GraphicsComponent.h"
 #include "Texture.h"
-
+#include "FontManager.h"
 
 CGraphicsManager* CGraphicsManager::m_s_pInstance = nullptr;
 
@@ -77,12 +77,49 @@ void CGraphicsManager::LateUpdate(void)
 	{
 		if (!element->GetNeedToBeDeleted() && element->GetOwner()->GetActivated())
 		{
+			D3DXMATRIX persMatView;
+			D3DXMATRIX persMatProj;
+
+			if (element->GetIsOrtho())
+			{
+				m_pDevice->GetTransform(D3DTS_VIEW, &persMatView);
+				m_pDevice->GetTransform(D3DTS_PROJECTION, &persMatProj);
+
+				D3DXMATRIX s_orthoMatView;
+				D3DXMATRIX s_orthoMatProj;
+
+				D3DXVECTOR3 oCamPos = D3DXVECTOR3(0, 0, m_pCamera->m_position.z);
+				D3DXVECTOR3 oCamTar = D3DXVECTOR3(0, 0, m_pCamera->m_target.z);
+
+				D3DXVECTOR3 pos = m_pCamera->m_position;
+				D3DXVECTOR3 targ = m_pCamera->m_target;
+				D3DXVECTOR3 up = m_pCamera->m_up;
+
+				D3DXMatrixLookAtLH(&s_orthoMatView, &pos, &targ, &up);
+				D3DXMatrixOrthoLH(&s_orthoMatProj,
+					FLOAT(CApplication::GetInstance()->GetWndWidth()), FLOAT(CApplication::GetInstance()->GetWndHeight()),
+					FLOAT(m_pCamera->m_nearPlane), FLOAT(m_pCamera->m_farPlane));
+
+				m_pDevice->SetTransform(D3DTS_VIEW, &s_orthoMatView);
+				m_pDevice->SetTransform(D3DTS_PROJECTION, &s_orthoMatProj);
+			}
 			SetWorldMatrix(element);
 			m_pDevice->SetTexture(0, element->GetTexture());
 			m_pDevice->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_FLAT);
 			m_pDevice->SetTextureStageState(0, D3DTSS_CONSTANT, element->GetColor());
 			m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
+
+			if (element->GetIsOrtho())
+			{
+				m_pDevice->SetTransform(D3DTS_VIEW, &persMatView);
+				m_pDevice->SetTransform(D3DTS_PROJECTION, &persMatProj);
+			}
 		}
+	}
+
+	for (auto& text : CFontManager::GetInstance()->m_mTextList)
+	{
+		CFontManager::GetInstance()->DrawMyText(text.second);
 	}
 
 

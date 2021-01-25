@@ -13,7 +13,7 @@ private:
 	void				UpdateViewMatrix	(void);
 	void				UpdateProjMatrix	(void);
 
-private:
+public:
 	D3DXVECTOR3			m_position;
 	D3DXVECTOR3			m_rotation;
 	D3DXVECTOR3			m_target;

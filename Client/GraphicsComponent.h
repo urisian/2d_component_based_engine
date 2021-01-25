@@ -19,6 +19,7 @@ public:
 					void					StateChangeInit			(void);
 
 
+	GETTOR_SETTOR	(bool,					m_isOrtho,				IsOrtho);
 	GETTOR_SETTOR	(int,					m_zOrder,				ZOrder);
 
 	GETTOR_SETTOR	(D3DXVECTOR3,			m_position,				Position);

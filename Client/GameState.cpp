@@ -4,6 +4,7 @@
 #include "DataStore.h"
 #include "BaseTurret.h"
 #include "Decoration.h"
+#include "GraphicsComponent.h"
 
 CMouse* CGameState::m_s_pMouse = nullptr;
 

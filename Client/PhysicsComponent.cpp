@@ -56,3 +56,4 @@ void CPhysicsComponent::StateChangeInit(void)
 	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetStateKey() + "_m_speed", m_speed);
 	GET_VALUE(m_pOwner->GetDataID(), m_pOwner->GetObjectKey(), m_pOwner->GetStateKey() + "_m_accel", m_accel);
 }
+

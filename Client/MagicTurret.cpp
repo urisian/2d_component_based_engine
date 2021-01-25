@@ -52,6 +52,7 @@ void CMagicTurret::Release(void)
 void CMagicTurret::UpgradeTurret(int increase)
 {
 	__super::UpgradeTurret(increase);
+	m_pMagician->UpgradeUnit(increase);
 }
 
 void CMagicTurret::AddChildAndComponents(void)
